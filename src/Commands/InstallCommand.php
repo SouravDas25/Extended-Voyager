@@ -63,6 +63,7 @@ class InstallCommand extends Command
      * @param \Illuminate\Filesystem\Filesystem $filesystem
      *
      * @return void
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function handle(Filesystem $filesystem)
     {
