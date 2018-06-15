@@ -117,7 +117,7 @@
                         {{ method_field('DELETE') }}
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="submit" class="btn btn-danger pull-right" value="{{ __('voyager::database.delete_table_confirm') }}">
-                        <button type="button" class="btn btn-outline pull-right" style="margin-right:10px;"
+                        <button type="button" class="btn btn-default btn-lg pull-right" style="margin-right:10px;"
                                 data-dismiss="modal">{{ __('voyager::generic.cancel') }}
                         </button>
                     </form>
@@ -160,7 +160,7 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline pull-right" data-dismiss="modal">{{ __('voyager::generic.close') }}</button>
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">{{ __('voyager::generic.close') }}</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

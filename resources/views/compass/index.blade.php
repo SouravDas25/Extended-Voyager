@@ -22,12 +22,25 @@
         @include('voyager::alerts')
     </div>
 
-    <div class="page-content compass container-fluid">
-        <ul class="nav nav-tabs">
-          <li @if(empty($active_tab) || (isset($active_tab) && $active_tab == 'resources')){!! 'class="active"' !!}@endif><a data-toggle="tab" href="#resources"><i class="voyager-book"></i> {{ __('voyager::compass.resources.title') }}</a></li>
-          <li @if($active_tab == 'commands'){!! 'class="active"' !!}@endif><a data-toggle="tab" href="#commands"><i class="voyager-terminal"></i> {{ __('voyager::compass.commands.title') }}</a></li>
-          <li @if($active_tab == 'logs'){!! 'class="active"' !!}@endif><a data-toggle="tab" href="#logs"><i class="voyager-logbook"></i> {{ __('voyager::compass.logs.title') }}</a></li>
+    <div class="page-content compass container-fluid ">
+        <ul class="nav nav-tabs indigo lighten-1" role="tablist" >
+            <li class=" nav-item @if(empty($active_tab) || (isset($active_tab) && $active_tab == 'resources')){!! 'active' !!}@endif">
+                <a data-toggle="tab" href="#resources" class="nav-link grey-text" role="tab">
+                    <i class="voyager-book"></i> {{ __('voyager::compass.resources.title') }}
+                </a>
+            </li>
+            <li class=" nav-item @if($active_tab == 'commands'){!! 'active' !!}@endif" >
+                <a data-toggle="tab" href="#commands" class="nav-link grey-text" role="tab">
+                    <i class="voyager-terminal"></i> {{ __('voyager::compass.commands.title') }}
+                </a>
+            </li>
+            <li class=" nav-item @if($active_tab == 'logs'){!! 'active' !!}@endif">
+                <a data-toggle="tab" href="#logs" class="nav-link grey-text" role="tab">
+                    <i class="voyager-logbook"></i> {{ __('voyager::compass.logs.title') }}
+                </a>
+            </li>
         </ul>
+
 
         <div class="tab-content">
             <div id="resources" class="tab-pane fade in @if(empty($active_tab) || (isset($active_tab) && $active_tab == 'resources')){!! 'active' !!}@endif">

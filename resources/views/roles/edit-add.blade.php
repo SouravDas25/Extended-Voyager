@@ -61,18 +61,25 @@
                                     $role_permissions = (isset($dataTypeContent)) ? $dataTypeContent->permissions->pluck('key')->toArray() : [];
                                 ?>
                                 @foreach(TCG\Voyager\Models\Permission::all()->groupBy('table_name') as $table => $permission)
-                                    <li>
-                                        <input type="checkbox" id="{{$table}}" class="permission-group">
-                                        <label for="{{$table}}"><strong>{{title_case(str_replace('_',' ', $table))}}</strong></label>
+                                    <div class="form-check" >
+                                        <input type="checkbox" id="_{{$table}}" class="permission-group form-check-input filled-in">
+                                        <label for="_{{$table}}" class="form-check-label " style="padding-left:30px">
+                                            <strong>{{title_case(str_replace('_',' ', $table))}}</strong>
+                                        </label>
                                         <ul>
                                             @foreach($permission as $perm)
-                                                <li>
-                                                    <input type="checkbox" id="permission-{{$perm->id}}" name="permissions[]" class="the-permission" value="{{$perm->id}}" @if(in_array($perm->key, $role_permissions)) checked @endif>
-                                                    <label for="permission-{{$perm->id}}">{{title_case(str_replace('_', ' ', $perm->key))}}</label>
-                                                </li>
+                                                <div class="form-check">
+                                                    <input type="checkbox" id="permission-{{$perm->id}}"
+                                                           name="permissions[]" class="the-permission form-check-input filled-in"
+                                                           value="{{$perm->id}}" @if(in_array($perm->key, $role_permissions))
+                                                           checked @endif>
+                                                    <label for="permission-{{$perm->id}}" class="form-check-label " style="padding-left:30px" >
+                                                        {{title_case(str_replace('_', ' ', $perm->key))}}
+                                                    </label>
+                                                </div>
                                             @endforeach
                                         </ul>
-                                    </li>
+                                    </div>
                                 @endforeach
                             </ul>
                         </div><!-- panel-body -->

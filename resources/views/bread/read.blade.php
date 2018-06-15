@@ -45,7 +45,7 @@
                             <h3 class="panel-title">{{ $row->display_name }}</h3>
                         </div>
 
-                        <div class="panel-body" style="padding-top:0;">
+                        <div class="panel-body" style="padding-top:0; font-weight:bold!important;">
                             @if($row->type == "image")
                                 <img class="img-responsive"
                                      src="{{ filter_var($dataTypeContent->{$row->field}, FILTER_VALIDATE_URL) ? $dataTypeContent->{$row->field} : Voyager::image($dataTypeContent->{$row->field}) }}">
