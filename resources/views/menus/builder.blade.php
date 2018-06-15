@@ -109,7 +109,7 @@
                     </div>
                     <div class="modal-footer">
                         <input type="submit" class="btn btn-success pull-right delete-confirm__" value="{{ __('voyager::generic.update') }}">
-                        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
+                        <button type="button" class="btn btn-default btn-lg pull-right" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
                     </div>
                 </form>
             </div><!-- /.modal-content -->

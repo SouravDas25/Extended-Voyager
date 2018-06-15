@@ -34,7 +34,10 @@
                     <div class="panel panel-primary panel-bordered">
 
                         <div class="panel-heading">
-                            <h3 class="panel-title panel-icon"><i class="voyager-bread"></i> {{ ucfirst($table) }} {{ __('voyager::bread.bread_info') }}</h3>
+                            <h3 class="panel-title panel-icon">
+                                <i class="voyager-bread"></i>
+                                {{ ucfirst($table) }} {{ __('voyager::bread.bread_info') }}
+                            </h3>
                             <div class="panel-actions">
                                 <a class="panel-action voyager-angle-up" data-toggle="panel-collapse" aria-hidden="true"></a>
                             </div>
@@ -269,7 +272,7 @@
                                             <input type="hidden" value="timestamp"
                                                    name="field_input_type_{{ $data['field'] }}">
                                         @else
-                                            <select name="field_input_type_{{ $data['field'] }}">
+                                            <select name="field_input_type_{{ $data['field'] }}" class="browser-default">
                                                 @foreach (Voyager::formFields() as $formField)
                                                     @php
                                                     if (
