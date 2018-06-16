@@ -13,8 +13,9 @@ require('./jquery-match-height');
 require('./bootstrap-toggle');
 require('./jquery-cookie');
 require('./jquery-nestable');
+var Waves = require('node-waves');
 require('./mdb/popper.min');
-require('bootstrap');
+require('./mdb/bootstrap');
 require('bootstrap-switch');
 require('select2');
 require('bootstrap-datetimepicker/src/js/bootstrap-datetimepicker');
@@ -27,7 +28,7 @@ require('./multilingual');
 require('./voyager_tinymce');
 require('./voyager_ace_editor');
 window.helpers = require('./helpers.js');
-var Waves = require('node-waves');
+
 require('./mdb/mdb.min');
 require('./mdb/sd_voyager');
 
