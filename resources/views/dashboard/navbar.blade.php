@@ -1,11 +1,11 @@
-<nav class="navbar navbar-default navbar-fixed-top navbar-top">
+<nav class="navbar navbar-default navbar-fixed-top navbar-top " role="navigation" >
     <div class="container-fluid">
         <div class="navbar-header">
             <button class="hamburger btn-link">
                 <span class="hamburger-inner"></span>
             </button>
             @section('breadcrumbs')
-                <ol class="breadcrumb hidden-xs">
+                <ol class="breadcrumb hidden-xs" style="margin-top: 11px!important;">
                     @if(count(Request::segments()) == 1)
                         <li class="active"><i class="voyager-boat"></i> {{ __('voyager::generic.dashboard') }}</li>
                     @else
@@ -32,26 +32,48 @@
                 </ol>
             @show
         </div>
-        <ul class="nav navbar-nav @if (config('voyager.multilingual.rtl')) navbar-left @else navbar-right @endif">
-            <li class="dropdown profile">
-                <a href="#" class="dropdown-toggle text-right" type="button" id="dropdownMenu2" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    <img src="{{ $user_avatar }}" class="profile-img">
+        <ul class="nav navbar-nav  @if (config('voyager.multilingual.rtl')) navbar-left @else navbar-right @endif">
+            <li class="dropdown" style="border: 0">
+                <a href="#" class="dropdown-toggle text-right" data-toggle="dropdown" role="button"
+                   aria-expanded="false">
+                    <span class="badge badge-primary badge-pill">10</span>
+                    <i class="fa fa-bell"></i>
                     <span class="caret"></span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-animated" aria-labelledby="dropdownMenu2">
-                    <li class="profile-img dropdown-item">
-                        <img src="{{ $user_avatar }}" class="profile-img">
+                <ul class="dropdown-menu dropdown-menu-right" style="max-height:400px;overflow-y:scroll;">
+                    <li>
+                        <a href="#" class="dropdown-item alert-danger">
+                            New Notification
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="dropdown-item">
+                        <a href="#" class="">
+                            <i class="fa fa-eye pr-2"></i>
+                            View All
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown" style="border: 0">
+                <a href="#" class="dropdown-toggle text-right" data-toggle="dropdown" role="button"
+                   aria-expanded="false">
+                    <img src="{{ $user_avatar }}" class="img-fluid rounded-circle" width="30px">
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li class="img-fluid">
+                        <img src="{{ $user_avatar }}" class="img-fluid" >
                         <div class="profile-body">
                             <h5>{{ Auth::user()->name }}</h5>
                             <h6>{{ Auth::user()->email }}</h6>
                         </div>
                     </li>
-                    <div class="dropdown-divider"></div>
+                    <li class="divider"></li>
                     <?php $nav_items = config('voyager.dashboard.navbar_items'); ?>
                     @if(is_array($nav_items) && !empty($nav_items))
                         @foreach($nav_items as $name => $item)
-                            <li {!! isset($item['classes']) && !empty($item['classes']) ? 'class=dropdown-item "'.$item['classes'].'"' : '' !!}>
+                            <li {!! isset($item['classes']) && !empty($item['classes']) ? 'class="'.$item['classes'].'"' : '' !!} >
                                 @if(isset($item['route']) && $item['route'] == 'voyager.logout')
                                     <form action="{{ route('voyager.logout') }}" method="POST">
                                         {{ csrf_field() }}
@@ -63,7 +85,9 @@
                                         </button>
                                     </form>
                                 @else
-                                    <a href="{{ isset($item['route']) && Route::has($item['route']) ? route($item['route']) : (isset($item['route']) ? $item['route'] : '#') }}" {!! isset($item['target_blank']) && $item['target_blank'] ? 'target="_blank"' : '' !!}>
+                                    <a href="{{ isset($item['route']) && Route::has($item['route']) ? route($item['route']) : (isset($item['route']) ? $item['route'] : '#') }}"
+                                       {!! isset($item['target_blank']) && $item['target_blank'] ? 'target="_blank"' : '' !!}
+                                       class="dropdown-item">
                                         @if(isset($item['icon_class']) && !empty($item['icon_class']))
                                             <i class="{!! $item['icon_class'] !!}"></i>
                                         @endif
