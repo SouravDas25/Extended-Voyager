@@ -298,9 +298,9 @@
         $('document').ready(function () {
             $('#slug').slugify();
 
-        @if ($isModelTranslatable)
+            @if ($isModelTranslatable)
             $('.side-body').multilingual({"editing": true});
-        @endif
+            @endif
         });
     </script>
 @stop

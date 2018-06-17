@@ -129,6 +129,16 @@ Route::group(['as' => 'voyager.'], function () {
             Route::post('/', ['uses' => $namespacePrefix.'VoyagerCompassController@index',  'as' => 'post']);
         });
 
+        Route::group([
+            'as'     => 'notification.',
+            'prefix' => 'notification',
+        ], function () use ($namespacePrefix) {
+            Route::get('/all', ['uses' => $namespacePrefix.'VoyagerNotificationController@all',  'as' => 'all']);
+            //Route::get('/api/all', ['uses' => $namespacePrefix.'VoyagerNotificationController@apiAll',  'as' => 'api.all']);
+            Route::get('/read/{id}', ['uses' => $namespacePrefix.'VoyagerNotificationController@redirectAfterRead',  'as' => 'read']);
+            Route::get('/mark-all', ['uses' => $namespacePrefix.'VoyagerNotificationController@markAllAsRead',  'as' => 'mark-all']);
+        });
+
         event(new RoutingAdminAfter());
     });
     event(new RoutingAfter());

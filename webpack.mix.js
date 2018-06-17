@@ -11,7 +11,9 @@ const {mix} = require('laravel-mix');
  |
  */
 
-mix.options({
+mix.setPublicPath('./')
+    .options({
     processCssUrls: false
-}).sass('resources/assets/sass/app.scss', 'publishable/assets/css')
-    .js('resources/assets/js/app.js', 'publishable/assets/js');
+})
+    .sass('./resources/assets/sass/app.scss', './publishable/assets/css/app.css')
+    .js('./resources/assets/js/app.js', 'publishable/assets/js/app.js');

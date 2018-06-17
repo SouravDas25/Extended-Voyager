@@ -207,6 +207,11 @@ class Voyager
         return $dimmers;
     }
 
+    /**
+     * @param $key
+     * @param null $default
+     * @return null
+     */
     public function setting($key, $default = null)
     {
         if ($this->setting_cache === null) {

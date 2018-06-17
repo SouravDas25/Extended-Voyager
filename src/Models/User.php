@@ -4,6 +4,7 @@ namespace TCG\Voyager\Models;
 
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use TCG\Voyager\Contracts\User as UserContract;
 use TCG\Voyager\Traits\HasRelationships;
 use TCG\Voyager\Traits\VoyagerUser;
@@ -11,7 +12,8 @@ use TCG\Voyager\Traits\VoyagerUser;
 class User extends Authenticatable implements UserContract
 {
     use VoyagerUser,
-        HasRelationships;
+        HasRelationships,
+        Notifiable;
 
     protected $guarded = [];
 

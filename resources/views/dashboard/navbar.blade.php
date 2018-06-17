@@ -32,31 +32,54 @@
                 </ol>
             @show
         </div>
-        <ul class="nav navbar-nav  @if (config('voyager.multilingual.rtl')) navbar-left @else navbar-right @endif">
-            <li class="dropdown" style="border: 0">
-                <a href="#" class="dropdown-toggle text-right" data-toggle="dropdown" role="button"
+        <ul class="nav navbar-nav nav-flex-icons ml-auto  @if (config('voyager.multilingual.rtl')) navbar-left @else navbar-right @endif">
+            <li class="nav-item dropdown notifications-nav" >
+                @php $notifications = Auth::user()->notifications @endphp
+                <a class="nav-link dropdown-toggle waves-effect" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false">
-                    <span class="badge badge-primary badge-pill">10</span>
+                    @if( Auth::user()->unreadNotifications()->count() > 0)
+                        <span class="badge red">{{Auth::user()->unreadNotifications()->count()}}</span>
+                    @endif
                     <i class="fa fa-bell"></i>
+                    <span class="d-none d-md-inline-block hidden-sm hidden-xs">Notifications</span>
                     <span class="caret"></span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-right" style="max-height:400px;overflow-y:scroll;">
-                    <li>
-                        <a href="#" class="dropdown-item alert-danger">
-                            New Notification
+                <div class="dropdown-menu dropdown-info dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" style="width:250%">
+                    <div style="max-height:400px;" id="notification-scroll">
+                    @foreach( $notifications as $notification)
+                    <a class="dropdown-item {{ $notification->unread() ? 'indigo lighten-5' : ''}}"
+                         href="{{ route('voyager.notification.read',['id'=>$notification->id]) }}"  style="width: 100%">
+                        @include("voyager::notifications.".snake_case(class_basename($notification->type)) , $notification )
+                    </a>
+                    @endforeach
+                    </div>
+                    <!-- div class="text-center" id="notification-loader" style="display: none">
+                        <div class="preloader-wrapper small active">
+                            <div class="spinner-layer spinner-red-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div-->
+                    <div class="divider"></div>
+                    <div class="text-center" href="#" style="width: 100%">
+                        <a class="blue-text" href="{{ route('voyager.notification.all') }}">
+                            <i class="fa fa-eye mr-2" aria-hidden="true"></i>
+                            View all
                         </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li class="dropdown-item">
-                        <a href="#" class="">
-                            <i class="fa fa-eye pr-2"></i>
-                            View All
-                        </a>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </li>
+
             <li class="dropdown" style="border: 0">
-                <a href="#" class="dropdown-toggle text-right" data-toggle="dropdown" role="button"
+                <a href="#" class="nav-link dropdown-toggle text-right  waves-effect" data-toggle="dropdown" role="button"
                    aria-expanded="false">
                     <img src="{{ $user_avatar }}" class="img-fluid rounded-circle" width="30px">
                     <span class="caret"></span>
@@ -64,7 +87,7 @@
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li class="img-fluid">
                         <img src="{{ $user_avatar }}" class="img-fluid" >
-                        <div class="profile-body">
+                        <div class="profile-body text-center">
                             <h5>{{ Auth::user()->name }}</h5>
                             <h6>{{ Auth::user()->email }}</h6>
                         </div>
