@@ -17,13 +17,22 @@
 
 @section('content')
     <div class="page-content container-fluid">
-        <div class="list-group">
-            @foreach(Auth::user()->notifications as $notification)
-                <a href="{{ route('voyager.notification.read',['id'=>$notification->id])}}"
-                   class="list-group-item {{ $notification->unread() ? 'indigo lighten-5' : ''}}" >
-                    @include("voyager::notifications.".snake_case(class_basename($notification->type)) , $notification )
-                </a>
-            @endforeach
+        <div class="list-group" data-href="{{ route('voyager.notification.api.all') }}" id="notification-all">
+        </div>
+    </div>
+    <div class="text-center" id="notification-loader" style="display: none">
+        <div class="preloader-wrapper small active">
+            <div class="spinner-layer spinner-red-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

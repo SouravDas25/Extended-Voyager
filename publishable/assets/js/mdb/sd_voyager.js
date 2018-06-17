@@ -1,7 +1,10 @@
 $(document).ready(function () {
     var ps = $('#notification-scroll');
     ps.perfectScrollbar();
-    /*var loadingCount = 0;
+
+    var na = $('#notification-all');
+    na.perfectScrollbar();
+    var loadingCount = 0;
     var loading = false;
     var loader = '#notification-loader';
 
@@ -16,32 +19,47 @@ $(document).ready(function () {
         loading = true;
     }
     //document.getElementById('notification-scroll')
-    ps.on('ps-y-reach-end', function (event) {
+    na.on('ps-y-reach-end', function (event) {
         loadingCount++;
-        if (loadingCount > 3 && loading === false) {
+        if (loadingCount > 13 && loading === false) {
             startLoader();
-            addPSNotificationEntries(ps.data('href'));
+            addPSNotificationEntries(na.data('href'));
         }
         });
 
+    var done = false;
+
     function addPSNotificationEntries(href) {
-        $.get(href,function (data) {
-            //console.log(data);
-            if(data.data){
-                data.data.forEach(function (item, key) {
-                    var elm = "<a class=' ' style=\"width: 100%\">"
-                        + item +
-                        "</a>";
-                    ps.append(elm);
-                });
+        if(href != null) {
+            $.get(href,function (data) {
+                console.log(data);
+                if(data.data){
+                    data.data.forEach(function (item, key) {
+                        var elm = "<a class='list-group-item ' href='"+ item.data.link + "'>"
+                            + item.view +
+                            "</a>";
+                        na.append(elm);
+                    });
+                }
+                na.data('href',data.next_page_url);
+                //ps.perfectScrollbar();
+                stopLoader();
+            })
+        }
+        else {
+            if(href == null && !done){
+                var elm = "<a class='list-group-item text-center' >"
+                    + "No more Notification" +
+                    "</a>";
+                na.append(elm);
+                done = true;
             }
-            ps.data('href',data.next_page_url);
-            //ps.perfectScrollbar();
             stopLoader();
-        })
+        }
+
     }
 
-    addPSNotificationEntries(ps.data('href'));*/
+    addPSNotificationEntries(na.data('href'));
 });
 
 

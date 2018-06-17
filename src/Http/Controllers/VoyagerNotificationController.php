@@ -41,18 +41,18 @@ class VoyagerNotificationController
         return Redirect::back();
     }
 
-    /*public function apiAll(Request $request)
+    public function apiAll(Request $request)
     {
         $data = Auth::user()->notifications()->simplePaginate()->toArray();
         //dd($data);
-        for($i = 0 ; $i < count($data) ;$i++){
+        for($i = 0 ; $i < count($data['data']) ; $i++){
             $notification = $data['data'][$i];
             $content = View::make("voyager::notifications.".snake_case(class_basename($notification['type'])) , compact('notification') );
             $contents = $content->render();
-            $data['data'][$i] = $contents;
+            $data['data'][$i]['view'] = $contents;
         }
         return $data;
-    }*/
+    }
 
 
 }

@@ -134,7 +134,7 @@ Route::group(['as' => 'voyager.'], function () {
             'prefix' => 'notification',
         ], function () use ($namespacePrefix) {
             Route::get('/all', ['uses' => $namespacePrefix.'VoyagerNotificationController@all',  'as' => 'all']);
-            //Route::get('/api/all', ['uses' => $namespacePrefix.'VoyagerNotificationController@apiAll',  'as' => 'api.all']);
+            Route::get('/api/all', ['uses' => $namespacePrefix.'VoyagerNotificationController@apiAll',  'as' => 'api.all']);
             Route::get('/read/{id}', ['uses' => $namespacePrefix.'VoyagerNotificationController@redirectAfterRead',  'as' => 'read']);
             Route::get('/mark-all', ['uses' => $namespacePrefix.'VoyagerNotificationController@markAllAsRead',  'as' => 'mark-all']);
         });
