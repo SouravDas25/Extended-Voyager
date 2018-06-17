@@ -39,9 +39,4 @@
 
 
 @section('javascript')
-    <script>
-        $('document').ready(function () {
-
-        });
-    </script>
 @stop
