@@ -13,6 +13,7 @@ require('./jquery-match-height');
 require('./bootstrap-toggle');
 require('./jquery-cookie');
 require('./jquery-nestable');
+let Waves = require('node-waves');
 require('bootstrap');
 require('bootstrap-switch');
 require('select2');
@@ -26,6 +27,7 @@ require('./multilingual');
 require('./voyager_tinymce');
 require('./voyager_ace_editor');
 window.helpers = require('./helpers.js');
+
 
 $(document).ready(function () {
 
@@ -222,3 +224,6 @@ $(document).ready(function () {
         });
     });
 });
+
+require('./mdb/mdb.min');
+require('./mdb/sd_voyager');

@@ -11,7 +11,14 @@ const {mix} = require('laravel-mix');
  |
  */
 
-mix.setPublicPath('./')
+mix.webpackConfig({
+    output: {
+        chunkFilename: './publishable/assets/js/[name].js',
+    },
+});
+
+mix.setPublicPath(__dirname)
+
     .options({
     processCssUrls: false
 })

@@ -1,17 +1,22 @@
-<nav class="navbar navbar-default navbar-fixed-top navbar-top " role="navigation" >
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button class="hamburger btn-link">
+<nav class="navbar navbar-default fixed-top navbar-fixed-top navbar-top grey lighten-3" role="navigation" >
+    <div class="container">
+        <div class="navbar-header ">
+            <a class="hamburger btn-link">
                 <span class="hamburger-inner"></span>
-            </button>
+            </a>
             @section('breadcrumbs')
-                <ol class="breadcrumb hidden-xs" style="margin-top: 11px!important;">
+                <ol class="breadcrumb "  >
                     @if(count(Request::segments()) == 1)
-                        <li class="active"><i class="voyager-boat"></i> {{ __('voyager::generic.dashboard') }}</li>
+                        <li class="breadcrumb-item active">
+                            <i class="voyager-boat"></i>
+                            {{ __('voyager::generic.dashboard') }}
+                        </li>
                     @else
-                        <li class="active">
-                            <a href="{{ route('voyager.dashboard')}}"><i
-                                        class="voyager-boat"></i> {{ __('voyager::generic.dashboard') }}</a>
+                        <li class="breadcrumb-item active">
+                            <a href="{{ route('voyager.dashboard')}}">
+                                <i class="voyager-boat"></i>
+                                {{ __('voyager::generic.dashboard') }}
+                            </a>
                         </li>
                     @endif
                     <?php $breadcrumb_url = url(''); ?>
@@ -20,11 +25,11 @@
                         @if(Request::segment($i) != ltrim(route('voyager.dashboard', [], false), '/') && !is_numeric(Request::segment($i)))
 
                             @if($i < count(Request::segments()) & $i > 0 && array_search('database',Request::segments())===false)
-                                <li class="active">
+                                <li class="breadcrumb-item active">
                                     <a href="{{ $breadcrumb_url }}">{{ ucwords(str_replace('-', ' ', str_replace('_', ' ', Request::segment($i)))) }}</a>
                                 </li>
                             @else
-                                <li>{{ ucwords(str_replace('-', ' ', str_replace('_', ' ', Request::segment($i)))) }}</li>
+                                <li class="breadcrumb-item">{{ ucwords(str_replace('-', ' ', str_replace('_', ' ', Request::segment($i)))) }}</li>
                             @endif
 
                         @endif
@@ -46,14 +51,14 @@
                 </a>
                 <div class="dropdown-menu dropdown-info dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" style="width:250%">
                     <div style="max-height:400px;" id="notification-scroll">
-                    @foreach( $notifications as $notification)
+                    @foreach($notifications as $notification)
                     <a class="dropdown-item {{ $notification->unread() ? 'indigo lighten-5' : ''}}"
-                         href="{{ route('voyager.notification.read',['id'=>$notification->id]) }}"  style="width: 100%">
+                         href="{{ route('voyager.notification.read',['id'=>$notification->id]) }}"  >
                         @include("voyager::notifications.".snake_case(class_basename($notification->type)) , $notification )
                     </a>
                     @endforeach
                     </div>
-                    <div class="divider"></div>
+                    <div class="dropdown-divider"></div>
                     <div class="text-center" href="#" style="width: 100%">
                         <a class="blue-text" href="{{ route('voyager.notification.all') }}">
                             <i class="fa fa-eye mr-2" aria-hidden="true"></i>

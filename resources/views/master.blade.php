@@ -16,7 +16,6 @@
     <!-- App CSS -->
     <link rel="stylesheet" href="{{ voyager_asset('css/app.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="{{ voyager_asset('css/mdb.min.css') }}">
 
 
     @yield('css')
@@ -69,7 +68,7 @@ if (starts_with(Auth::user()->avatar, 'http://') || starts_with(Auth::user()->av
 ?>
 
 <div class="app-container">
-    <div class="fadetoblack visible-xs"></div>
+    <!--  div class="fadetoblack visible-xs"></div -->
     <div class="row content-container">
         @include('voyager::dashboard.navbar')
         @include('voyager::dashboard.sidebar')
@@ -113,7 +112,7 @@ if (starts_with(Auth::user()->avatar, 'http://') || starts_with(Auth::user()->av
 
 <!-- Javascript Libs -->
 
-<script type="text/javascript" src="{{ voyager_asset('js/mdb/popper.min.js') }}"></script>
+
 <script type="text/javascript" src="{{ voyager_asset('js/app.js') }}"></script>
 
 
@@ -140,9 +139,6 @@ if (starts_with(Auth::user()->avatar, 'http://') || starts_with(Auth::user()->av
 </script>
 
 @yield('javascript')
-
-<script type="text/javascript" src="{{ voyager_asset('js/mdb/mdb.min.js') }}"></script>
-<script type="text/javascript" src="{{ voyager_asset('js/mdb/sd_voyager.js') }}"></script>
 
 @if(!empty(config('voyager.additional_js')))<!-- Additional Javascript -->
     @foreach(config('voyager.additional_js') as $js)<script type="text/javascript" src="{{ asset($js) }}"></script>@endforeach
