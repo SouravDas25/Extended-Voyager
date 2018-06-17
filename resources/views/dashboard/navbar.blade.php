@@ -34,11 +34,11 @@
         </div>
         <ul class="nav navbar-nav nav-flex-icons ml-auto  @if (config('voyager.multilingual.rtl')) navbar-left @else navbar-right @endif">
             <li class="nav-item dropdown notifications-nav" >
-                @php $notifications = Auth::user()->notifications @endphp
+                @php $notifications = Auth::user()->unreadNotifications() @endphp
                 <a class="nav-link dropdown-toggle waves-effect" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false">
-                    @if( Auth::user()->unreadNotifications()->count() > 0)
-                        <span class="badge red">{{Auth::user()->unreadNotifications()->count()}}</span>
+                    @if( $notifications->count() > 0)
+                        <span class="badge red">{{$notifications->count()}}</span>
                     @endif
                     <i class="fa fa-bell"></i>
                     <span class="d-none d-md-inline-block hidden-sm hidden-xs">Notifications</span>
@@ -53,21 +53,6 @@
                     </a>
                     @endforeach
                     </div>
-                    <!-- div class="text-center" id="notification-loader" style="display: none">
-                        <div class="preloader-wrapper small active">
-                            <div class="spinner-layer spinner-red-only">
-                                <div class="circle-clipper left">
-                                    <div class="circle"></div>
-                                </div>
-                                <div class="gap-patch">
-                                    <div class="circle"></div>
-                                </div>
-                                <div class="circle-clipper right">
-                                    <div class="circle"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div-->
                     <div class="divider"></div>
                     <div class="text-center" href="#" style="width: 100%">
                         <a class="blue-text" href="{{ route('voyager.notification.all') }}">
