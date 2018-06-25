@@ -14,8 +14,8 @@
     @endif
     <style>
         body {
-            background-image:url('{{ Voyager::image( Voyager::setting("admin.bg_image"), voyager_asset("images/bg.jpg") ) }}');
-            background-color: {{ Voyager::setting("admin.bg_color", "#FFFFFF" ) }};
+            background-image:url('{{ Voyager::image( Voyager::setting("admin.bg_image"), voyager_asset("images/bg.jpg") ) }}') !important;
+            background-color: {{ Voyager::setting("admin.bg_color", "#FFFFFF" ) }} !important;
         }
         body.login .login-sidebar {
             border-top:5px solid {{ config('voyager.primary_color','#22A7F0') }};
@@ -46,11 +46,11 @@
                     <div class="logo-title-container">
                         <?php $admin_logo_img = Voyager::setting('admin.icon_image', ''); ?>
                         @if($admin_logo_img == '')
-                        <img class="img-responsive pull-left flip logo hidden-xs animated fadeIn" src="{{ voyager_asset('images/logo-icon-light.png') }}" alt="Logo Icon">
+                        <img class="img-responsive ml-5 pb-0 pull-left flip logo hidden-xs animated fadeIn" src="{{ voyager_asset('images/logo-icon-light.png') }}" alt="Logo Icon">
                         @else
-                        <img class="img-responsive pull-left flip logo hidden-xs animated fadeIn" src="{{ Voyager::image($admin_logo_img) }}" alt="Logo Icon">
+                        <img class="img-responsive ml-5 pb-0 pull-left flip logo hidden-xs animated fadeIn" src="{{ Voyager::image($admin_logo_img) }}" alt="Logo Icon">
                         @endif
-                        <div class="copy animated fadeIn">
+                        <div class="copy animated fadeIn pt-0">
                             <h1>{{ Voyager::setting('admin.title', 'Voyager') }}</h1>
                             <p>{{ Voyager::setting('admin.description', __('voyager::login.welcome')) }}</p>
                         </div>
@@ -81,8 +81,11 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-block login-button">
-                        <span class="signingin hidden"><span class="voyager-refresh"></span> {{ __('voyager::login.loggingin') }}...</span>
+                    <button type="submit" class="btn btn-primary ml-0 login-button">
+                        <span class="signingin d-none">
+                            <span class="voyager-refresh"></span>
+                            {{ __('voyager::login.loggingin') }}...
+                        </span>
                         <span class="signin">{{ __('voyager::generic.login') }}</span>
                     </button>
 
@@ -113,7 +116,7 @@
     btn.addEventListener('click', function(ev){
         if (form.checkValidity()) {
             btn.querySelector('.signingin').className = 'signingin';
-            btn.querySelector('.signin').className = 'signin hidden';
+            btn.querySelector('.signin').className = 'signin d-none';
         } else {
             ev.preventDefault();
         }

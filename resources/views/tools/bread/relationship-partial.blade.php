@@ -1,13 +1,13 @@
 @php $relationshipDetails = json_decode($relationship['details']); @endphp
 <div class="row row-dd row-dd-relationship">
-    <div class="col-xs-2">
+    <div class="col-sm-2">
         <h4><i class="voyager-heart"></i><strong>{{ $relationship->display_name }}</strong></h4>
         <div class="handler voyager-handle"></div>
         <strong>{{ __('voyager::database.type') }}:</strong> <span>{{ __('voyager::database.relationship.relationship') }}</span>
         <div class="handler voyager-handle"></div>
         <input class="row_order" type="hidden" value="{{ $relationship['order'] }}" name="field_order_{{ $relationship['field'] }}">
     </div>
-    <div class="col-xs-2">
+    <div class="col-sm-2">
         <input type="checkbox" name="field_browse_{{ $relationship['field'] }}" @if(isset($relationship->browse) && $relationship->browse){{ 'checked="checked"' }}@elseif(!isset($relationship->browse)){{ 'checked="checked"' }}@endif>
         <label for="field_browse_{{ $relationship['field'] }}"> {{ __('voyager::database.relationship.browse') }}</label><br>
         <input type="checkbox" name="field_read_{{ $relationship['field'] }}" @if(isset($relationship->read) && $relationship->read){{ 'checked="checked"' }}@elseif(!isset($relationship->read)){{ 'checked="checked"' }}@endif>
@@ -19,13 +19,13 @@
         <input type="checkbox" name="field_delete_{{ $relationship['field'] }}" @if(isset($relationship->delete) && $relationship->delete){{ 'checked="checked"' }}@elseif(!isset($relationship->delete)){{ 'checked="checked"' }}@endif>
         <label for="field_delete_{{ $relationship['field'] }}"> {{ __('voyager::database.relationship.delete') }}</label><br>
     </div>
-    <div class="col-xs-2">
+    <div class="col-sm-2">
         <p>{{ __('voyager::database.relationship.relationship') }}</p>
     </div>
-    <div class="col-xs-2">
+    <div class="col-sm-2">
         <input type="text" name="field_display_name_{{ $relationship['field'] }}" class="form-control relationship_display_name" value="{{ $relationship['display_name'] }}">
     </div>
-    <div class="col-xs-4">
+    <div class="col-sm-4">
         <div class="voyager-relationship-details-btn">
             <i class="voyager-angle-down"></i><i class="voyager-angle-up"></i> 
             <span class="open_text">{{ __('voyager::database.relationship.open') }}</span>
