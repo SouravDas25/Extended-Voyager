@@ -1,4 +1,5 @@
-<nav class="navbar navbar-default fixed-top navbar-fixed-top navbar-top grey lighten-3" role="navigation" >
+
+<nav class="navbar navbar-default fixed-top navbar-fixed-top navbar-top blue-grey lighten-4" role="navigation" >
     <div class="container">
         <div class="navbar-header ">
             <a class="hamburger btn-link">
@@ -31,7 +32,6 @@
                             @else
                                 <li class="breadcrumb-item">{{ ucwords(str_replace('-', ' ', str_replace('_', ' ', Request::segment($i)))) }}</li>
                             @endif
-
                         @endif
                     @endfor
                 </ol>
@@ -49,10 +49,10 @@
                     <span class="d-none d-md-inline-block hidden-sm hidden-xs">Notifications</span>
                     <span class="caret"></span>
                 </a>
-                <div class="dropdown-menu dropdown-info dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" style="width:250%">
+                <div class="dropdown-menu dropdown-info dropdown-menu-right p-2" aria-labelledby="navbarDropdownMenuLink" style="width:250%">
                     <div style="max-height:400px;" id="notification-scroll">
-                    @foreach($notifications as $notification)
-                    <a class="dropdown-item {{ $notification->unread() ? 'indigo lighten-5' : ''}}"
+                    @foreach($notifications->get() as $notification)
+                    <a class="dropdown-item "
                          href="{{ route('voyager.notification.read',['id'=>$notification->id]) }}"  >
                         @include("voyager::notifications.".snake_case(class_basename($notification->type)) , $notification )
                     </a>
@@ -74,11 +74,11 @@
                     <img src="{{ $user_avatar }}" class="img-fluid rounded-circle" width="30px">
                     <span class="caret"></span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-right">
+                <ul class="dropdown-menu dropdown-menu-right p-2">
                     <li class="img-fluid">
                         <img src="{{ $user_avatar }}" class="img-fluid" >
                         <div class="profile-body text-center">
-                            <h5>{{ Auth::user()->name }}</h5>
+                            <h6>{{ Auth::user()->name }}</h6>
                             <h6>{{ Auth::user()->email }}</h6>
                         </div>
                     </li>

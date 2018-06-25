@@ -229,7 +229,7 @@
             background-color: #fff !important;
         }
 
-        .nav-tabs{
+        .nav-tabs {
             margin-left: 0;
         }
     </style>
@@ -257,7 +257,7 @@
             {{ method_field("PUT") }}
             {{ csrf_field() }}
             <input type="hidden" name="setting_tab" class="setting_tab" value="{{ $active }}"/>
-            <div class="panel">
+            <div class="panel ">
 
                 <div class="page-content settings container-fluid">
                     <ul class="nav nav-tabs indigo lighten-1" role="tablist">
@@ -269,10 +269,10 @@
                         @endforeach
                     </ul>
 
-                    <div class="tab-content">
+                    <div class="tab-content pr-5">
                         @foreach($settings as $group => $group_settings)
-                            <div id="{{ str_slug($group) }}"
-                                 class="tab-pane fade in @if($group == $active) active @endif">
+                            <div id="{{ str_slug($group) }}" role="tabpanel"
+                                 class="tab-pane fade in  @if($group == $active) show active @endif">
                                 @foreach($group_settings as $setting)
                                     <div class="panel-heading">
                                         <h3 class="panel-title">
@@ -293,7 +293,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="panel-body no-padding-left-right">
+                                    <div class="panel-body no-padding-left-right row">
                                         <div class="col-md-10 no-padding-left-right">
                                             @if ($setting->type == "text")
                                                 <input type="text" class="form-control" name="{{ $setting->key }}"
@@ -394,11 +394,14 @@
         @can('add', Voyager::model('Setting'))
             <div class="panel" style="margin-top:10px;">
                 <div class="panel-heading new-setting">
-                    <hr>
-                    <h3 class="panel-title"><i class="voyager-plus"></i> {{ __('voyager::settings.new') }}</h3>
+                    <div class="divider-new px-5">
+                        <h2 class="h2-responsive panel-title indigo-text mx-4 font-bold wow fadeIn" data-wow-delay="0.2s">
+                            <strong><i class="voyager-plus"></i> {{ __('voyager::settings.new') }}</strong>
+                        </h2>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <form action="{{ route('voyager.settings.store') }}" method="POST">
+                <div class="panel-body p-5">
+                    <form action="{{ route('voyager.settings.store') }}" method="POST" class="row">
                         {{ csrf_field() }}
                         <input type="hidden" name="setting_tab" class="setting_tab" value="{{ $active }}"/>
                         <div class="col-md-3">
@@ -413,7 +416,7 @@
                         </div>
                         <div class="col-md-3">
                             <label for="type">{{ __('voyager::generic.type') }}</label>
-                            <select name="type" class="form-control" required="required">
+                            <select name="type" class="mdb-select" required="required">
                                 <option value="">{{ __('voyager::generic.choose_type') }}</option>
                                 <option value="text">{{ __('voyager::form.type_textbox') }}</option>
                                 <option value="text_area">{{ __('voyager::form.type_textarea') }}</option>
@@ -492,6 +495,7 @@
 @section('javascript')
     <script>
         $('document').ready(function () {
+            $('.mdb-select').material_select();
             $('#toggle_options').click(function () {
                 $('.new-settings-options').toggle();
                 if ($('#toggle_options .voyager-double-down').length) {

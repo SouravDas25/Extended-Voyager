@@ -36,9 +36,10 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('voyager::generic.close') }}"><span
-                            aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title"><i class="voyager-trash"></i> {{ __('voyager::menu_builder.delete_item_question') }}</h4>
+                    <button type="button" class="close pt-1" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-footer">
                     <form action="{{ route('voyager.menus.item.destroy', ['menu' => $menu->id, 'id' => '__id']) }}"
@@ -49,21 +50,26 @@
                         <input type="submit" class="btn btn-danger pull-right delete-confirm"
                                value="{{ __('voyager::menu_builder.delete_item_confirm') }}">
                     </form>
-                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
+                    <button type="button" class="btn btn-lg btn-default pull-right" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
 
-    <div class="modal modal-info fade" tabindex="-1" id="menu_item_modal" role="dialog">
-        <div class="modal-dialog">
+    <div class="modal fade" tabindex="-1" id="menu_item_modal" role="dialog">
+        <div class="modal-dialog modal-notify modal-info">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('voyager::generic.close') }}"><span
-                                aria-hidden="true">&times;</span></button>
-                    <h4 id="m_hd_add" class="modal-title hidden"><i class="voyager-plus"></i> {{ __('voyager::menu_builder.create_new_item') }}</h4>
-                    <h4 id="m_hd_edit" class="modal-title hidden"><i class="voyager-edit"></i> {{ __('voyager::menu_builder.edit_item') }}</h4>
+                    <h4 id="m_hd_add" class="modal-title hidden">
+                        <i class="fa fa-plus-circle white-text"></i> {{ __('voyager::menu_builder.create_new_item') }}
+                    </h4>
+                    <h4 id="m_hd_edit" class="modal-title hidden">
+                        <i class="voyager-edit"></i> {{ __('voyager::menu_builder.edit_item') }}
+                    </h4>
+                    <button type="button" class="close pt-1" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
                 </div>
                 <form action="" id="m_form" method="POST"
                       data-action-add="{{ route('voyager.menus.item.add', ['menu' => $menu->id]) }}"
@@ -77,7 +83,7 @@
                         @include('voyager::multilingual.input-hidden', ['_field_name' => 'title', '_field_trans' => ''])
                         <input type="text" class="form-control" id="m_title" name="title" placeholder="{{ __('voyager::generic.title') }}"><br>
                         <label for="type">{{ __('voyager::menu_builder.link_type') }}</label>
-                        <select id="m_link_type" class="form-control" name="type">
+                        <select id="m_link_type" class="form-control browser-default" name="type">
                             <option value="url" selected="selected">{{ __('voyager::menu_builder.static_url') }}</option>
                             <option value="route">{{ __('voyager::menu_builder.dynamic_route') }}</option>
                         </select><br>

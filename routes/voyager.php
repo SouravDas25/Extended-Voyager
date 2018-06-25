@@ -139,6 +139,17 @@ Route::group(['as' => 'voyager.'], function () {
             Route::get('/mark-all', ['uses' => $namespacePrefix.'VoyagerNotificationController@markAllAsRead',  'as' => 'mark-all']);
         });
 
+        Route::group([
+            'as'     => 'api.builder.',
+            'prefix' => 'api/builder',
+        ], function () use ($namespacePrefix) {
+            Route::get('/', ['uses' => $namespacePrefix.'VoyagerApiBuilderController@index',              'as' => 'index']);
+            Route::get('{table}/create', ['uses' => $namespacePrefix.'VoyagerApiBuilderController@create',     'as' => 'create']);
+            Route::post('/', ['uses' => $namespacePrefix.'VoyagerApiBuilderController@store',   'as' => 'store']);
+            Route::get('{table}/edit', ['uses' => $namespacePrefix.'VoyagerApiBuilderController@edit', 'as' => 'edit']);
+            Route::put('{id}', ['uses' => $namespacePrefix.'VoyagerApiBuilderController@update',  'as' => 'update']);
+        });
+
         event(new RoutingAdminAfter());
     });
     event(new RoutingAfter());

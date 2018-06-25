@@ -44,19 +44,19 @@
 
         <div class="tab-content">
             <div id="resources"
-                 class="tab-pane fade in @if(empty($active_tab) || (isset($active_tab) && $active_tab == 'resources')){!! 'active' !!}@endif">
+                 class="tab-pane fade in @if(empty($active_tab) || (isset($active_tab) && $active_tab == 'resources')){!! 'show active' !!}@endif">
                 <h3><i class="voyager-book"></i> {{ __('voyager::compass.resources.title') }}
                     <small>{{ __('voyager::compass.resources.text') }}</small>
                 </h3>
 
                 <div class="collapsible">
-                    <div class="collapse-head" data-toggle="collapse" data-target="#links" aria-expanded="true"
+                    <a class="collapse-head" data-toggle="collapse" data-target="#links" aria-expanded="true"
                          aria-controls="links">
                         <h4>{{ __('voyager::compass.links.title') }}</h4>
                         <i class="voyager-angle-down"></i>
                         <i class="voyager-angle-up"></i>
-                    </div>
-                    <div class="collapse-content collapse in" id="links">
+                    </a>
+                    <div class="collapse-content multi-collapse collapse in" id="links" >
                         <div class="row">
                             <div class="col-md-4">
                                 <a href="https://laravelvoyager.com/docs" target="_blank" class="voyager-link"

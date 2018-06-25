@@ -198,11 +198,11 @@
 
                         <div class="panel-body">
                             <div class="row fake-table-hd">
-                                <div class="col-xs-2">{{ __('voyager::database.field') }}</div>
-                                <div class="col-xs-2">{{ __('voyager::database.visibility') }}</div>
-                                <div class="col-xs-2">{{ __('voyager::database.input_type') }}</div>
-                                <div class="col-xs-2">{{ __('voyager::bread.display_name') }}</div>
-                                <div class="col-xs-4">{{ __('voyager::database.optional_details') }}</div>
+                                <div class="col-sm-2">{{ __('voyager::database.field') }}</div>
+                                <div class="col-sm-2">{{ __('voyager::database.visibility') }}</div>
+                                <div class="col-sm-2">{{ __('voyager::database.input_type') }}</div>
+                                <div class="col-sm-2">{{ __('voyager::bread.display_name') }}</div>
+                                <div class="col-sm-4">{{ __('voyager::database.optional_details') }}</div>
                             </div>
 
                             <div id="bread-items">
@@ -220,7 +220,7 @@
                                 @endif
 
                                 <div class="row row-dd">
-                                    <div class="col-xs-2">
+                                    <div class="col-sm-2">
                                         <h4><strong>{{ $data['field'] }}</strong></h4>
                                         <strong>{{ __('voyager::database.type') }}:</strong> <span>{{ $data['type'] }}</span><br/>
                                         <strong>{{ __('voyager::database.key') }}:</strong> <span>{{ $data['key'] }}</span><br/>
@@ -236,7 +236,7 @@
                                         <div class="handler voyager-handle"></div>
                                         <input class="row_order" type="hidden" value="@if(isset($dataRow->order)){{ $dataRow->order }}@else{{ $r_order }}@endif" name="field_order_{{ $data['field'] }}">
                                     </div>
-                                    <div class="col-xs-2">
+                                    <div class="col-sm-2">
                                         <input type="checkbox"
                                                id="field_browse_{{ $data['field'] }}"
                                                name="field_browse_{{ $data['field'] }}"
@@ -265,7 +265,7 @@
                                                name="field_delete_{{ $data['field'] }}" @if(isset($dataRow->delete) && $dataRow->delete){{ 'checked="checked"' }}@elseif($data['key'] == 'PRI')@elseif($data['type'] == 'timestamp' && $data['field'] == 'updated_at')@elseif(!isset($dataRow->delete)){{ 'checked="checked"' }}@endif>
                                                 <label for="field_delete_{{ $data['field'] }}">{{ __('voyager::generic.delete') }}</label><br/>
                                     </div>
-                                    <div class="col-xs-2">
+                                    <div class="col-sm-2">
                                         <input type="hidden" name="field_{{ $data['field'] }}" value="{{ $data['field'] }}">
                                         @if($data['type'] == 'timestamp')
                                             <p>{{ __('voyager::generic.timestamp') }}</p>
@@ -292,12 +292,12 @@
                                             </select>
                                         @endif
                                     </div>
-                                    <div class="col-xs-2">
+                                    <div class="col-sm-2">
                                         <input type="text" class="form-control"
                                                value="@if(isset($dataRow->display_name)){{ $dataRow->display_name }}@else{{ ucwords(str_replace('_', ' ', $data['field'])) }}@endif"
                                                name="field_display_name_{{ $data['field'] }}">
                                     </div>
-                                    <div class="col-xs-4">
+                                    <div class="col-sm-4">
                                         <div class="alert alert-danger validation-error">
                                             {{ __('voyager::json.invalid') }}
                                         </div>

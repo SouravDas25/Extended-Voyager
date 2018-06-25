@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-md-12">
 
-                <table class="table table-striped database-tables">
+                <table class="table table-striped table-bordered table-hover database-tables">
                     <thead>
                         <tr>
                             <th>{{ __('voyager::database.table_name') }}</th>
@@ -85,17 +85,18 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <div class="modal modal-info fade" tabindex="-1" id="table_info" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
+    <div class="modal fade" tabindex="-1" id="table_info" role="dialog">
+        <div class="modal-dialog modal-notify modal-info">
+            <div class="modal-content ">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('voyager::generic.close') }}"><span
-                                aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"><i class="voyager-data"></i> @{{ table.name }}</h4>
+                    <h4 class="modal-title "><i class="voyager-data"></i> @{{ table.name }}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body" style="overflow:scroll">
                     <table class="table table-striped">
-                        <thead>
+                        <thead class="blue-grey lighten-4">
                         <tr>
                             <th>{{ __('voyager::database.field') }}</th>
                             <th>{{ __('voyager::database.type') }}</th>
@@ -118,7 +119,7 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline pull-right" data-dismiss="modal">{{ __('voyager::generic.close') }}</button>
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">{{ __('voyager::generic.close') }}</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

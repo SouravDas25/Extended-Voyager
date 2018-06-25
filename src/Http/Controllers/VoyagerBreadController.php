@@ -2,21 +2,15 @@
 
 namespace TCG\Voyager\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use TCG\Voyager\Database\Schema\Column;
 use TCG\Voyager\Database\Schema\SchemaManager;
-use TCG\Voyager\Database\Schema\Table;
-use TCG\Voyager\Database\Types\Type;
 use TCG\Voyager\Events\BreadAdded;
 use TCG\Voyager\Events\BreadDeleted;
 use TCG\Voyager\Events\BreadUpdated;
 use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Models\DataRow;
-use TCG\Voyager\Models\DataType;
-use TCG\Voyager\Models\Permission;
 
 class VoyagerBreadController extends Controller
 {
@@ -28,12 +22,12 @@ class VoyagerBreadController extends Controller
 
         $tables = array_map(function ($table) use ($dataTypes) {
             $table = [
-                'name'       => $table,
-                'slug'       => isset($dataTypes[$table]['slug']) ? $dataTypes[$table]['slug'] : null,
+                'name' => $table,
+                'slug' => isset($dataTypes[$table]['slug']) ? $dataTypes[$table]['slug'] : null,
                 'dataTypeId' => isset($dataTypes[$table]['id']) ? $dataTypes[$table]['id'] : null,
             ];
 
-            return (object) $table;
+            return (object)$table;
         }, SchemaManager::listTableNames());
 
         return Voyager::view('voyager::tools.bread.index')->with(compact('dataTypes', 'tables'));
@@ -43,7 +37,7 @@ class VoyagerBreadController extends Controller
      * Create BREAD.
      *
      * @param Request $request
-     * @param string  $table   Table name.
+     * @param string $table Table name.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -66,14 +60,14 @@ class VoyagerBreadController extends Controller
         }
 
         return [
-            'isModelTranslatable'  => true,
-            'table'                => $table,
-            'slug'                 => Str::slug($table),
-            'display_name'         => $displayName,
-            'display_name_plural'  => Str::plural($displayName),
-            'model_name'           => $modelNamespace.Str::studly(Str::singular($table)),
+            'isModelTranslatable' => true,
+            'table' => $table,
+            'slug' => Str::slug($table),
+            'display_name' => $displayName,
+            'display_name_plural' => Str::plural($displayName),
+            'model_name' => $modelNamespace . Str::studly(Str::singular($table)),
             'generate_permissions' => true,
-            'server_side'          => false,
+            'server_side' => false,
         ];
     }
 
@@ -128,7 +122,7 @@ class VoyagerBreadController extends Controller
      * Update BREAD.
      *
      * @param \Illuminate\Http\Request $request
-     * @param number                   $id
+     * @param number $id
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -218,7 +212,7 @@ class VoyagerBreadController extends Controller
 
         if (!class_exists($request->relationship_model)) {
             return back()->with([
-                'message'    => 'Model Class '.$request->relationship_model.' does not exist. Please create Model before creating relationship.',
+                'message' => 'Model Class ' . $request->relationship_model . ' does not exist. Please create Model before creating relationship.',
                 'alert-type' => 'error',
             ]);
         }
@@ -233,15 +227,15 @@ class VoyagerBreadController extends Controller
 
             // Build the relationship details
             $relationshipDetails = json_encode([
-                'model'       => $request->relationship_model,
-                'table'       => $request->relationship_table,
-                'type'        => $request->relationship_type,
-                'column'      => $relationship_column,
-                'key'         => $request->relationship_key,
-                'label'       => $request->relationship_label,
+                'model' => $request->relationship_model,
+                'table' => $request->relationship_table,
+                'type' => $request->relationship_type,
+                'column' => $relationship_column,
+                'key' => $request->relationship_key,
+                'label' => $request->relationship_label,
                 'pivot_table' => $request->relationship_pivot,
-                'pivot'       => ($request->relationship_type == 'belongsToMany') ? '1' : '0',
-                'taggable'    => $request->relationship_taggable,
+                'pivot' => ($request->relationship_type == 'belongsToMany') ? '1' : '0',
+                'taggable' => $request->relationship_taggable,
             ]);
 
             $newRow = new DataRow();
@@ -261,7 +255,7 @@ class VoyagerBreadController extends Controller
 
             if (!$newRow->save()) {
                 return back()->with([
-                    'message'    => 'Error saving new relationship row for '.$request->relationship_table,
+                    'message' => 'Error saving new relationship row for ' . $request->relationship_table,
                     'alert-type' => 'error',
                 ]);
             }
@@ -269,14 +263,14 @@ class VoyagerBreadController extends Controller
             DB::commit();
 
             return back()->with([
-                'message'    => 'Successfully created new relationship for '.$request->relationship_table,
+                'message' => 'Successfully created new relationship for ' . $request->relationship_table,
                 'alert-type' => 'success',
             ]);
         } catch (\Exception $e) {
             DB::rollBack();
 
             return back()->with([
-                'message'    => 'Error creating new relationship: '.$e->getMessage(),
+                'message' => 'Error creating new relationship: ' . $e->getMessage(),
                 'alert-type' => 'error',
             ]);
         }
@@ -295,7 +289,7 @@ class VoyagerBreadController extends Controller
 
         $dataType = Voyager::model('DataType')->find($request->data_type_id);
 
-        $field = str_singular($dataType->name).'_'.$request->relationship_type.'_'.str_singular($request->relationship_table).'_relationship';
+        $field = str_singular($dataType->name) . '_' . $request->relationship_type . '_' . str_singular($request->relationship_table) . '_relationship';
 
         $relationshipFieldOriginal = $relationshipField = strtolower($field);
 
@@ -303,7 +297,7 @@ class VoyagerBreadController extends Controller
         $index = 1;
 
         while (isset($existingRow->id)) {
-            $relationshipField = $relationshipFieldOriginal.'_'.$index;
+            $relationshipField = $relationshipFieldOriginal . '_' . $index;
             $existingRow = Voyager::model('DataRow')->where('field', '=', $relationshipField)->first();
             $index += 1;
         }
@@ -323,8 +317,8 @@ class VoyagerBreadController extends Controller
         Voyager::model('DataRow')->destroy($id);
 
         return back()->with([
-                'message'    => 'Successfully deleted relationship.',
-                'alert-type' => 'success',
-            ]);
+            'message' => 'Successfully deleted relationship.',
+            'alert-type' => 'success',
+        ]);
     }
 }
