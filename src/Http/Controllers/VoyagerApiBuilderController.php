@@ -71,4 +71,9 @@ class VoyagerApiBuilderController extends Controller
         ];
     }
 
+    private function store()
+    {
+
+    }
+
 }
