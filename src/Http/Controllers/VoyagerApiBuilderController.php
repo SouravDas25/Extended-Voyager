@@ -70,7 +70,7 @@ class VoyagerApiBuilderController extends Controller
             'server_side' => false,
         ];
     }
-    
+
     private function store()
     {
 

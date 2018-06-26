@@ -53,12 +53,14 @@
 
                         <div class="breadcrumb-container">
                             <ol class="breadcrumb filemanager">
-                                <li class="media_breadcrumb" data-folder="/" data-index="0"><span class="arrow"></span><strong>{{ __('voyager::media.library') }}</strong></li>
+                                <li class="media_breadcrumb  breadcrumb-item " data-folder="/" data-index="0">
+                                    <span class="arrow"></span><strong>{{ __('voyager::media.library') }}</strong>
+                                </li>
                                 <template v-for="(folder, index) in folders">
                                     <li v-bind:data-folder="folder" v-bind:data-index="index+1"
-									v-bind:class="{media_breadcrumb: index !== folders.length - 1}"><span
-                                                class="arrow"></span>@{{ folder }}</li>
-
+									v-bind:class="{media_breadcrumb: index !== folders.length - 1}" class="breadcrumb-item">
+                                        <span class="arrow"></span>@{{ folder }}
+                                    </li>
                                 </template>
                             </ol>
 
@@ -203,11 +205,13 @@
                     <div class="modal fade modal-warning" id="move_file_modal">
                         <div class="modal-dialog">
                             <div class="modal-content">
-
                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal"
-                                            aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title"><i class="voyager-move"></i> {{ __('voyager::media.move_file_folder') }}</h4>
+                                    <h4 class="modal-title">
+                                        <i class="voyager-move"></i> {{ __('voyager::media.move_file_folder') }}
+                                    </h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
 
                                 <div class="modal-body">
@@ -237,9 +241,12 @@
                             <div class="modal-content">
 
                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal"
-                                            aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title"><i class="voyager-character"></i> {{ __('voyager::media.rename_file_folder') }}</h4>
+                                    <h4 class="modal-title">
+                                        <i class="voyager-character"></i> {{ __('voyager::media.rename_file_folder') }}
+                                    </h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
 
                                 <div class="modal-body">
@@ -262,7 +269,9 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
 								<div class="modal-body">
 									<img :src="selected_file.path" class="img img-responsive" style="margin: 0 auto;">
@@ -283,8 +292,12 @@
                             <div class="modal-content">
 
                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title"><i class="voyager-warning"></i> {{ __('voyager::media.crop_image') }}</h4>
+                                    <h4 class="modal-title">
+                                        <i class="voyager-warning"></i> {{ __('voyager::media.crop_image') }}
+                                    </h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
 
                                 <div class="modal-body">
@@ -315,9 +328,12 @@
                         <div class="modal-content">
 
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal"
-                                        aria-hidden="true">&times;</button>
-                                <h4 class="modal-title"><i class="voyager-folder"></i> {{ __('voyager::media.add_new_folder') }}</h4>
+                                <h4 class="modal-title">
+                                    <i class="voyager-folder"></i> {{ __('voyager::media.add_new_folder') }}
+                                </h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
 
                             <div class="modal-body">
@@ -341,9 +357,12 @@
                         <div class="modal-content">
 
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal"
-                                        aria-hidden="true">&times;</button>
-                                <h4 class="modal-title"><i class="voyager-warning"></i> {{ __('voyager::generic.are_you_sure') }}</h4>
+                                <h4 class="modal-title">
+                                    <i class="voyager-warning"></i> {{ __('voyager::generic.are_you_sure') }}
+                                </h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
 
                             <div class="modal-body">
@@ -368,9 +387,12 @@
                         <div class="modal-content">
 
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal"
-                                        aria-hidden="true">&times;</button>
-                                <h4 class="modal-title"><i class="voyager-warning"></i> {{ __('voyager::media.drag_drop_info') }}</h4>
+                                <h4 class="modal-title">
+                                    <i class="voyager-warning"></i> {{ __('voyager::media.drag_drop_info') }}
+                                </h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
 
                             <div class="modal-body">
