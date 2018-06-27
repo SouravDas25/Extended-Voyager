@@ -4,7 +4,7 @@
 
 @section('page_header')
     <h1 class="page-title">
-        <i class="fa fa-refresh"></i> API Builder
+        <i class="fa fa-cloud" aria-hidden="true"></i> API Builder
     </h1>
     <button class="btn btn-primary btn-lg">
         API Keys
@@ -41,11 +41,11 @@
                             </td>
                             <td class="actions text-right">
                                 @if($table->dataTypeId)
-                                    <a href="{{ route('voyager.' . $table->slug . '.index') }}"
+                                    <a href="{{ route('voyager.api.builder.browse',['id'=> $table->dataTypeId] ) }}"
                                        class="btn btn-warning btn-sm browse_bread" style="margin-right: 0;">
                                         <i class="voyager-plus"></i> Browse
                                     </a>
-                                    <a href="{{ route('voyager.bread.edit', $table->name) }}"
+                                    <a href="{{ route('voyager.api.builder.edit', $table->name) }}"
                                        class="btn btn-primary btn-sm edit">
                                         <i class="voyager-edit"></i> {{ __('voyager::generic.edit') }}
                                     </a>
@@ -68,6 +68,29 @@
             </div>
         </div>
     </div>
+
+    <div class="modal modal-danger fade" tabindex="-1" id="delete_builder_modal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <i class="voyager-trash"></i>
+                        {!! __('voyager::bread.delete_bread_quest', ['table' => '<span id="delete_builder_name"></span>']) !!}
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <form action="{{ route('voyager.api.builder.delete', ['id' => null]) }}" id="delete_builder_form" method="POST">
+                        {{ method_field('DELETE') }}
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="submit" class="btn btn-danger" value="Yes, Remove the API Resource">
+                    </form>
+                    <button type="button" class="btn btn-default btn-lg btn-outline pull-right" data-dismiss="modal">
+                        {{ __('voyager::generic.cancel') }}
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
     <div class="modal fade" tabindex="-1" id="table_info" role="dialog">
         <div class="modal-dialog modal-notify modal-info">
@@ -128,6 +151,15 @@
 
 
         $(function () {
+
+            $('table .actions').on('click', '.delete', function (e) {
+                id = $(this).data('id');
+                name = $(this).data('name');
+
+                $('#delete_builder_name').text(name);
+                $('#delete_builder_form')[0].action += '/' + id;
+                $('#delete_builder_modal').modal('show');
+            });
 
             $('.database-tables').on('click', '.desctable', function (e) {
                 e.preventDefault();

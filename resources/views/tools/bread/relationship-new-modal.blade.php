@@ -1,13 +1,18 @@
 <!-- !!! Add form action below -->
 <form role="form" action="{{ route('voyager.bread.relationship') }}" method="POST">
-	<div class="modal fade modal-danger modal-relationships" id="new_relationship_modal">
-		<div class="modal-dialog relationship-panel">
-		    <div class="model-content">
+	<div class="modal fade modal-relationships"
+		 tabindex="-1" role="dialog" aria-hidden="true"
+		 id="new_relationship_modal">
+		<div class="modal-dialog modal-notify modal-danger relationship-panel" role="document">
+		    <div class="modal-content">
 		        <div class="modal-header">
-	                <button type="button" class="close" data-dismiss="modal"
-	                        aria-hidden="true">&times;</button>
-	                <h4 class="modal-title"><i class="voyager-heart"></i> {{ str_singular(ucfirst($table)) }} 
-					{{ __('voyager::database.relationship.relationships') }} </h4>
+	                <h4 class="modal-title">
+						<i class="voyager-heart"></i> {{ str_singular(ucfirst($table)) }}
+						{{ __('voyager::database.relationship.relationships') }}
+					</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
 	            </div>
 
 		        <div class="modal-body">
@@ -80,9 +85,13 @@
 			    </div>
 			    <div class="modal-footer">
 			    	<div class="relationship-btn-container">
-			    		<button type="button" class="btn btn-default" data-dismiss="modal">{{ __('voyager::database.relationship.cancel') }}</button>
+			    		<button type="button" class="btn btn-default btn-lg" data-dismiss="modal">
+							{{ __('voyager::database.relationship.cancel') }}
+						</button>
 	                    @if(isset($dataType->id))
-	                    	<button class="btn btn-danger btn-relationship"><i class="voyager-plus"></i> <span>{{ __('voyager::database.relationship.add_new') }}</span></button>
+	                    	<button class="btn btn-danger btn-relationship btn-lg" >
+								<i class="voyager-plus"></i> <span>{{ __('voyager::database.relationship.add_new') }}</span>
+							</button>
 	                	@endif
 	                </div>
 			    </div>

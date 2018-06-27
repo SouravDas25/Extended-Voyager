@@ -15,6 +15,7 @@ use TCG\Voyager\Actions\ViewAction;
 use TCG\Voyager\Events\AlertsCollection;
 use TCG\Voyager\FormFields\After\HandlerInterface as AfterHandlerInterface;
 use TCG\Voyager\FormFields\HandlerInterface;
+use TCG\Voyager\Models\ApiType;
 use TCG\Voyager\Models\Category;
 use TCG\Voyager\Models\DataRow;
 use TCG\Voyager\Models\DataType;
@@ -54,6 +55,7 @@ class Voyager
     ];
 
     protected $models = [
+        'ApiType'     => ApiType::class,
         'Category'    => Category::class,
         'DataRow'     => DataRow::class,
         'DataType'    => DataType::class,

@@ -4,6 +4,7 @@ use TCG\Voyager\Events\Routing;
 use TCG\Voyager\Events\RoutingAdmin;
 use TCG\Voyager\Events\RoutingAdminAfter;
 use TCG\Voyager\Events\RoutingAfter;
+use TCG\Voyager\Models\ApiType;
 use TCG\Voyager\Models\DataType;
 
 /*
@@ -139,6 +140,21 @@ Route::group(['as' => 'voyager.'], function () {
             Route::get('/mark-all', ['uses' => $namespacePrefix . 'VoyagerNotificationController@markAllAsRead', 'as' => 'mark-all']);
         });
 
+        try {
+            foreach (ApiType::all() as $apiType) {
+                $apiController = $apiType->controller
+                    ? $apiType->controller
+                    : $namespacePrefix . 'VoyagerApiController';
+                Route::get('api/'.$apiType->slug.'/{id}', $apiController.'@show')->name('api.'.$apiType->slug.'.show');
+                Route::get('api/'.$apiType->slug, $apiController.'@index')->name('api.'.$apiType->slug.'.index');
+
+            }
+        } catch (\InvalidArgumentException $e) {
+            throw new \InvalidArgumentException("Custom routes hasn't been configured because: " . $e->getMessage(), 1);
+        } catch (\Exception $e) {
+            // do nothing, might just be because table not yet migrated.
+        }
+
         Route::group([
             'as' => 'api.builder.',
             'prefix' => 'api/builder',
@@ -148,27 +164,8 @@ Route::group(['as' => 'voyager.'], function () {
             Route::post('/', ['uses' => $namespacePrefix . 'VoyagerApiBuilderController@store', 'as' => 'store']);
             Route::get('{table}/edit', ['uses' => $namespacePrefix . 'VoyagerApiBuilderController@edit', 'as' => 'edit']);
             Route::put('{id}', ['uses' => $namespacePrefix . 'VoyagerApiBuilderController@update', 'as' => 'update']);
-        });
-
-        Route::group([
-            'as'     => 'notification.',
-            'prefix' => 'notification',
-        ], function () use ($namespacePrefix) {
-            Route::get('/all', ['uses' => $namespacePrefix.'VoyagerNotificationController@all',  'as' => 'all']);
-            Route::get('/api/all', ['uses' => $namespacePrefix.'VoyagerNotificationController@apiAll',  'as' => 'api.all']);
-            Route::get('/read/{id}', ['uses' => $namespacePrefix.'VoyagerNotificationController@redirectAfterRead',  'as' => 'read']);
-            Route::get('/mark-all', ['uses' => $namespacePrefix.'VoyagerNotificationController@markAllAsRead',  'as' => 'mark-all']);
-        });
-
-        Route::group([
-            'as'     => 'api.builder.',
-            'prefix' => 'api/builder',
-        ], function () use ($namespacePrefix) {
-            Route::get('/', ['uses' => $namespacePrefix.'VoyagerApiBuilderController@index',              'as' => 'index']);
-            Route::get('{table}/create', ['uses' => $namespacePrefix.'VoyagerApiBuilderController@create',     'as' => 'create']);
-            Route::post('/', ['uses' => $namespacePrefix.'VoyagerApiBuilderController@store',   'as' => 'store']);
-            Route::get('{table}/edit', ['uses' => $namespacePrefix.'VoyagerApiBuilderController@edit', 'as' => 'edit']);
-            Route::put('{id}', ['uses' => $namespacePrefix.'VoyagerApiBuilderController@update',  'as' => 'update']);
+            Route::delete('{id}', ['uses' => $namespacePrefix . 'VoyagerApiBuilderController@destroy', 'as' => 'delete']);
+            Route::get('/browse/{id}', ['uses' => $namespacePrefix . 'VoyagerApiBuilderController@show', 'as' => 'browse']);
         });
 
         event(new RoutingAdminAfter());

@@ -16,6 +16,11 @@
         body {
             background-image:url('{{ Voyager::image( Voyager::setting("admin.bg_image"), voyager_asset("images/bg.jpg") ) }}') !important;
             background-color: {{ Voyager::setting("admin.bg_color", "#FFFFFF" ) }} !important;
+            background-size : cover !important;
+            height: 100% !important;
+            /* Center and scale the image nicely */
+            background-position: center !important;
+            background-repeat: no-repeat !important;
         }
         body.login .login-sidebar {
             border-top:5px solid {{ config('voyager.primary_color','#22A7F0') }};

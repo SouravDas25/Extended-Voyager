@@ -40,6 +40,17 @@ abstract class Controller extends BaseController
         return $slug;
     }
 
+    public function getApiSlug(Request $request)
+    {
+        if (isset($this->slug)) {
+            $slug = $this->slug;
+        } else {
+            $slug = explode('.', $request->route()->getName())[2];
+        }
+
+        return $slug;
+    }
+
     public function insertUpdateData($request, $slug, $rows, $data)
     {
         $multi_select = [];

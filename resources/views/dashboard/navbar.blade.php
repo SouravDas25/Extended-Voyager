@@ -1,12 +1,12 @@
 
-<nav class="navbar navbar-default fixed-top navbar-fixed-top navbar-top blue-grey lighten-4" role="navigation" >
+<nav class="navbar navbar-default fixed-top navbar-fixed-top navbar-top grey lighten-2" role="navigation" >
     <div class="container">
         <div class="navbar-header ">
             <a class="hamburger btn-link">
                 <span class="hamburger-inner"></span>
             </a>
             @section('breadcrumbs')
-                <ol class="breadcrumb "  >
+                <ol class="breadcrumb " style="border: 0" >
                     @if(count(Request::segments()) == 1)
                         <li class="breadcrumb-item active">
                             <i class="voyager-boat"></i>

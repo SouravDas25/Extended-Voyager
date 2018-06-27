@@ -319,12 +319,12 @@
 
                         </div><!-- .panel-body -->
                         <div class="panel-footer">
-                             <div class="btn btn-new-relationship"><i class="voyager-heart"></i> <span>
+                             <div class="btn btn-new-relationship btn-lg"><i class="voyager-heart"></i> <span>
                              {{ __('voyager::database.relationship.create') }}</span></div>
                         </div>
                     </div><!-- .panel -->
 
-                    <button type="submit" class="btn pull-right btn-primary">{{ __('voyager::generic.submit') }}</button>
+                    <button type="submit" class="btn pull-right btn-lg btn-primary">{{ __('voyager::generic.submit') }}</button>
 
                 </form>
             </div><!-- .col-md-12 -->
