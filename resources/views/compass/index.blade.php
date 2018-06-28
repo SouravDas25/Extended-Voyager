@@ -56,7 +56,7 @@
                         <i class="voyager-angle-down"></i>
                         <i class="voyager-angle-up"></i>
                     </a>
-                    <div class="collapse-content multi-collapse collapse in" id="links" >
+                    <div class="collapse-content multi-collapse collapse in show" id="links" >
                         <div class="row">
                             <div class="col-md-4">
                                 <a href="https://laravelvoyager.com/docs" target="_blank" class="voyager-link"
@@ -99,6 +99,24 @@
                     </div>
 
                 </div>
+
+                <div class="collapsible">
+
+                    <div class="collapse-head" data-toggle="collapse" data-target="#fontello-fonts" aria-expanded="true"
+                         aria-controls="fontello-fonts">
+                        <h4>Fontello Css Icons</h4>
+                        <i class="voyager-angle-down"></i>
+                        <i class="voyager-angle-up"></i>
+                    </div>
+
+                    <div class="collapse-content collapse in show grey lighten-4" id="fontello-fonts">
+
+                        @include('voyager::compass.includes.fontello-fonts')
+
+                    </div>
+
+                </div>
+
             </div>
 
             <div id="commands" class="tab-pane fade in @if($active_tab == 'commands'){!! 'active' !!}@endif">
@@ -135,6 +153,16 @@
                     collapseContainer.find('.voyager-angle-up').fadeIn('slow');
                 }
             });
+        });
+
+        $(function () {
+            $.ajax({
+                url : '{{ voyager_asset('/data/fontello-config.json') }}',
+                success : fontFontsExplode,
+                error : function (e) {
+                    console.log(e)
+                }
+            })
         });
     </script>
     <!-- JS for commands -->

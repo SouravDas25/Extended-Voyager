@@ -125,6 +125,7 @@ class VoyagerBreadController extends Controller
      * @param number $id
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
      */
     public function update(Request $request, $id)
     {

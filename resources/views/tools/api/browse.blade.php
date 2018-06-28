@@ -6,6 +6,9 @@
     <h1 class="page-title">
         <i class="fa fa-cloud" aria-hidden="true"></i> {{ ucfirst($apiType->name) }} API Browser
     </h1>
+    <a class="btn btn-warning btn-lg" href="{{ route('voyager.api.builder.index') }}">
+        <i class="fa fa-bars pr-2" aria-hidden="true"></i> Back To List
+    </a>
     <style>
         pre.json-prettify {
             background-color: ghostwhite;
@@ -136,7 +139,7 @@
                     $('#' + id).html(library.json.prettyPrint(data));
                 },
                 error: function (e) {
-                    console.log(e);
+                    $('#' + id).html(library.json.prettyPrint(e));
                 }
             });
         }

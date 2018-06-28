@@ -6,9 +6,9 @@
     <h1 class="page-title">
         <i class="fa fa-cloud" aria-hidden="true"></i> API Builder
     </h1>
-    <button class="btn btn-primary btn-lg">
-        API Keys
-    </button>
+    <a class="btn btn-primary btn-lg" href="{{ route('voyager.api-keys.index') }}">
+        <i class="icon-key-1"></i> API Keys
+    </a>
 @stop
 
 @section('content')
@@ -43,7 +43,7 @@
                                 @if($table->dataTypeId)
                                     <a href="{{ route('voyager.api.builder.browse',['id'=> $table->dataTypeId] ) }}"
                                        class="btn btn-warning btn-sm browse_bread" style="margin-right: 0;">
-                                        <i class="voyager-plus"></i> Browse
+                                        <i class="voyager-eye"></i> Browse
                                     </a>
                                     <a href="{{ route('voyager.api.builder.edit', $table->name) }}"
                                        class="btn btn-primary btn-sm edit">

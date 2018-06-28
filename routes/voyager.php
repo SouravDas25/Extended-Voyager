@@ -157,7 +157,7 @@ Route::group(['as' => 'voyager.'], function () {
 
         Route::group([
             'as' => 'api.builder.',
-            'prefix' => 'api/builder',
+            'prefix' => 'api-builder',
         ], function () use ($namespacePrefix) {
             Route::get('/', ['uses' => $namespacePrefix . 'VoyagerApiBuilderController@index', 'as' => 'index']);
             Route::get('{table}/create', ['uses' => $namespacePrefix . 'VoyagerApiBuilderController@create', 'as' => 'create']);
@@ -167,6 +167,8 @@ Route::group(['as' => 'voyager.'], function () {
             Route::delete('{id}', ['uses' => $namespacePrefix . 'VoyagerApiBuilderController@destroy', 'as' => 'delete']);
             Route::get('/browse/{id}', ['uses' => $namespacePrefix . 'VoyagerApiBuilderController@show', 'as' => 'browse']);
         });
+
+        Route::resource('api-keys',$namespacePrefix.'VoyagerApiKeysController');
 
         event(new RoutingAdminAfter());
     });
