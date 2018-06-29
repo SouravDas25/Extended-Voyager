@@ -82,7 +82,9 @@
                         </div><!-- panel-body -->
 
                         <div class="panel-footer">
-                            <button type="submit" class="btn btn-primary save">{{ __('voyager::generic.save') }}</button>
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary btn-lg mx-0 save">{{ __('voyager::generic.save') }}</button>
+                            </div>
                         </div>
                     </form>
 
@@ -135,13 +137,16 @@
 
             //Init datepicker for date fields if data-datepicker attribute defined
             //or if browser does not handle date inputs
-            $('.form-group input[type=date]').each(function (idx, elt) {
+            /*$('.form-group input[type=date]').each(function (idx, elt) {
                 if (elt.type != 'date' || elt.hasAttribute('data-datepicker')) {
                     elt.type = 'text';
                     $(elt).datetimepicker($(elt).data('datepicker'));
                 }
-            });
+            });*/
 
+            $('.datepicker').pickadate({
+                format: 'yyyy/mm/dd',
+            });
             @if ($isModelTranslatable)
                 $('.side-body').multilingual({"editing": true});
             @endif

@@ -5,7 +5,7 @@
 @section('page_header')
     <h1 class="page-title">
         <i class="voyager-list"></i>{{ __('voyager::generic.menu_builder') }} ({{ $menu->name }})
-        <div class="btn btn-success add_item"><i class="voyager-plus"></i> {{ __('voyager::menu_builder.new_menu_item') }}</div>
+        <div class="btn btn-success btn-lg add_item"><i class="voyager-plus"></i> {{ __('voyager::menu_builder.new_menu_item') }}</div>
     </h1>
     @include('voyager::multilingual.language-selector')
 @stop

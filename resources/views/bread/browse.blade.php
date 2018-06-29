@@ -25,10 +25,6 @@
         @include('voyager::multilingual.language-selector')
     </div>
     <style>
-        .select2-container {
-            min-width : 100px !important;
-            width : 100%;
-        }
         #search-input{
             border : 0;
         }
@@ -44,42 +40,49 @@
         @include('voyager::alerts')
         <div class="row">
             <div class="col-md-12">
-                <div class="panel panel-bordered">
-                    <div class="panel-body">
-                        @if ($isServerSide)
-                            <form method="get" class="form-search ">
-                                <div id="search-input" class="form-row">
-                                    <div class="col-sm-2">
-                                        <select id="search_key" name="key" style="min-width: 50px !important;width:100%" >
-                                            @foreach($searchable as $key)
-                                                <option value="{{ $key }}" @if($search->key == $key){{ 'selected' }}@endif>{{ ucwords(str_replace('_', ' ', $key)) }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <select id="filter" name="filter" class="col-sm-2" style="min-width: 50px !important;width:100%">
-                                            <option value="contains" @if($search->filter == "contains"){{ 'selected' }}@endif>contains</option>
-                                            <option value="equals" @if($search->filter == "equals"){{ 'selected' }}@endif>=</option>
-                                        </select>
-                                    </div>
-                                    <div class=" col-sm-8" >
-                                        <input type="text" class="col-sm-8 pb-2 grey lighten-4"
-                                               placeholder="{{ __('voyager::generic.search') }}"
-                                               name="s" value="{{ $search->value }}">
-                                        <button class="btn btn-info btn-lg" type="submit">
-                                            <i class="voyager-search"></i>
-                                        </button>
-                                    </div>
+                <div class="card ">
+                    @if ($isServerSide)
+                    <div class="card-header pt-5 pb-3">
+                        <form method="get" class="form-search ">
+                            <div id="search-input" class="bg-transparent mb-0">
+                                <div class="col-sm-2 ">
+                                    <select id="search_key"  class="mdb-select colorful-select dropdown-primary" name="key" >
+                                        @foreach($searchable as $key)
+                                            <option value="{{ $key }}" @if($search->key == $key){{ 'selected' }}@endif>{{ ucwords(str_replace('_', ' ', $key)) }}</option>
+                                        @endforeach
+                                    </select>
+                                    <label>column</label>
                                 </div>
-                            </form>
-                        @endif
+                                <div class="col-sm-2">
+                                    <select id="filter" name="filter" class=" mdb-select colorful-select dropdown-primary" >
+                                        <option value="contains" @if($search->filter == "contains"){{ 'selected' }}@endif>contains</option>
+                                        <option value="equals" @if($search->filter == "equals"){{ 'selected' }}@endif>=</option>
+                                    </select>
+                                    <label>equator</label>
+                                </div>
+                                <div class="col-sm-8" >
+                                    <input type="text" class="col-sm-8 pb-2"
+                                           placeholder="{{ __('voyager::generic.search') }}"
+                                           name="s" value="{{ $search->value }}">
+                                    <button class="btn btn-info btn-lg" type="submit">
+                                        <i class="voyager-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    @endif
+                    <div class="card-body">
                         <div class="table-responsive">
-                            <table id="dataTable" class="table table-hover">
-                                <thead>
+                            <table id="dataTable" class="table table-hover table-ui table-striped w-100">
+                                <thead class="blue-grey lighten-4">
                                     <tr>
                                         @can('delete',app($dataType->model_name))
-                                            <th>
-                                                <input type="checkbox" class="select_all">
+                                            <th class="">
+                                                <div class="form-check pl-2 float-left">
+                                                    <input class="form-check-input filled-in select_all" type="checkbox" id="checkbox123">
+                                                    <label class="form-check-label" for="checkbox123" class="label-table"></label>
+                                                </div>
                                             </th>
                                         @endcan
                                         @foreach($dataType->browseRows as $row)
@@ -108,7 +111,15 @@
                                     <tr>
                                         @can('delete',app($dataType->model_name))
                                             <td>
-                                                <input type="checkbox" name="row_id" id="checkbox_{{ $data->getKey() }}" value="{{ $data->getKey() }}">
+                                                <div class="form-check float-left pl-2">
+                                                    <input class="form-check-input filled-in" name="row_id"
+                                                           type="checkbox"
+                                                           value="{{ $data->getKey() }}"
+                                                           id="checkbox_{{ $data->getKey() }}">
+                                                    <label class="form-check-label"
+                                                           for="checkbox_{{ $data->getKey() }}">
+                                                    </label>
+                                                </div>
                                             </td>
                                         @endcan
                                         @foreach($dataType->browseRows as $row)
@@ -250,7 +261,7 @@
                         {{ csrf_field() }}
                         <input type="submit" class="btn btn-danger pull-right delete-confirm" value="{{ __('voyager::generic.delete_confirm') }}">
                     </form>
-                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
+                    <button type="button" class="btn btn-default btn-lg pull-right" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -280,9 +291,7 @@
                     config('voyager.dashboard.data_tables', []))
                 , true) !!});
             @else
-                $('#search-input select').select2({
-                    minimumResultsForSearch: Infinity
-                });
+                $('.mdb-select').material_select();
             @endif
 
             @if ($isModelTranslatable)

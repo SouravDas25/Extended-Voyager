@@ -6,18 +6,22 @@
 <h1 class="page-title">
 	<i class="voyager-list"></i>{{ $dataType->display_name_plural }} {{ __('voyager::bread.order') }}
 </h1>
+<a href="{{ route('voyager.'.$dataType->slug.'.index') }}" class="btn btn-lg btn-warning">
+	<span class="glyphicon glyphicon-list"></span>&nbsp;
+	{{ __('voyager::generic.return_to_list') }}
+</a>
 @stop
 
 @section('content')
 <div class="page-content container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="panel panel-bordered">
-				<div class="panel-heading">
-					<p class="panel-title" style="color:#777">{{ __('voyager::generic.drag_drop_info') }}</p>
+			<div class="card ">
+				<div class="card-header primary-color white-text">
+					<p class="card-title">{{ __('voyager::generic.drag_drop_info') }}</p>
 				</div>
 
-				<div class="panel-body" style="padding:30px;">
+				<div class="card-body" style="padding:30px;">
 					<div class="dd">
 						<ol class="dd-list">
 							@foreach ($results as $result)

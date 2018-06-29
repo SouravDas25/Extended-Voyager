@@ -21,7 +21,7 @@
                     <input type="submit" class="btn btn-danger pull-right delete-confirm"
                              value="{{ __('voyager::generic.bulk_delete_confirm') }} {{ strtolower($dataType->display_name_plural) }}">
                 </form>
-                <button type="button" class="btn btn-default pull-right" data-dismiss="modal">
+                <button type="button" class="btn btn-default btn-lg pull-right" data-dismiss="modal">
                     {{ __('voyager::generic.cancel') }}
                 </button>
             </div>

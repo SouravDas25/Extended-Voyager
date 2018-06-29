@@ -7,18 +7,18 @@
         <i class="{{ $dataType->icon }}"></i> {{ __('voyager::generic.viewing') }} {{ ucfirst($dataType->display_name_singular) }} &nbsp;
 
         @can('edit', $dataTypeContent)
-        <a href="{{ route('voyager.'.$dataType->slug.'.edit', $dataTypeContent->getKey()) }}" class="btn btn-info">
+        <a href="{{ route('voyager.'.$dataType->slug.'.edit', $dataTypeContent->getKey()) }}" class="btn btn-lg btn-info">
             <span class="glyphicon glyphicon-pencil"></span>&nbsp;
             {{ __('voyager::generic.edit') }}
         </a>
         @endcan
         @can('delete', $dataTypeContent)
-            <a href="javascript:;" title="{{ __('voyager::generic.delete') }}" class="btn btn-danger delete" data-id="{{ $dataTypeContent->getKey() }}" id="delete-{{ $dataTypeContent->getKey() }}">
+            <a href="javascript:;" title="{{ __('voyager::generic.delete') }}" class="btn btn-danger btn-lg delete" data-id="{{ $dataTypeContent->getKey() }}" id="delete-{{ $dataTypeContent->getKey() }}">
                 <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.delete') }}</span>
             </a>
         @endcan
 
-        <a href="{{ route('voyager.'.$dataType->slug.'.index') }}" class="btn btn-warning">
+        <a href="{{ route('voyager.'.$dataType->slug.'.index') }}" class="btn btn-lg btn-warning">
             <span class="glyphicon glyphicon-list"></span>&nbsp;
             {{ __('voyager::generic.return_to_list') }}
         </a>
@@ -31,7 +31,7 @@
         <div class="row">
             <div class="col-md-12">
 
-                <div class="panel panel-bordered" style="padding-bottom:5px;">
+                <div class="card " style="padding-bottom:5px;">
                     <!-- form start -->
                     @foreach($dataType->readRows as $row)
                         @php $rowDetails = json_decode($row->details);
@@ -41,22 +41,22 @@
                          }
                         @endphp
 
-                        <div class="panel-heading" style="border-bottom:0;">
+                        <div class="card-heading" style="border-bottom:0;">
                             <h3 class="panel-title">{{ $row->display_name }}</h3>
                         </div>
 
-                        <div class="panel-body" style="padding-top:0; font-weight:bold!important;">
+                        <div class="card-body" style="padding-top:0; font-weight:bold!important;">
                             @if($row->type == "image")
-                                <img class="img-responsive"
+                                <img class="img-fluid" style="height: 50%"
                                      src="{{ filter_var($dataTypeContent->{$row->field}, FILTER_VALIDATE_URL) ? $dataTypeContent->{$row->field} : Voyager::image($dataTypeContent->{$row->field}) }}">
-                            @elseif($row->type == 'multiple_images')
+                            @elseif($row->type == 'multiple_images img-thumbnail')
                                 @if(json_decode($dataTypeContent->{$row->field}))
                                     @foreach(json_decode($dataTypeContent->{$row->field}) as $file)
-                                        <img class="img-responsive"
+                                        <img class="img-fluid img-thumbnail" style="height: 50%"
                                              src="{{ filter_var($file, FILTER_VALIDATE_URL) ? $file : Voyager::image($file) }}">
                                     @endforeach
                                 @else
-                                    <img class="img-responsive"
+                                    <img class="img-fluid img-thumbnail" style="height: 50%"
                                          src="{{ filter_var($dataTypeContent->{$row->field}, FILTER_VALIDATE_URL) ? $dataTypeContent->{$row->field} : Voyager::image($dataTypeContent->{$row->field}) }}">
                                 @endif
                             @elseif($row->type == 'relationship')
