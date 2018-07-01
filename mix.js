@@ -71,7 +71,7 @@
 /***/ 16:
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: \r\nundefined\r\n^\r\n      File to import not found or unreadable: ../../node_modules/bootstrap/scss/functions.\r\n      in D:\\Cloud\\OneDrive\\Programming\\Projects\\web_development\\ExtendVoyager\\packages\\SD\\voyager\\node_modules\\admin-lte\\build\\scss\\AdminLTE.scss (line 9, column 1)\n    at runLoaders (D:\\Cloud\\OneDrive\\Programming\\Projects\\web_development\\ExtendVoyager\\packages\\SD\\voyager\\node_modules\\webpack\\lib\\NormalModule.js:192:19)\n    at D:\\Cloud\\OneDrive\\Programming\\Projects\\web_development\\ExtendVoyager\\packages\\SD\\voyager\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at D:\\Cloud\\OneDrive\\Programming\\Projects\\web_development\\ExtendVoyager\\packages\\SD\\voyager\\node_modules\\loader-runner\\lib\\LoaderRunner.js:230:18\n    at context.callback (D:\\Cloud\\OneDrive\\Programming\\Projects\\web_development\\ExtendVoyager\\packages\\SD\\voyager\\node_modules\\loader-runner\\lib\\LoaderRunner.js:111:13)\n    at Object.asyncSassJobQueue.push [as callback] (D:\\Cloud\\OneDrive\\Programming\\Projects\\web_development\\ExtendVoyager\\packages\\SD\\voyager\\node_modules\\sass-loader\\lib\\loader.js:55:13)\n    at Object.done [as callback] (D:\\Cloud\\OneDrive\\Programming\\Projects\\web_development\\ExtendVoyager\\packages\\SD\\voyager\\node_modules\\neo-async\\async.js:7974:18)\n    at options.error (D:\\Cloud\\OneDrive\\Programming\\Projects\\web_development\\ExtendVoyager\\packages\\SD\\voyager\\node_modules\\node-sass\\lib\\index.js:294:32)");
 
 /***/ }),
 

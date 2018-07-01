@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-default fixed-top navbar-fixed-top navbar-top grey lighten-2" role="navigation" >
+<nav class="navbar navbar-default fixed-top navbar-fixed-top navbar-top " role="navigation" >
     <div class="container">
         <div class="navbar-header ">
             <a class="hamburger btn-link">

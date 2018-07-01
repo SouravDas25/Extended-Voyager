@@ -170,6 +170,10 @@ Route::group(['as' => 'voyager.'], function () {
 
         Route::resource('api-keys',$namespacePrefix.'VoyagerApiKeysController');
 
+        Route::get('/test', function (){
+            return view('voyager::test.test',compact(''));
+        });
+
         event(new RoutingAdminAfter());
     });
     event(new RoutingAfter());

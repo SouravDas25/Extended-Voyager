@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "ace-builds": "^1.2.6",
+    "admin-lte": "^3.0.0-alpha.2",
     "animate.css": "^3.6.1",
     "bootstrap": "^4.1.1",
     "bootstrap-datepicker": "^1.6.4",
