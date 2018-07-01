@@ -12,21 +12,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="{{ voyager_asset('css/fontello/fontello.css') }}">
     <link rel="stylesheet" href="{{ voyager_asset('css/voyager-fonts.css') }}">
-
-    <link rel="stylesheet" href="{{ voyager_asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ voyager_asset('css/lte/adminlte.min.css') }}">
-    <link rel="stylesheet" href="{{ voyager_asset('plugins/iCheck/flat/blue.css') }}">
-    <link rel="stylesheet" href="{{ voyager_asset('plugins/morris/morris.css') }}">
-    <!-- jvectormap -->
-    <link rel="stylesheet" href="{{ voyager_asset('plugins/jvectormap/jquery-jvectormap-1.2.2.css') }}">
-    <!-- Date Picker -->
-    <link rel="stylesheet" href="{{ voyager_asset('plugins/datepicker/datepicker3.css') }}">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="{{ voyager_asset('plugins/daterangepicker/daterangepicker-bs3.css') }}">
-    <!-- bootstrap wysihtml5 - text editor -->
-    <link rel="stylesheet" href="{{ voyager_asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
-    <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ voyager_asset('css/final.css') }}">
+    <!-- Google Font: Source Sans Pro -->
 
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -75,7 +64,6 @@
 <script src="{{ voyager_asset('plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
 <!-- FastClick -->
 <script src="{{ voyager_asset('plugins/fastclick/fastclick.js') }}"></script>
-<script type="text/javascript" src="{{ voyager_asset('js/app.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ voyager_asset('/js/lte/adminlte.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->

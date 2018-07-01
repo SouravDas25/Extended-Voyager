@@ -59,7 +59,7 @@ $(document).ready(function () {
     $('select.select2-taggable').select2({
         width: '100%',
         tags: true,
-        createTag: function(params) {
+        createTag: function (params) {
             var term = $.trim(params.term);
 
             if (term === '') {
@@ -72,7 +72,7 @@ $(document).ready(function () {
                 newTag: true
             }
         }
-    }).on('select2:selecting', function(e) {
+    }).on('select2:selecting', function (e) {
         var $el = $(this);
         var route = $el.data('route');
         var label = $el.data('label');
@@ -85,10 +85,10 @@ $(document).ready(function () {
 
         $.post(route, {
             [label]: e.params.args.data.text,
-        }).done(function(data) {
+        }).done(function (data) {
             var newOption = new Option(e.params.args.data.text, data.data.id, false, true);
             $el.append(newOption).trigger('change');
-        }).fail(function(error) {
+        }).fail(function (error) {
             toastr.error(errorMessage);
         });
 

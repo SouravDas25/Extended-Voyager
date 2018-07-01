@@ -95,7 +95,7 @@
                 <i class="fa fa-caret-down" aria-hidden="true"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <div class="dropdown-item text-center">
+                <div class="dropdown-item text-center disabled">
                     <img src="{{ $user_avatar }}" class="img-fluid rounded-circle" width="200px" >
                     <div class="profile-body ">
                         <h5>
@@ -104,7 +104,7 @@
                         </h5>
                     </div>
                 </div>
-                <span class="dropdown-item dropdown-header">
+                <span class="dropdown-item dropdown-header disabled">
                     Quick Actions
                 </span>
                 <?php $nav_items = config('voyager.dashboard.navbar_items'); ?>
@@ -134,7 +134,7 @@
                         @endif
                     @endforeach
                 @endif
-                <a href="#" class="dropdown-item dropdown-footer">
+                <a href="#" class="dropdown-item dropdown-footer disabled">
                     Good Day, {{ ucfirst(Auth::user()->name) }}
                 </a>
             </div>
