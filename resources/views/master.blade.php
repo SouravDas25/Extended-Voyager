@@ -28,40 +28,8 @@
 
         <div class="content-wrapper">
             <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">@yield('page_header')</h1>
-                        </div><!-- /.col -->
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                @if(count(Request::segments()) == 1)
-                                    <li class="breadcrumb-item active">
-                                        <span>{{ __('voyager::generic.dashboard') }}</span>
-                                    </li>
-                                @else
-                                    <li class="breadcrumb-item active">
-                                        <a href="{{ route('voyager.dashboard')}}" >
-                                            <span>{{ __('voyager::generic.dashboard') }}</span>
-                                        </a>
-                                    </li>
-                                @endif
-                                <?php $breadcrumb_url = url(''); ?>
-                                @for($i = 1; $i <= count(Request::segments()); $i++)
-                                    <?php $breadcrumb_url .= '/' . Request::segment($i); ?>
-                                    @if(Request::segment($i) != ltrim(route('voyager.dashboard', [], false), '/') && !is_numeric(Request::segment($i)))
-                                        @if($i < count(Request::segments()) & $i > 0 && array_search('database',Request::segments())===false)
-                                            <li class="breadcrumb-item active ">
-                                                <a href="{{ $breadcrumb_url }}" >{{ ucwords(str_replace('-', ' ', str_replace('_', ' ', Request::segment($i)))) }}</a>
-                                            </li>
-                                        @else
-                                            <li class="breadcrumb-item">{{ ucwords(str_replace('-', ' ', str_replace('_', ' ', Request::segment($i)))) }}</li>
-                                        @endif
-                                    @endif
-                                @endfor
-                            </ol>
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
+                <div class="py-3">
+                    @yield('page_header')
                 </div>
             </section>
 

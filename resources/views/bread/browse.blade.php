@@ -74,12 +74,12 @@
                     @endif
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="dataTable" class="table table-hover table-ui table-striped w-100">
-                                <thead class="blue-grey lighten-4">
+                            <table id="dataTable" class="table table-hover dataTable table-striped w-100">
+                                <thead class="">
                                     <tr>
                                         @can('delete',app($dataType->model_name))
                                             <th class="">
-                                                <div class="form-check pl-2 float-left">
+                                                <div class="form-check float-left">
                                                     <input class="form-check-input filled-in select_all" type="checkbox" id="checkbox123">
                                                     <label class="form-check-label" for="checkbox123" class="label-table"></label>
                                                 </div>
@@ -251,9 +251,13 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('voyager::generic.close') }}"><span
-                                aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"><i class="voyager-trash"></i> {{ __('voyager::generic.delete_question') }} {{ strtolower($dataType->display_name_singular) }}?</h4>
+                    <h4 class="modal-title">
+                        <i class="voyager-trash"></i>
+                        {{ __('voyager::generic.delete_question') }} {{ strtolower($dataType->display_name_singular) }}?
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-footer">
                     <form action="#" id="delete_form" method="POST">
@@ -261,7 +265,7 @@
                         {{ csrf_field() }}
                         <input type="submit" class="btn btn-danger pull-right delete-confirm" value="{{ __('voyager::generic.delete_confirm') }}">
                     </form>
-                    <button type="button" class="btn btn-default btn-lg pull-right" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

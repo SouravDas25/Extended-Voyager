@@ -3,11 +3,13 @@
 @section('page_title', __('voyager::generic.viewing').' '.__('voyager::generic.database'))
 
 @section('page_header')
-    <h1 class="page-title">
-        <i class="voyager-data"></i> {{ __('voyager::generic.database') }}
-        <a href="{{ route('voyager.database.create') }}" class="btn btn-success btn-lg"><i class="voyager-plus"></i>
-            {{ __('voyager::database.create_new_table') }}</a>
-    </h1>
+    <div class="container-fluid">
+        <h1 class="page-title">
+            <i class="voyager-data"></i> {{ __('voyager::generic.database') }}
+            <a href="{{ route('voyager.database.create') }}" class="btn btn-success "><i class="voyager-plus"></i>
+                {{ __('voyager::database.create_new_table') }}</a>
+        </h1>
+    </div>
 @stop
 
 @section('content')
@@ -16,69 +18,70 @@
         @include('voyager::alerts')
         <div class="row">
             <div class="col-md-12">
-
-                <table class="table table-striped table-bordered table-hover database-tables">
-                    <thead>
+                <div class="card mb-0">
+                    <table class="table table-striped table-bordered database-tables mb-0">
+                        <thead class="grey darken-2  text-white">
                         <tr>
                             <th>{{ __('voyager::database.table_name') }}</th>
                             <th style="text-align:right" colspan="2">{{ __('voyager::database.table_actions') }}</th>
                         </tr>
-                    </thead>
+                        </thead>
 
-                @foreach($tables as $table)
-                    @continue(in_array($table->name, config('voyager.database.tables.hidden', [])))
-                    <tr>
-                        <td>
-                            <p class="name">
-                                <a href="{{ route('voyager.database.show', $table->name) }}"
-                                   data-name="{{ $table->name }}" class="desctable">
-                                   {{ $table->name }}
-                                </a>
-                            </p>
-                        </td>
+                        @foreach($tables as $table)
+                            @continue(in_array($table->name, config('voyager.database.tables.hidden', [])))
+                            <tr>
+                                <td>
+                                    <p class="name">
+                                        <a href="{{ route('voyager.database.show', $table->name) }}"
+                                           data-name="{{ $table->name }}" class="desctable">
+                                            {{ $table->name }}
+                                        </a>
+                                    </p>
+                                </td>
 
-                        <td>
-                            <div class="bread_actions">
-                            @if($table->dataTypeId)
-                                <a href="{{ route('voyager.' . $table->slug . '.index') }}"
-                                   class="btn-sm btn-warning browse_bread">
-                                    <i class="voyager-plus"></i> {{ __('voyager::database.browse_bread') }}
-                                </a>
-                                <a href="{{ route('voyager.bread.edit', $table->name) }}"
-                                   class="btn-sm btn-default edit">
-                                   {{ __('voyager::bread.edit_bread') }}
-                                </a>
-                                <a data-id="{{ $table->dataTypeId }}" data-name="{{ $table->name }}"
-                                     class="btn-sm btn-danger delete">
-                                     {{ __('voyager::bread.delete_bread') }}
-                                </a>
-                            @else
-                                <a href="{{ route('voyager.bread.create', ['name' => $table->name]) }}"
-                                   class="btn-sm btn-default">
-                                    <i class="voyager-plus"></i> {{ __('voyager::bread.add_bread') }}
-                                </a>
-                            @endif
-                            </div>
-                        </td>
+                                <td>
+                                    <div class="bread_actions">
+                                        @if($table->dataTypeId)
+                                            <a href="{{ route('voyager.' . $table->slug . '.index') }}"
+                                               class="btn btn-sm btn-warning browse_bread">
+                                                <i class="voyager-plus"></i> {{ __('voyager::database.browse_bread') }}
+                                            </a>
+                                            <a href="{{ route('voyager.bread.edit', $table->name) }}"
+                                               class="btn btn-sm btn-default edit">
+                                                {{ __('voyager::bread.edit_bread') }}
+                                            </a>
+                                            <a data-id="{{ $table->dataTypeId }}" data-name="{{ $table->name }}"
+                                               class="btn btn-sm btn-danger delete">
+                                                {{ __('voyager::bread.delete_bread') }}
+                                            </a>
+                                        @else
+                                            <a href="{{ route('voyager.bread.create', ['name' => $table->name]) }}"
+                                               class="btn btn-sm btn-default">
+                                                <i class="voyager-plus"></i> {{ __('voyager::bread.add_bread') }}
+                                            </a>
+                                        @endif
+                                    </div>
+                                </td>
 
-                        <td class="actions">
-                            <a class="btn btn-danger btn-sm pull-right delete_table @if($table->dataTypeId) remove-bread-warning @endif"
-                               data-table="{{ $table->name }}">
-                               <i class="voyager-trash"></i> {{ __('voyager::generic.delete') }}
-                            </a>
-                            <a href="{{ route('voyager.database.edit', $table->name) }}"
-                               class="btn btn-sm btn-primary pull-right" style="display:inline; margin-right:10px;">
-                               <i class="voyager-edit"></i> {{ __('voyager::generic.edit') }}
-                            </a>
-                            <a href="{{ route('voyager.database.show', $table->name) }}"
-                               data-name="{{ $table->name }}"
-                               class="btn btn-sm btn-warning pull-right desctable" style="display:inline; margin-right:10px;">
-                               <i class="voyager-eye"></i> {{ __('voyager::generic.view') }}
-                            </a>
-                        </td>
-                    </tr>
-                @endforeach
-                </table>
+                                <td class="actions">
+                                    <a class="btn btn-danger btn-sm pull-right delete_table @if($table->dataTypeId) remove-bread-warning @endif"
+                                       data-table="{{ $table->name }}">
+                                        <i class="voyager-trash"></i> {{ __('voyager::generic.delete') }}
+                                    </a>
+                                    <a href="{{ route('voyager.database.edit', $table->name) }}"
+                                       class="btn btn-sm btn-primary pull-right" style="display:inline; margin-right:10px;">
+                                        <i class="voyager-edit"></i> {{ __('voyager::generic.edit') }}
+                                    </a>
+                                    <a href="{{ route('voyager.database.show', $table->name) }}"
+                                       data-name="{{ $table->name }}"
+                                       class="btn btn-sm btn-warning pull-right desctable" style="display:inline; margin-right:10px;">
+                                        <i class="voyager-eye"></i> {{ __('voyager::generic.view') }}
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
             </div>
         </div>
     </div>

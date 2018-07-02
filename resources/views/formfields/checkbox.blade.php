@@ -7,10 +7,21 @@
 @endif
 
 @if(isset($options->on) && isset($options->off))
-    <input type="checkbox" name="{{ $row->field }}" class="toggleswitch"
-           data-on="{{ $options->on }}" {!! $checked ? 'checked="checked"' : '' !!}
-           data-off="{{ $options->off }}">
+    <div class="switch mdb-color-switch">
+        <label>
+            {{ $options->off }}
+            <input type="checkbox" name="{{ $row->field }}" @if($checked) checked="checked" @endif>
+            <span class="lever"></span>
+            {{ $options->on }}
+        </label>
+    </div>
 @else
-    <input type="checkbox" name="{{ $row->field }}" class="toggleswitch"
-           @if($checked) checked @endif>
+    <div class="switch mdb-color-switch">
+        <label>
+            No
+            <input type="checkbox" name="{{ $row->field }}" @if($checked) checked="checked" @endif>
+            <span class="lever"></span>
+            Yes
+        </label>
+    </div>
 @endif

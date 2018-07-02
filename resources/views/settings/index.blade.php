@@ -236,9 +236,11 @@
 @stop
 
 @section('page_header')
+    <div class="container-fluid">
     <h1 class="page-title">
         <i class="voyager-settings"></i> {{ __('voyager::generic.settings') }}
     </h1>
+    </div>
 @stop
 
 @section('content')
@@ -257,13 +259,13 @@
             {{ method_field("PUT") }}
             {{ csrf_field() }}
             <input type="hidden" name="setting_tab" class="setting_tab" value="{{ $active }}"/>
-            <div class="panel ">
+            <div class="card ">
 
                 <div class="page-content settings container-fluid">
                     <ul class="nav nav-tabs indigo lighten-1" role="tablist">
                         @foreach($settings as $group => $setting)
                             <li class=" nav-item @if($group == $active) 'active' @endif">
-                                <a class="nav-link grey-text" data-toggle="tab" role="tab"
+                                <a class="nav-link white-text" data-toggle="tab" role="tab"
                                    href="#{{ str_slug($group) }}">{{ $group }}</a>
                             </li>
                         @endforeach
@@ -274,12 +276,12 @@
                             <div id="{{ str_slug($group) }}" role="tabpanel"
                                  class="tab-pane fade in  @if($group == $active) show active @endif">
                                 @foreach($group_settings as $setting)
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">
-                                            {{ $setting->display_name }} @if(config('voyager.show_dev_tips'))<code>setting('{{ $setting->key }}
-                                                ')</code>@endif
+                                    <div class="card-heading">
+                                        <h3 class="card-title">
+                                            {{ $setting->display_name }}
+                                            @if(config('voyager.show_dev_tips'))<code>setting('{{ $setting->key }}')</code>@endif
                                         </h3>
-                                        <div class="panel-actions">
+                                        <div class="card-actions">
                                             <a href="{{ route('voyager.settings.move_up', $setting->id) }}">
                                                 <i class="sort-icons voyager-sort-asc"></i>
                                             </a>
@@ -293,7 +295,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="panel-body no-padding-left-right row">
+                                    <div class="card-body no-padding-left-right row">
                                         <div class="col-md-10 no-padding-left-right">
                                             @if ($setting->type == "text")
                                                 <input type="text" class="form-control" name="{{ $setting->key }}"
@@ -357,15 +359,15 @@
                                             @elseif($setting->type == "checkbox")
                                                 <?php $options = json_decode($setting->details); ?>
                                                 <?php $checked = (isset($setting->value) && $setting->value == 1) ? true : false; ?>
-                                                @if (isset($options->on) && isset($options->off))
-                                                    <input type="checkbox" name="{{ $setting->key }}"
-                                                           class="toggleswitch" @if($checked) checked
-                                                           @endif data-on="{{ $options->on }}"
-                                                           data-off="{{ $options->off }}">
-                                                @else
-                                                    <input type="checkbox" name="{{ $setting->key }}"
-                                                           @if($checked) checked @endif class="toggleswitch">
-                                                @endif
+                                                <div class="switch">
+                                                    <label>
+                                                        No
+                                                        <input type="checkbox" name="{{ $setting->key }}"
+                                                               @if($checked) checked="checked" @endif  >
+                                                        <span class="lever"></span>
+                                                        Yes
+                                                    </label>
+                                                </div>
                                             @endif
                                         </div>
                                         <div class="col-md-2 no-padding-left-right">
@@ -392,15 +394,15 @@
         <div style="clear:both"></div>
 
         @can('add', Voyager::model('Setting'))
-            <div class="panel" style="margin-top:10px;">
-                <div class="panel-heading new-setting">
+            <div class="card" style="margin-top:10px;">
+                <div class="card-heading new-setting">
                     <div class="divider-new px-5">
                         <h2 class="h2-responsive panel-title indigo-text mx-4 font-bold wow fadeIn" data-wow-delay="0.2s">
                             <strong><i class="voyager-plus"></i> {{ __('voyager::settings.new') }}</strong>
                         </h2>
                     </div>
                 </div>
-                <div class="panel-body p-5">
+                <div class="card-body p-5">
                     <form action="{{ route('voyager.settings.store') }}" method="POST" class="row">
                         {{ csrf_field() }}
                         <input type="hidden" name="setting_tab" class="setting_tab" value="{{ $active }}"/>
@@ -513,8 +515,6 @@
                 $('#delete_form')[0].action = '{{ route('voyager.settings.delete', [ 'id' => '__id' ]) }}'.replace('__id', $(this).data('id'));
                 $('#delete_modal').modal('show');
             });
-
-            $('.toggleswitch').bootstrapToggle();
 
             $('[data-toggle="tab"]').click(function () {
                 $(".setting_tab").val($(this).html());

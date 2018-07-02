@@ -3,9 +3,11 @@
 @section('page_title', "Add API Resource")
 
 @section('page_header')
-    <div class="page-title">
-        <i class="voyager-data"></i>
-        Add An API Resource
+    <div class="container-fluid">
+        <h1 class="page-title">
+            <i class="voyager-data"></i>
+            Add An API Resource
+        </h1>
     </div>
     @php
         if (isset($dataType->name)) {
@@ -37,19 +39,16 @@
                 <!-- CSRF TOKEN -->
                     {{ csrf_field() }}
 
-                    <div class="panel panel-primary panel-bordered">
+                    <div class="card ">
 
-                        <div class="panel-heading">
-                            <h3 class="panel-title panel-icon">
+                        <div class="card-heading bg-primary text-white">
+                            <h3 class="card-title panel-icon">
                                 <i class="fa fa-cloud"></i>
                                 {{ ucfirst($table) }} Api Resource Info
                             </h3>
-                            <div class="panel-actions">
-                                <a class="panel-action voyager-angle-up" data-toggle="panel-collapse" aria-hidden="true"></a>
-                            </div>
                         </div>
 
-                        <div class="panel-body">
+                        <div class="card-body">
                             <div class="row clearfix">
                                 <div class="col-md-6 form-group">
                                     <label for="name">{{ __('voyager::database.table_name') }}</label>
@@ -127,9 +126,15 @@
                                 </textarea>
                             </div>
                         </div><!-- .panel-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn pull-right btn-primary">
+                                {{ __('voyager::generic.submit') }}
+                            </button>
+                        </div>
                     </div><!-- .panel -->
 
-                    <button type="submit" class="btn pull-right btn-primary">{{ __('voyager::generic.submit') }}</button>
+
 
                 </form>
             </div><!-- .col-md-12 -->

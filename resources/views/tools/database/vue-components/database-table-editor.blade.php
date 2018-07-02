@@ -1,7 +1,7 @@
 @section('database-table-editor-template')
 
-<div class="panel panel-bordered">
-    <div class="panel-body">
+<div class="card ">
+    <div class="card-body">
         <div class="row">
         @if($db->action == 'update')
             <div class="col-md-12">
@@ -15,8 +15,14 @@
         @if($db->action == 'create')
             <div class="col-md-3 col-sm-4 col-xs-6">
                 <label for="create_model">{{ __('voyager::database.create_model_table') }}</label><br>
-                <input type="checkbox" name="create_model" data-toggle="toggle"
-                       data-on="{{ __('voyager::generic.yes_please') }}" data-off="{{ __('voyager::generic.no_thanks') }}">
+                <div class="switch square blue-white-switch">
+                    <label>
+                        No
+                        <input type="checkbox" checked="checked" name="create_model">
+                        <span class="lever"></span>
+                        Yes
+                    </label>
+                </div>
             </div>
             {{--
                 Hide migration button until feature is available.
@@ -36,37 +42,43 @@
         <div id="alertsContainer"></div>
 
         <template v-if="tableHasColumns">
-            <p>{{ __('voyager::database.table_columns') }}</p>
+            <p class="mt-5">
+                <label>{{ __('voyager::database.table_columns') }}</label>
+            </p>
 
-            <table class="table table-bordered" style="width:100%;">
-                <thead>
-                <tr>
-                    <th>{{ __('voyager::generic.name') }}</th>
-                    <th>{{ __('voyager::generic.type') }}</th>
-                    <th>{{ __('voyager::generic.length') }}</th>
-                    <th>{{ __('voyager::generic.not_null') }}</th>
-                    <th>{{ __('voyager::generic.unsigned') }}</th>
-                    <th>{{ __('voyager::generic.auto_increment') }}</th>
-                    <th>{{ __('voyager::generic.index') }}</th>
-                    <th>{{ __('voyager::generic.default') }}</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-responsive-md table-fixed" style="width:100%;">
+                    <thead class="table-active">
+                    <tr>
+                        <th>{{ __('voyager::generic.name') }}</th>
+                        <th>{{ __('voyager::generic.type') }}</th>
+                        <th>{{ __('voyager::generic.length') }}</th>
+                        <th>{{ __('voyager::generic.not_null') }}</th>
+                        <th>{{ __('voyager::generic.unsigned') }}</th>
+                        <th>{{ __('voyager::generic.auto_increment') }}</th>
+                        <th>{{ __('voyager::generic.index') }}</th>
+                        <th>{{ __('voyager::generic.default') }}</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     <database-column
-                        v-for="(column, index) in table.columns"
-                        :column="column"
-                        :index="getColumnsIndex(column.name)"
-                        :key="index"
-                        @columnNameUpdated="renameColumn"
-                        @columnDeleted="deleteColumn"
-                        @indexAdded="addIndex"
-                        @indexDeleted="deleteIndex"
-                        @indexUpdated="updateIndex"
-                        @indexChanged="onIndexChange"
+                            v-for="(column, index) in table.columns"
+                            :column="column"
+                            :index="getColumnsIndex(column.name)"
+                            :key="index"
+                            @columnNameUpdated="renameColumn"
+                            @columnDeleted="deleteColumn"
+                            @indexAdded="addIndex"
+                            @indexDeleted="deleteIndex"
+                            @indexUpdated="updateIndex"
+                            @indexChanged="onIndexChange"
                     ></database-column>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
+
         </template>
         <div v-else>
           <p>{{ __('voyager::database.table_no_columns') }}</p>
@@ -79,7 +91,7 @@
         </div>
     </div><!-- .panel-body -->
 
-    <div class="panel-footer">
+    <div class="card-footer">
         <input type="submit" class="btn btn-primary pull-right"
                value="@if($db->action == 'update'){{ __('voyager::database.update_table') }}@else{{ __('voyager::database.create_new_table') }}@endif"
                :disabled="!tableHasColumns">

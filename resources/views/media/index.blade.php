@@ -2,18 +2,20 @@
 
 @section('page_title', __('voyager::generic.media'))
 
+@section('page_header')
+    <div class="admin-section-title container-fluid ">
+        <h3><i class="voyager-images"></i> {{ __('voyager::generic.media') }}</h3>
+    </div>
+@endsection
+
 @section('content')
     <div class="page-content container-fluid">
         @include('voyager::alerts')
         <div class="row">
             <div class="col-md-12">
-
-                <div class="admin-section-title">
-                    <h3><i class="voyager-images"></i> {{ __('voyager::generic.media') }}</h3>
-                </div>
                 <div class="clear"></div>
 
-                <div id="filemanager">
+                <div id="filemanager" class="card">
 
                     <div id="toolbar">
                         <div class="btn-group offset-right">
@@ -266,15 +268,16 @@
 
 					<!-- Image Modal -->
 					<div class="modal fade" id="imagemodal">
-						<div class="modal-dialog">
+						<div class="modal-dialog modal-info modal-notify ">
 							<div class="modal-content">
-								<div class="modal-header">
+								<div class="modal-header text-white">
+                                    <h3 class="">Image Viewer</h3>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
 								<div class="modal-body">
-									<img :src="selected_file.path" class="img img-responsive" style="margin: 0 auto;">
+									<img :src="selected_file.path" class="img img-fluid" style="margin: 0 auto;">
 								</div>
 
 								<div class="modal-footer text-left">

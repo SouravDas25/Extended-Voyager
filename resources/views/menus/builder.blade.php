@@ -3,11 +3,16 @@
 @section('page_title', __('voyager::generic.menu_builder'))
 
 @section('page_header')
+    <div class="container-fluid">
     <h1 class="page-title">
         <i class="voyager-list"></i>{{ __('voyager::generic.menu_builder') }} ({{ $menu->name }})
-        <div class="btn btn-success btn-lg add_item"><i class="voyager-plus"></i> {{ __('voyager::menu_builder.new_menu_item') }}</div>
+        <div class="btn btn-success btn-lg add_item">
+            <i class="voyager-plus"></i>
+            {{ __('voyager::menu_builder.new_menu_item') }}
+        </div>
     </h1>
     @include('voyager::multilingual.language-selector')
+    </div>
 @stop
 
 @section('content')
@@ -16,12 +21,12 @@
     <div class="page-content container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="panel panel-bordered">
-                    <div class="panel-heading">
+                <div class="card">
+                    <div class="card-heading">
                         <p class="panel-title" style="color:#777">{{ __('voyager::menu_builder.drag_drop_info') }}</p>
                     </div>
 
-                    <div class="panel-body" style="padding:30px;">
+                    <div class="card-body" style="padding:30px;">
                         <div class="dd">
                             {!! menu($menu->name, 'admin', ['isModelTranslatable' => $isModelTranslatable]) !!}
                         </div>
@@ -36,9 +41,12 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title"><i class="voyager-trash"></i> {{ __('voyager::menu_builder.delete_item_question') }}</h4>
-                    <button type="button" class="close pt-1" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" class="white-text">&times;</span>
+                    <h4 class="modal-title">
+                        <i class="voyager-trash"></i>
+                        {{ __('voyager::menu_builder.delete_item_question') }}
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-footer">
@@ -50,7 +58,7 @@
                         <input type="submit" class="btn btn-danger pull-right delete-confirm"
                                value="{{ __('voyager::menu_builder.delete_item_confirm') }}">
                     </form>
-                    <button type="button" class="btn btn-lg btn-default pull-right" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -67,8 +75,8 @@
                     <h4 id="m_hd_edit" class="modal-title hidden">
                         <i class="voyager-edit"></i> {{ __('voyager::menu_builder.edit_item') }}
                     </h4>
-                    <button type="button" class="close pt-1" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" class="white-text">&times;</span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <form action="" id="m_form" method="POST"
@@ -115,7 +123,7 @@
                     </div>
                     <div class="modal-footer">
                         <input type="submit" class="btn btn-success pull-right delete-confirm__" value="{{ __('voyager::generic.update') }}">
-                        <button type="button" class="btn btn-default btn-lg pull-right" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
+                        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
                     </div>
                 </form>
             </div><!-- /.modal-content -->

@@ -3,10 +3,10 @@
 	<div class="modal fade modal-relationships"
 		 tabindex="-1" role="dialog" aria-hidden="true"
 		 id="new_relationship_modal">
-		<div class="modal-dialog modal-notify modal-danger relationship-panel" role="document">
+		<div class="modal-dialog modal-notify modal-danger relationship-panel modal-lg" role="document">
 		    <div class="modal-content">
 		        <div class="modal-header">
-	                <h4 class="modal-title">
+	                <h4 class="modal-title text-white">
 						<i class="voyager-heart"></i> {{ str_singular(ucfirst($table)) }}
 						{{ __('voyager::database.relationship.relationships') }}
 					</h4>

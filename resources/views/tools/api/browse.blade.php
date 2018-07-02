@@ -3,12 +3,16 @@
 @section('page_title', ucfirst($apiType->name) . " Api Browser")
 
 @section('page_header')
-    <h1 class="page-title">
-        <i class="fa fa-cloud" aria-hidden="true"></i> {{ ucfirst($apiType->name) }} API Browser
-    </h1>
-    <a class="btn btn-warning btn-lg" href="{{ route('voyager.api.builder.index') }}">
-        <i class="fa fa-bars pr-2" aria-hidden="true"></i> Back To List
-    </a>
+    <div class="container-fluid">
+        <h1 class="page-title">
+            <i class="fa fa-cloud" aria-hidden="true"></i> {{ ucfirst($apiType->name) }} API Browser
+            <a class="btn btn-warning btn-lg" href="{{ route('voyager.api.builder.index') }}">
+                <i class="fa fa-bars pr-2" aria-hidden="true"></i> Back To List
+            </a>
+        </h1>
+
+    </div>
+
     <style>
         pre.json-prettify {
             background-color: ghostwhite;

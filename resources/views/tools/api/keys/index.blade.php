@@ -3,15 +3,17 @@
 @section('page_title', "Api Keys Console")
 
 @section('page_header')
-    <h1 class="page-title">
-        <i class="fa fa-cloud" aria-hidden="true"></i> API Keys Console
-    </h1>
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#centralModalInfo">
-        <i class="icon-key-4 pr-2"></i> Add A Key
-    </button>
-    <a class="btn btn-warning btn-lg" href="{{ route('voyager.api.builder.index') }}">
-        <i class="fa fa-bars pr-2" aria-hidden="true"></i> Back To List
-    </a>
+    <div class="container-fluid">
+        <h1 class="page-title">
+            <i class="fa fa-cloud" aria-hidden="true"></i> API Keys Console
+        </h1>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#centralModalInfo">
+            <i class="icon-key-4 pr-2"></i> Add A Key
+        </button>
+        <a class="btn btn-warning btn-lg" href="{{ route('voyager.api.builder.index') }}">
+            <i class="fa fa-bars pr-2" aria-hidden="true"></i> Back To List
+        </a>
+    </div>
 @stop
 
 @section('content')

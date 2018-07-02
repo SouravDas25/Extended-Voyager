@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-md-12">
 
-                <div class="panel panel-bordered">
+                <div class="card ">
                     <!-- form start -->
                     <form role="form"
                             class="form-edit-add"
@@ -33,7 +33,7 @@
                         <!-- CSRF TOKEN -->
                         {{ csrf_field() }}
 
-                        <div class="panel-body">
+                        <div class="card-body">
 
                             @if (count($errors) > 0)
                                 <div class="alert alert-danger">
@@ -81,7 +81,7 @@
 
                         </div><!-- panel-body -->
 
-                        <div class="panel-footer">
+                        <div class="card-footer">
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary btn-lg mx-0 save">{{ __('voyager::generic.save') }}</button>
                             </div>
@@ -133,7 +133,7 @@
         var $image
 
         $('document').ready(function () {
-            $('.toggleswitch').bootstrapToggle();
+            ///$('.toggleswitch').bootstrapToggle();
 
             //Init datepicker for date fields if data-datepicker attribute defined
             //or if browser does not handle date inputs

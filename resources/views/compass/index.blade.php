@@ -7,11 +7,13 @@
 @stop
 
 @section('page_header')
-    <h1 class="page-title">
-        <i class="voyager-compass"></i>
-        <p> {{ __('voyager::generic.compass') }}</p>
-        <span class="page-description">{{ __('voyager::compass.welcome') }}</span>
-    </h1>
+    <div class="container-fluid" >
+        <h1 class="page-title">
+            <i class="voyager-compass"></i>
+            <p> {{ __('voyager::generic.compass') }}</p>
+            <span class="page-description">{{ __('voyager::compass.welcome') }}</span>
+        </h1>
+    </div>
 @stop
 
 @section('content')

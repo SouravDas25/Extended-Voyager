@@ -3,12 +3,14 @@
 @section('page_title', "Api Builder")
 
 @section('page_header')
+    <div class="container-fluid">
     <h1 class="page-title">
         <i class="fa fa-cloud" aria-hidden="true"></i> API Builder
+        <a class="btn btn-primary btn-lg" href="{{ route('voyager.api-keys.index') }}">
+            <i class="icon-key-1"></i> API Keys
+        </a>
     </h1>
-    <a class="btn btn-primary btn-lg" href="{{ route('voyager.api-keys.index') }}">
-        <i class="icon-key-1"></i> API Keys
-    </a>
+    </div>
 @stop
 
 @section('content')
@@ -17,9 +19,9 @@
         @include('voyager::alerts')
         <div class="row">
             <div class="col-md-12">
-
-                <table class="table table-striped table-bordered table-hover database-tables">
-                    <thead class="cyan lighten-3">
+                <div class="card">
+                <table class="table table-striped table-bordered table-hover database-tables mb-0">
+                    <thead class="grey darken-2 text-white">
                     <tr>
                         <th>{{ __('voyager::database.table_name') }}</th>
                         <th style="text-align:right">API CRUD Actions</th>
@@ -65,6 +67,7 @@
                     </tbody>
 
                 </table>
+                </div>
             </div>
         </div>
     </div>
@@ -84,7 +87,7 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="submit" class="btn btn-danger" value="Yes, Remove the API Resource">
                     </form>
-                    <button type="button" class="btn btn-default btn-lg btn-outline pull-right" data-dismiss="modal">
+                    <button type="button" class="btn btn-default btn-outline pull-right" data-dismiss="modal">
                         {{ __('voyager::generic.cancel') }}
                     </button>
                 </div>

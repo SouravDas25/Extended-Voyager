@@ -15,10 +15,10 @@
         </div>
     </div>
 </div>
-<div class="row" id="fontelloIconList">
+<div class="row mt-5" id="fontelloIconList" >
     <div class="col-sm-4">
         <table class="table table-sm table-striped table-bordered w-100" >
-            <thead class="mdb-color darken-3">
+            <thead class="mdb-color darken-2 text-white">
             <tr>
                 <th>Icon</th>
                 <th>ClassName</th>
@@ -30,7 +30,7 @@
     </div>
     <div class="col-sm-4">
         <table class="table table-sm table-striped table-bordered w-100" >
-            <thead class="mdb-color darken-3">
+            <thead class="mdb-color darken-2  text-white">
             <tr>
                 <th>Icon</th>
                 <th>ClassName</th>
@@ -42,7 +42,7 @@
     </div>
     <div class="col-sm-4">
         <table class="table table-sm table-striped table-bordered w-100" >
-            <thead class="mdb-color darken-3">
+            <thead class="mdb-color darken-2 text-white">
             <tr>
                 <th>Icon</th>
                 <th>ClassName</th>
@@ -60,7 +60,7 @@
         var prefx = data.css_prefix_text;
         data.glyphs.forEach(function (item,key) {
             var classname = prefx + item.css;
-            var icndom = '<td><i class="'+ classname+' font-size-20 px-2" ></i></td>' +
+            var icndom = '<td style="font-size:20px;" ><i class="'+ classname+' font-size-40 px-2" ></i></td>' +
                 '<td class="font-weight-800">' + classname +'</td>';
             var icn = '<tr>' +
                 icndom + '</tr>';

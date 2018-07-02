@@ -7,10 +7,12 @@
 @stop
 
 @section('page_header')
-    <h1 class="page-title">
-        <i class="{{ $dataType->icon }}"></i>
-        {{ __('voyager::generic.'.(isset($dataTypeContent->id) ? 'edit' : 'add')).' '.$dataType->display_name_singular }}
-    </h1>
+    <div class="container-fluid">
+        <h1 class="page-title">
+            <i class="{{ $dataType->icon }}"></i>
+            {{ __('voyager::generic.'.(isset($dataTypeContent->id) ? 'edit' : 'add')).' '.$dataType->display_name_singular }}
+        </h1>
+    </div>
 @stop
 
 @section('content')
@@ -106,7 +108,7 @@
 @section('javascript')
     <script>
         $('document').ready(function () {
-            $('.toggleswitch').bootstrapToggle();
+            //$('.toggleswitch').bootstrapToggle();
 
             $('.permission-group').on('change', function(){
                 $(this).siblings('ul').find("input[type='checkbox']").prop('checked', this.checked);

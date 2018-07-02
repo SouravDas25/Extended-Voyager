@@ -4,16 +4,61 @@
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
         </li>
+        @if(count(Request::segments()) == 1)
+            <li class="nav-item d-none d-sm-inline-block">
+                <a class="nav-link" href="#">
+                    <i class="fa fa-dashboard"></i>
+                    <span>{{ __('voyager::generic.dashboard') }}</span>
+                </a>
+            </li>
+        @else
+            <li class="nav-item d-none d-sm-inline-block">
+                <a class="nav-link" href="{{ route('voyager.dashboard')}}">
+                    <i class="fa fa-dashboard"></i>
+                    <span>{{ __('voyager::generic.dashboard') }}</span>
+                </a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a class="nav-link px-0" href="#">
+                    /
+                </a>
+            </li>
+        @endif
+        <?php $breadcrumb_url = url(''); ?>
+        @for($i = 1; $i <= count(Request::segments()); $i++)
+            <?php $breadcrumb_url .= '/' . Request::segment($i); ?>
+            @if(Request::segment($i) != ltrim(route('voyager.dashboard', [], false), '/') && !is_numeric(Request::segment($i)))
+                @if($i < count(Request::segments()) & $i > 0 && array_search('database',Request::segments())===false)
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <a class="nav-link" href="{{ $breadcrumb_url }}">
+                            {{ ucwords(str_replace('-', ' ', str_replace('_', ' ', Request::segment($i)))) }}
+                        </a>
+                    </li>
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <a class="nav-link px-0" href="#">
+                            /
+                        </a>
+                    </li>
+                @else
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <a class="nav-link" href="#">
+                            {{ ucwords(str_replace('-', ' ', str_replace('_', ' ', Request::segment($i)))) }}
+                        </a>
+                    </li>
+                @endif
+            @endif
+        @endfor
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+
         <li class="nav-item d-none d-sm-inline-block">
             <a class="nav-link" href="{{ url("/") }}">
                 <i class="fa fa-home"></i>
                 Home
             </a>
         </li>
-    </ul>
-
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
         <!-- li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
@@ -77,15 +122,19 @@
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <span class="dropdown-item dropdown-header">{{$notifications->count()}} Notifications</span>
-                <div style="overflow-y: scroll; height : 350px" id="notification-scroll" >
-                @foreach($notifications->get() as $notification)
-                        <div class="dropdown-divider"></div>
-                        <a href="{{ route('voyager.notification.read',['id'=>$notification->id]) }}" class="dropdown-item">
-                            @include("voyager::notifications.".snake_case(class_basename($notification->type)) , $notification )
-                        </a>
-                @endforeach
+                <div class="scrollbar scrollbar-primary thin">
+                    <div class="force-overflow">
+                        @foreach($notifications->get() as $notification)
+                            <div class="dropdown-divider"></div>
+                            <a href="{{ route('voyager.notification.read',['id'=>$notification->id]) }}"
+                               class="dropdown-item">
+                                @include("voyager::notifications.".snake_case(class_basename($notification->type)) , $notification )
+                            </a>
+                        @endforeach
+                    </div>
                 </div>
-                <a href="{{ route('voyager.notification.all') }}" class="dropdown-item dropdown-footer">See All Notifications</a>
+                <a href="{{ route('voyager.notification.all') }}" class="dropdown-item dropdown-footer">See All
+                    Notifications</a>
             </div>
         </li>
 
@@ -96,7 +145,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <div class="dropdown-item text-center disabled">
-                    <img src="{{ $user_avatar }}" class="img-fluid rounded-circle" width="200px" >
+                    <img src="{{ $user_avatar }}" class="img-fluid rounded-circle" width="200px">
                     <div class="profile-body ">
                         <h5>
                             {{ ucfirst(Auth::user()->name) }}<br>
@@ -125,7 +174,7 @@
                         @else
                             <a href="{{ isset($item['route']) && Route::has($item['route']) ? route($item['route']) : (isset($item['route']) ? $item['route'] : '#') }}"
                                {!! isset($item['target_blank']) && $item['target_blank'] ? 'target="_blank"' : '' !!}
-                               class=" dropdown-item {{ isset($item['classes']) && !empty($item['classes']) ? $item['classes'] : '' }}" >
+                               class=" dropdown-item {{ isset($item['classes']) && !empty($item['classes']) ? $item['classes'] : '' }}">
                                 @if(isset($item['icon_class']) && !empty($item['icon_class']))
                                     <i class="{!! $item['icon_class'] !!}"></i>
                                 @endif

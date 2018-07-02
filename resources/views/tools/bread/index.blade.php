@@ -3,9 +3,11 @@
 @section('page_title', __('voyager::generic.viewing').' '.__('voyager::generic.bread'))
 
 @section('page_header')
+    <div class="container-fluid">
     <h1 class="page-title">
         <i class="voyager-bread"></i> BREAD
     </h1>
+    </div>
 @stop
 
 @section('content')
@@ -14,9 +16,9 @@
         @include('voyager::alerts')
         <div class="row">
             <div class="col-md-12">
-
-                <table class="table table-striped table-bordered table-hover database-tables">
-                    <thead>
+                <div class="card mb-0">
+                <table class="table table-striped table-bordered database-tables">
+                    <thead class="grey darken-2 text-white">
                         <tr>
                             <th>{{ __('voyager::database.table_name') }}</th>
                             <th style="text-align:right">{{ __('voyager::bread.bread_crud_actions') }}</th>
@@ -61,6 +63,7 @@
                     </tr>
                 @endforeach
                 </table>
+                </div>
             </div>
         </div>
     </div>
@@ -79,7 +82,7 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="submit" class="btn btn-danger" value="{{ __('voyager::bread.delete_bread_conf') }}">
                     </form>
-                    <button type="button" class="btn btn-default btn-lg  btn-outline pull-right" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
+                    <button type="button" class="btn btn-default  btn-outline pull-right" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

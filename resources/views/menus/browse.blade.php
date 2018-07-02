@@ -3,14 +3,16 @@
 @section('page_title', __('voyager::generic.viewing').' '.$dataType->display_name_plural)
 
 @section('page_header')
-    <h1 class="page-title">
-        <i class="voyager-list-add"></i> {{ $dataType->display_name_plural }}
-        @can('add',app($dataType->model_name))
-            <a href="{{ route('voyager.'.$dataType->slug.'.create') }}" class="btn btn-lg btn-success">
-                <i class="voyager-plus"></i> {{ __('voyager::generic.add_new') }}
-            </a>
-        @endcan
-    </h1>
+    <div class="container-fluid">
+        <h1 class="page-title">
+            <i class="voyager-list-add"></i> {{ $dataType->display_name_plural }}
+            @can('add',app($dataType->model_name))
+                <a href="{{ route('voyager.'.$dataType->slug.'.create') }}" class="btn btn-lg btn-success">
+                    <i class="voyager-plus"></i> {{ __('voyager::generic.add_new') }}
+                </a>
+            @endcan
+        </h1>
+    </div>
 @stop
 
 @section('content')
@@ -20,9 +22,9 @@
         @include('voyager::alerts')
         <div class="row">
             <div class="col-md-12">
-                <div class="panel panel-bordered">
-                    <div class="panel-body">
-                        <table id="dataTable" class="table table-hover">
+                <div class="card">
+                    <div class="card-body">
+                        <table id="dataTable" class="table table-hover dataTable table-striped w-100">
                             <thead>
                             <tr>
                                 @foreach($dataType->browseRows as $rows)
@@ -74,12 +76,12 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('voyager::generic.close') }}">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
                     <h4 class="modal-title">
                         <i class="voyager-trash"></i> {{ __('voyager::generic.delete_question') }} {{ $dataType->display_name_singular }}?
                     </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-footer">
                     <form action="#" id="delete_form" method="POST">
@@ -88,7 +90,7 @@
                         <input type="submit" class="btn btn-danger pull-right delete-confirm"
                                value="{{ __('voyager::generic.delete_this_confirm') }} {{ $dataType->display_name_singular }}">
                     </form>
-                    <button type="button" class="btn btn-default btn-lg pull-right" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
                 </div>
             </div>
         </div>
