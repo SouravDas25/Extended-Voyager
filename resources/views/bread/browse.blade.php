@@ -17,7 +17,7 @@
         @endcan
         @can('edit',app($dataType->model_name))
         @if(isset($dataType->order_column) && isset($dataType->order_display_column))
-            <a href="{{ route('voyager.'.$dataType->slug.'.order') }}" class="btn btn-primary btn-lg">
+            <a href="{{ route('voyager.'.$dataType->slug.'.order') }}" class="btn btn-primary btn-lg m-0">
                 <i class="voyager-list"></i> <span>{{ __('voyager::bread.order') }}</span>
             </a>
         @endif
@@ -25,12 +25,11 @@
         @include('voyager::multilingual.language-selector')
     </div>
     <style>
+        table.table a {
+            color : whitesmoke;
+        }
         #search-input{
             border : 0;
-        }
-
-        #search-input input {
-            border: 1px black !important;
         }
     </style>
 @stop
@@ -42,31 +41,38 @@
             <div class="col-md-12">
                 <div class="card ">
                     @if ($isServerSide)
-                    <div class="card-header pt-5 pb-3">
-                        <form method="get" class="form-search ">
-                            <div id="search-input" class="bg-transparent mb-0">
+                    <div class="card-header pt-5 pb-3 bg-default white-text">
+                        <form method="get" class="form-search">
+                            <div id="search-input" class="bg-transparent mb-0 row">
                                 <div class="col-sm-2 ">
-                                    <select id="search_key"  class="mdb-select colorful-select dropdown-primary" name="key" >
+                                    <label>column</label>
+                                    <select id="search_key"  class="select2" name="key" >
                                         @foreach($searchable as $key)
                                             <option value="{{ $key }}" @if($search->key == $key){{ 'selected' }}@endif>{{ ucwords(str_replace('_', ' ', $key)) }}</option>
                                         @endforeach
                                     </select>
-                                    <label>column</label>
                                 </div>
                                 <div class="col-sm-2">
-                                    <select id="filter" name="filter" class=" mdb-select colorful-select dropdown-primary" >
+                                    <label>equator</label>
+                                    <select id="filter" name="filter" class=" select2" >
                                         <option value="contains" @if($search->filter == "contains"){{ 'selected' }}@endif>contains</option>
                                         <option value="equals" @if($search->filter == "equals"){{ 'selected' }}@endif>=</option>
                                     </select>
-                                    <label>equator</label>
                                 </div>
                                 <div class="col-sm-8" >
-                                    <input type="text" class="col-sm-8 pb-2"
-                                           placeholder="{{ __('voyager::generic.search') }}"
-                                           name="s" value="{{ $search->value }}">
-                                    <button class="btn btn-info btn-lg" type="submit">
-                                        <i class="voyager-search"></i>
-                                    </button>
+                                    <label>search keyword</label>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="p-2 form-control"
+                                               placeholder="{{ __('voyager::generic.search') }}"
+                                               name="s" value="{{ $search->value }}">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-info btn-lg m-0" type="submit">
+                                                <i class="voyager-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+
                                 </div>
                             </div>
                         </form>
@@ -75,11 +81,11 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="dataTable" class="table table-hover table-ui table-striped w-100">
-                                <thead class="blue-grey lighten-4">
+                                <thead class="grey darken-3 white-text">
                                     <tr>
                                         @can('delete',app($dataType->model_name))
                                             <th class="">
-                                                <div class="form-check pl-2 float-left">
+                                                <div class="form-check {{ $isServerSide ? 'pl-2' : '' }} float-left">
                                                     <input class="form-check-input filled-in select_all" type="checkbox" id="checkbox123">
                                                     <label class="form-check-label" for="checkbox123" class="label-table"></label>
                                                 </div>
