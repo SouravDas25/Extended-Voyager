@@ -11,4 +11,17 @@
     @endif
 @endif
 <div class="clearfix"></div>
-<input @if($row->required == 1) required @endif type="file" name="{{ $row->field }}[]" multiple="multiple" accept="image/*">
+<div class="md-form mt-1">
+    <div class="file-field">
+        <div class="btn btn-primary btn-sm float-left">
+            <span>Choose your Images</span>
+            <input type="file" name="{{ $row->field }}[]" multiple="multiple"
+                   @if($row->required == 1) required @endif>
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate"
+                   type="text"
+                   placeholder="Upload your file">
+        </div>
+    </div>
+</div>

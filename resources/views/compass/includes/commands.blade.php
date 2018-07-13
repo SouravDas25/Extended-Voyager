@@ -15,7 +15,7 @@
             {{ csrf_field() }}
             <input type="text" name="args" autofocus class="form-control"
                    placeholder="{{ __('voyager::compass.commands.additional_args') }}">
-            <input type="submit" class="btn btn-primary pull-right delete-confirm"
+            <input type="submit" class="btn btn-primary pull-right delete-confirm w-100"
                    value="{{ __('voyager::compass.commands.run_command') }}">
             <input type="hidden" name="command" id="hidden_cmd" value="{{ $command->name }}">
         </form>

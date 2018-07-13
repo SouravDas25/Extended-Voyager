@@ -34,7 +34,7 @@ mix.setPublicPath(__dirname)
     './resources/assets/plugins/datepicker/datepicker3.css',
     './resources/assets/plugins/daterangepicker/daterangepicker-bs3.css',
     './resources/assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css',
-    './resources/assets/js/lte/plugins/datatable/jquery.dataTables.min.css',
+    './resources/assets/plugins/datatables/dataTables.bootstrap4.css',
     './resources/assets/plugins/select2/select2.css',
     './publishable/assets/css/app.css'
 ], './publishable/assets/css/final.css')
@@ -66,11 +66,14 @@ mix.setPublicPath(__dirname)
     './resources/assets/js/lte/plugins/ace/ace.js',
 
     './resources/assets/js/lte/adminlte.js',
-    './resources/assets/js/lte/plugins/datatable/jquery.dataTables.min.js',
-    './resources/assets/js/bootstrap-datatables.js',
+    './resources/assets/plugins/datatables/jquery.dataTables.js',
+    './resources/assets/plugins/datatables/dataTables.bootstrap4.js',
     './resources/assets/js/media.js',
     './resources/assets/js/voyager_ace_editor.js',
+    './resources/assets/js/tinymce.js',
+    './resources/assets/js/voyager_tinymce.js',
     //'./resources/assets/js/lte/pages/dashboard.js',
     //'./resources/assets/js/lte/demo.js',
+    //'./publishable/assets/js/app.js',
     './resources/assets/js/mdb/sd_voyager.js',
 ], './publishable/assets/js/final.js');

@@ -171,6 +171,12 @@ Route::group(['as' => 'voyager.'], function () {
         Route::resource('api-keys',$namespacePrefix.'VoyagerApiKeysController');
 
         Route::get('/test', function (){
+            /*for($i =0;$i<100;$i++){
+                $s = new \App\Seller();
+                $s->name = "Seller $i";
+                $s->save();
+            }*/
+
             return view('voyager::test.test',compact(''));
         });
 

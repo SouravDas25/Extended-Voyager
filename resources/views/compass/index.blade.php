@@ -27,17 +27,17 @@
     <div class="page-content compass container-fluid ">
         <ul class="nav nav-tabs indigo lighten-1" role="tablist">
             <li class=" nav-item @if(empty($active_tab) || (isset($active_tab) && $active_tab == 'resources')){!! 'active' !!}@endif">
-                <a data-toggle="tab" href="#resources" class="nav-link grey-text" role="tab">
+                <a data-toggle="tab" href="#resources" class="nav-link" role="tab">
                     <i class="voyager-book"></i> {{ __('voyager::compass.resources.title') }}
                 </a>
             </li>
             <li class=" nav-item @if($active_tab == 'commands'){!! 'active' !!}@endif">
-                <a data-toggle="tab" href="#commands" class="nav-link grey-text" role="tab">
+                <a data-toggle="tab" href="#commands" class="nav-link " role="tab">
                     <i class="voyager-terminal"></i> {{ __('voyager::compass.commands.title') }}
                 </a>
             </li>
             <li class=" nav-item @if($active_tab == 'logs'){!! 'active' !!}@endif">
-                <a data-toggle="tab" href="#logs" class="nav-link grey-text" role="tab">
+                <a data-toggle="tab" href="#logs" class="nav-link " role="tab">
                     <i class="voyager-logbook"></i> {{ __('voyager::compass.logs.title') }}
                 </a>
             </li>
@@ -121,7 +121,7 @@
 
             </div>
 
-            <div id="commands" class="tab-pane fade in @if($active_tab == 'commands'){!! 'active' !!}@endif">
+            <div id="commands" class="tab-pane fade in @if($active_tab == 'commands'){!! 'active show' !!}@endif">
                 <h3><i class="voyager-terminal"></i> {{ __('voyager::compass.commands.title') }}
                     <small>{{ __('voyager::compass.commands.text') }}</small>
                 </h3>
@@ -130,7 +130,7 @@
                 </div>
 
             </div>
-            <div id="logs" class="tab-pane fade in @if($active_tab == 'logs'){!! 'active' !!}@endif">
+            <div id="logs" class="tab-pane fade in @if($active_tab == 'logs'){!! 'active show' !!}@endif">
                 <div class="row">
 
                     @include('voyager::compass.includes.logs')
