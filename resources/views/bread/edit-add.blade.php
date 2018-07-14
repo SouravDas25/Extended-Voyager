@@ -22,15 +22,15 @@
                 <div class="panel panel-bordered">
                     <!-- form start -->
                     <form role="form"
-                            class="form-edit-add"
-                            action="@if(!is_null($dataTypeContent->getKey())){{ route('voyager.'.$dataType->slug.'.update', $dataTypeContent->getKey()) }}@else{{ route('voyager.'.$dataType->slug.'.store') }}@endif"
-                            method="POST" enctype="multipart/form-data">
+                          class="form-edit-add"
+                          action="@if(!is_null($dataTypeContent->getKey())){{ route('voyager.'.$dataType->slug.'.update', $dataTypeContent->getKey()) }}@else{{ route('voyager.'.$dataType->slug.'.store') }}@endif"
+                          method="POST" enctype="multipart/form-data">
                         <!-- PUT Method if we are editing -->
-                        @if(!is_null($dataTypeContent->getKey()))
-                            {{ method_field("PUT") }}
-                        @endif
+                    @if(!is_null($dataTypeContent->getKey()))
+                        {{ method_field("PUT") }}
+                    @endif
 
-                        <!-- CSRF TOKEN -->
+                    <!-- CSRF TOKEN -->
                         {{ csrf_field() }}
 
                         <div class="panel-body">
@@ -45,19 +45,20 @@
                                 </div>
                             @endif
 
-                            <!-- Adding / Editing -->
+                        <!-- Adding / Editing -->
                             @php
                                 $dataTypeRows = $dataType->{(!is_null($dataTypeContent->getKey()) ? 'editRows' : 'addRows' )};
                             @endphp
 
                             @foreach($dataTypeRows as $row)
-                                <!-- GET THE DISPLAY OPTIONS -->
+                            <!-- GET THE DISPLAY OPTIONS -->
                                 @php
                                     $options = json_decode($row->details);
                                     $display_options = isset($options->display) ? $options->display : NULL;
                                 @endphp
                                 @if ($options && isset($options->legend) && isset($options->legend->text))
-                                    <legend class="text-{{$options->legend->align or 'center'}}" style="background-color: {{$options->legend->bgcolor or '#f0f0f0'}};padding: 5px;">{{$options->legend->text}}</legend>
+                                    <legend class="text-{{$options->legend->align or 'center'}}"
+                                            style="background-color: {{$options->legend->bgcolor or '#f0f0f0'}};padding: 5px;">{{$options->legend->text}}</legend>
                                 @endif
                                 @if ($options && isset($options->formfields_custom))
                                     @include('voyager::formfields.custom.' . $options->formfields_custom)
@@ -83,16 +84,17 @@
 
                         <div class="panel-footer">
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary btn-lg mx-0 save">{{ __('voyager::generic.save') }}</button>
+                                <button type="submit"
+                                        class="btn btn-primary btn-lg mx-0 save">{{ __('voyager::generic.save') }}</button>
                             </div>
                         </div>
                     </form>
 
                     <iframe id="form_target" name="form_target" style="display:none"></iframe>
                     <form id="my_form" action="{{ route('voyager.upload') }}" target="form_target" method="post"
-                            enctype="multipart/form-data" style="width:0;height:0;overflow:hidden">
+                          enctype="multipart/form-data" style="width:0;height:0;overflow:hidden">
                         <input name="image" id="upload_file" type="file"
-                                 onchange="$('#my_form').submit();this.value='';">
+                               onchange="$('#my_form').submit();this.value='';">
                         <input type="hidden" name="type_slug" id="type_slug" value="{{ $dataType->slug }}">
                         {{ csrf_field() }}
                     </form>
@@ -107,18 +109,23 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"
-                            aria-hidden="true">&times;</button>
-                    <h4 class="modal-title"><i class="voyager-warning"></i> {{ __('voyager::generic.are_you_sure') }}</h4>
+                    <h4 class="modal-title"><i class="voyager-warning"></i> {{ __('voyager::generic.are_you_sure') }}
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
 
                 <div class="modal-body">
-                    <h4>{{ __('voyager::generic.are_you_sure_delete') }} '<span class="confirm_delete_name"></span>'</h4>
+                    <h4>{{ __('voyager::generic.are_you_sure_delete') }} '<span class="confirm_delete_name"></span>'
+                    </h4>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
-                    <button type="button" class="btn btn-danger" id="confirm_delete">{{ __('voyager::generic.delete_confirm') }}
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
+                    <button type="button" class="btn btn-danger"
+                            id="confirm_delete">{{ __('voyager::generic.delete_confirm') }}
                     </button>
                 </div>
             </div>
@@ -148,10 +155,10 @@
                 format: 'yyyy/mm/dd',
             });
             @if ($isModelTranslatable)
-                $('.side-body').multilingual({"editing": true});
+            $('.side-body').multilingual({"editing": true});
             @endif
 
-            $('.side-body input[data-slug-origin]').each(function(i, el) {
+            $('.side-body input[data-slug-origin]').each(function (i, el) {
                 $(el).slugify();
             });
 
@@ -160,10 +167,10 @@
                 $image = $(this).siblings('img');
 
                 params = {
-                    slug:   '{{ $dataType->slug }}',
-                    image:  $image.data('image'),
-                    id:     $image.data('id'),
-                    field:  $image.parent().data('field-name'),
+                    slug: '{{ $dataType->slug }}',
+                    image: $image.data('image'),
+                    id: $image.data('id'),
+                    field: $image.parent().data('field-name'),
                     _token: '{{ csrf_token() }}'
                 }
 
@@ -171,15 +178,17 @@
                 $('#confirm_delete_modal').modal('show');
             });
 
-            $('#confirm_delete').on('click', function(){
+            $('#confirm_delete').on('click', function () {
                 $.post('{{ route('voyager.media.remove') }}', params, function (response) {
-                    if ( response
+                    if (response
                         && response.data
                         && response.data.status
-                        && response.data.status == 200 ) {
+                        && response.data.status == 200) {
 
                         toastr.success(response.data.message);
-                        $image.parent().fadeOut(300, function() { $(this).remove(); })
+                        $image.parent().fadeOut(300, function () {
+                            $(this).remove();
+                        })
                     } else {
                         toastr.error("Error removing image.");
                     }

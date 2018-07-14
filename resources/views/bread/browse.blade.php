@@ -41,7 +41,7 @@
             <div class="col-md-12">
                 <div class="card ">
                     @if ($isServerSide)
-                    <div class="card-header pt-5 pb-3 bg-default white-text">
+                    <div class="card-header pt-5 pb-3 teal lighten-3 white-text">
                         <form method="get" class="form-search">
                             <div id="search-input" class="bg-transparent mb-0 row">
                                 <div class="col-sm-2 ">
@@ -61,7 +61,7 @@
                                 </div>
                                 <div class="col-sm-8" >
                                     <label>search keyword</label>
-                                    <div class="input-group mb-3">
+                                    <div class="input-group input-group-sm mb-3">
                                         <input type="text" class="p-2 form-control"
                                                placeholder="{{ __('voyager::generic.search') }}"
                                                name="s" value="{{ $search->value }}">

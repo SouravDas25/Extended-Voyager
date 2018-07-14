@@ -38,19 +38,54 @@ class VoyagerMediaController extends Controller
             $folder = '';
         }
 
-        $dir = $this->directory.$folder;
+        $dir = $this->directory . $folder;
 
         return response()->json([
-            'name'          => 'files',
-            'type'          => 'folder',
-            'path'          => $dir,
-            'folder'        => $folder,
-            'items'         => $this->getFiles($dir),
+            'name' => 'files',
+            'type' => 'folder',
+            'path' => $dir,
+            'folder' => $folder,
+            'items' => $this->getFiles($dir),
             'last_modified' => 'asdf',
         ]);
     }
 
     // New Folder with 5.3
+
+    private function getFiles($dir)
+    {
+        $files = [];
+        $storage = Storage::disk($this->filesystem)->addPlugin(new ListWith());
+        $storageItems = $storage->listWith(['mimetype'], $dir);
+
+        foreach ($storageItems as $item) {
+            if ($item['type'] == 'dir') {
+                $files[] = [
+                    'name' => $item['basename'],
+                    'type' => 'folder',
+                    'path' => Storage::disk($this->filesystem)->url($item['path']),
+                    'items' => '',
+                    'last_modified' => '',
+                ];
+            } else {
+                if (empty(pathinfo($item['path'], PATHINFO_FILENAME)) && !config('voyager.hidden_files')) {
+                    continue;
+                }
+                $files[] = [
+                    'name' => $item['basename'],
+                    'type' => isset($item['mimetype']) ? $item['mimetype'] : 'file',
+                    'path' => Storage::disk($this->filesystem)->url($item['path']),
+                    'size' => $item['size'],
+                    'last_modified' => $item['timestamp'],
+                ];
+            }
+        }
+
+        return $files;
+    }
+
+    // Delete File or Folder with 5.3
+
     public function new_folder(Request $request)
     {
         $new_folder = $request->new_folder;
@@ -68,7 +103,8 @@ class VoyagerMediaController extends Controller
         return compact('success', 'error');
     }
 
-    // Delete File or Folder with 5.3
+    // GET ALL DIRECTORIES Working with Laravel 5.3
+
     public function delete_file_folder(Request $request)
     {
         $folderLocation = $request->folder_location;
@@ -97,7 +133,8 @@ class VoyagerMediaController extends Controller
         return compact('success', 'error');
     }
 
-    // GET ALL DIRECTORIES Working with Laravel 5.3
+    // NEEDS TESTING
+
     public function get_all_dirs(Request $request)
     {
         $folderLocation = $request->folder_location;
@@ -113,7 +150,8 @@ class VoyagerMediaController extends Controller
         );
     }
 
-    // NEEDS TESTING
+    // RENAME FILE WORKING with 5.3
+
     public function move_file(Request $request)
     {
         $source = $request->source;
@@ -129,7 +167,7 @@ class VoyagerMediaController extends Controller
         $location = "{$this->directory}/{$folderLocation}";
         $source = "{$location}/{$source}";
         $destination = strpos($destination, '/../') !== false
-            ? $this->directory.'/'.dirname($folderLocation).'/'.str_replace('/../', '', $destination)
+            ? $this->directory . '/' . dirname($folderLocation) . '/' . str_replace('/../', '', $destination)
             : "/{$destination}";
 
         if (!file_exists($destination)) {
@@ -145,7 +183,8 @@ class VoyagerMediaController extends Controller
         return compact('success', 'error');
     }
 
-    // RENAME FILE WORKING with 5.3
+    // Upload Working with 5.3
+
     public function rename_file(Request $request)
     {
         $folderLocation = $request->folder_location;
@@ -173,7 +212,6 @@ class VoyagerMediaController extends Controller
         return compact('success', 'error');
     }
 
-    // Upload Working with 5.3
     public function upload(Request $request)
     {
         try {
@@ -189,12 +227,12 @@ class VoyagerMediaController extends Controller
             $file = $request->file->store($request->upload_path, $this->filesystem);
 
             if (in_array($request->file->getMimeType(), $allowedImageMimeTypes)) {
-                $image = Image::make($realPath.$file);
+                $image = Image::make($realPath . $file);
 
                 if ($request->file->getClientOriginalExtension() == 'gif') {
-                    copy($request->file->getRealPath(), $realPath.$file);
+                    copy($request->file->getRealPath(), $realPath . $file);
                 } else {
-                    $image->orientate()->save($realPath.$file);
+                    $image->orientate()->save($realPath . $file);
                 }
             }
 
@@ -210,39 +248,8 @@ class VoyagerMediaController extends Controller
         return response()->json(compact('success', 'message', 'path'));
     }
 
-    private function getFiles($dir)
-    {
-        $files = [];
-        $storage = Storage::disk($this->filesystem)->addPlugin(new ListWith());
-        $storageItems = $storage->listWith(['mimetype'], $dir);
-
-        foreach ($storageItems as $item) {
-            if ($item['type'] == 'dir') {
-                $files[] = [
-                    'name'          => $item['basename'],
-                    'type'          => 'folder',
-                    'path'          => Storage::disk($this->filesystem)->url($item['path']),
-                    'items'         => '',
-                    'last_modified' => '',
-                ];
-            } else {
-                if (empty(pathinfo($item['path'], PATHINFO_FILENAME)) && !config('voyager.hidden_files')) {
-                    continue;
-                }
-                $files[] = [
-                    'name'          => $item['basename'],
-                    'type'          => isset($item['mimetype']) ? $item['mimetype'] : 'file',
-                    'path'          => Storage::disk($this->filesystem)->url($item['path']),
-                    'size'          => $item['size'],
-                    'last_modified' => $item['timestamp'],
-                ];
-            }
-        }
-
-        return $files;
-    }
-
     // REMOVE FILE
+
     public function remove(Request $request)
     {
         try {
@@ -262,7 +269,7 @@ class VoyagerMediaController extends Controller
             $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
 
             // Check permission
-            Voyager::canOrFail('delete_'.$dataType->name);
+            Voyager::canOrFail('delete_' . $dataType->name);
 
             // Load model and find record
             $model = app($dataType->model_name);
@@ -297,10 +304,10 @@ class VoyagerMediaController extends Controller
             $data->save();
 
             return response()->json([
-               'data' => [
-                   'status'  => 200,
-                   'message' => __('voyager::media.image_removed'),
-               ],
+                'data' => [
+                    'status' => 200,
+                    'message' => __('voyager::media.image_removed'),
+                ],
             ]);
         } catch (Exception $e) {
             $code = 500;
@@ -316,7 +323,7 @@ class VoyagerMediaController extends Controller
 
             return response()->json([
                 'data' => [
-                    'status'  => $code,
+                    'status' => $code,
                     'message' => $message,
                 ],
             ], $code);
@@ -333,15 +340,15 @@ class VoyagerMediaController extends Controller
         $width = $request->get('width');
 
         $realPath = Storage::disk($this->filesystem)->getDriver()->getAdapter()->getPathPrefix();
-        $originImagePath = $realPath.$request->upload_path.'/'.$request->originImageName;
+        $originImagePath = $realPath . $request->upload_path . '/' . $request->originImageName;
 
         try {
             if ($createMode) {
                 // create a new image with the cpopped data
                 $fileNameParts = explode('.', $request->originImageName);
-                array_splice($fileNameParts, count($fileNameParts) - 1, 0, 'cropped_'.time());
+                array_splice($fileNameParts, count($fileNameParts) - 1, 0, 'cropped_' . time());
                 $newImageName = implode('.', $fileNameParts);
-                $destImagePath = $realPath.$request->upload_path.'/'.$newImageName;
+                $destImagePath = $realPath . $request->upload_path . '/' . $newImageName;
             } else {
                 // override the original image
                 $destImagePath = $originImagePath;
