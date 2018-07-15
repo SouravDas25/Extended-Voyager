@@ -1,7 +1,7 @@
 @section('database-table-editor-template')
 
-<div class="panel panel-bordered">
-    <div class="panel-body">
+<div class="card card-bordered">
+    <div class="card-body">
         <div class="row">
         @if($db->action == 'update')
             <div class="col-md-12">
@@ -27,7 +27,7 @@
                 </div>
             --}}
         @endif
-        </div><!-- .panel-body .row -->
+        </div><!-- .card-body .row -->
 
         <div v-if="compositeIndexes.length" v-once class="alert alert-danger">
             <p>{{ __('voyager::database.no_composites_warning') }}</p>
@@ -77,15 +77,15 @@
                 @columnAdded="addColumn"
             ></database-table-helper-buttons>
         </div>
-    </div><!-- .panel-body -->
+    </div><!-- .card-body -->
 
-    <div class="panel-footer">
+    <div class="card-footer">
         <input type="submit" class="btn btn-primary pull-right"
                value="@if($db->action == 'update'){{ __('voyager::database.update_table') }}@else{{ __('voyager::database.create_new_table') }}@endif"
                :disabled="!tableHasColumns">
         <div style="clear:both"></div>
     </div>
-</div><!-- .panel -->
+</div><!-- .card -->
 
 
 @endsection

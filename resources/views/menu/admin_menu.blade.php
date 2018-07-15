@@ -1,4 +1,4 @@
-<ul class="nav navbar-nav">
+<ul class="{{ isset($hasChildren) && $hasChildren ? 'list-unstyled' : 'collapsible collapsible-accordion' }}" style="border:0">
 
 @php
     if (Voyager::translatable($items)) {
@@ -33,18 +33,11 @@
             foreach($item->children as $child)
             {
                 $hasChildren = $hasChildren || Auth::user()->can('browse', $child);
-
-                if(url($child->link()) == url()->current())
-                {
-                    array_push($listItemClass, 'active');
-                }
             }
             if (!$hasChildren) {
                 continue;
             }
-
-            $linkAttributes = 'href="#' . $transItem->id .'-dropdown-element" data-toggle="collapse" aria-expanded="'. (in_array('active', $listItemClass) ? 'true' : 'false').'"';
-            array_push($listItemClass, 'dropdown');
+            $href = '#';
         }
         else
         {
@@ -56,16 +49,29 @@
         }
     @endphp
 
-    <li class="{{ implode(" ", $listItemClass) }}">
-        <a {!! $linkAttributes !!} target="{{ $item->target }}" style="color:{{ (isset($item->color) && $item->color != '#000000' ? $item->color : '') }}">
-            <span class="icon {{ $item->icon_class }}"></span>
-            <span class="title">{{ $transItem->title }}</span>
+    <li>
+        <a class=" {{ $hasChildren ? 'collapsible-header waves-effect arrow-r' : 'waves-effect'}}
+        {{ strrpos(Request::url(),url($href)) !== false ? 'active' : ''}}"
+           href="{{url($href)}}"
+           target="{{ $item->target }}"
+           style="color:{{ (isset($item->color) && $item->color != '#000000' ? $item->color : '') }};font-size:15px">
+            <div class="row">
+                <div class="col-2">
+                    <i class="{{ $item->icon_class }}"></i>
+                </div>
+                <div class="col-6 ">
+                    {{ $transItem->title }}
+                </div>
+                @if($hasChildren)
+                    <div class="col-4 pr-2">
+                        <i class="fa fa-angle-down rotate-icon"></i>
+                    </div>
+                @endif
+            </div>
         </a>
         @if($hasChildren)
-            <div id="{{ $transItem->id }}-dropdown-element" class="panel-collapse collapse {{ (in_array('active', $listItemClass) ? 'in' : '') }}">
-                <div class="panel-body">
-                    @include('voyager::menu.admin_menu', ['items' => $item->children, 'options' => $options, 'innerLoop' => true])
-                </div>
+            <div class="collapsible-body">
+                @include('voyager::menu.admin_menu', ['items' => $item->children, 'options' => $options, 'innerLoop' => true])
             </div>
         @endif
     </li>

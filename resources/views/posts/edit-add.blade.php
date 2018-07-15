@@ -4,19 +4,19 @@
 
 @section('css')
     <style>
-        .panel .mce-panel {
+        .card .mce-card {
             border-left-color: #fff;
             border-right-color: #fff;
         }
 
-        .panel .mce-toolbar,
-        .panel .mce-statusbar {
+        .card .mce-toolbar,
+        .card .mce-statusbar {
             padding-left: 20px;
         }
 
-        .panel .mce-edit-area,
-        .panel .mce-edit-area iframe,
-        .panel .mce-edit-area iframe html {
+        .card .mce-edit-area,
+        .card .mce-edit-area iframe,
+        .card .mce-edit-area iframe html {
             padding: 0 10px;
             min-height: 350px;
         }
@@ -26,20 +26,20 @@
             font-size: 14px;
         }
 
-        .panel.is-fullscreen .mce-statusbar {
+        .card.is-fullscreen .mce-statusbar {
             position: absolute;
             bottom: 0;
             width: 100%;
             z-index: 200000;
         }
 
-        .panel.is-fullscreen .mce-tinymce {
+        .card.is-fullscreen .mce-tinymce {
             height:100%;
         }
 
-        .panel.is-fullscreen .mce-edit-area,
-        .panel.is-fullscreen .mce-edit-area iframe,
-        .panel.is-fullscreen .mce-edit-area iframe html {
+        .card.is-fullscreen .mce-edit-area,
+        .card.is-fullscreen .mce-edit-area iframe,
+        .card.is-fullscreen .mce-edit-area iframe html {
             height: 100%;
             position: absolute;
             width: 99%;
@@ -70,7 +70,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <!-- ### TITLE ### -->
-                    <div class="panel">
+                    <div class="card">
                         @if (count($errors) > 0)
                             <div class="alert alert-danger">
                                 <ul>
@@ -81,16 +81,16 @@
                             </div>
                         @endif
 
-                        <div class="panel-heading">
-                            <h3 class="panel-title">
+                        <div class="card-heading">
+                            <h3 class="card-title">
                                 <i class="voyager-character"></i> {{ __('voyager::post.title') }}
-                                <span class="panel-desc"> {{ __('voyager::post.title_sub') }}</span>
+                                <span class="card-desc"> {{ __('voyager::post.title_sub') }}</span>
                             </h3>
-                            <div class="panel-actions">
-                                <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" aria-hidden="true"></a>
+                            <div class="card-actions">
+                                <a class="card-action voyager-angle-down" data-toggle="card-collapse" aria-hidden="true"></a>
                             </div>
                         </div>
-                        <div class="panel-body">
+                        <div class="card-body">
                             @include('voyager::multilingual.input-hidden', [
                                 '_field_name'  => 'title',
                                 '_field_trans' => get_field_translations($dataTypeContent, 'title')
@@ -100,15 +100,15 @@
                     </div>
 
                     <!-- ### CONTENT ### -->
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">{{ __('voyager::post.content') }}</h3>
-                            <div class="panel-actions">
-                                <a class="panel-action voyager-resize-full" data-toggle="panel-fullscreen" aria-hidden="true"></a>
+                    <div class="card">
+                        <div class="card-heading">
+                            <h3 class="card-title">{{ __('voyager::post.content') }}</h3>
+                            <div class="card-actions">
+                                <a class="card-action voyager-resize-full" data-toggle="card-fullscreen" aria-hidden="true"></a>
                             </div>
                         </div>
 
-                        <div class="panel-body">
+                        <div class="card-body">
                             @include('voyager::multilingual.input-hidden', [
                                 '_field_name'  => 'body',
                                 '_field_trans' => get_field_translations($dataTypeContent, 'body')
@@ -119,17 +119,17 @@
                             @endphp
                             {!! app('voyager')->formField($row, $dataType, $dataTypeContent) !!}
                         </div>
-                    </div><!-- .panel -->
+                    </div><!-- .card -->
 
                     <!-- ### EXCERPT ### -->
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">{!! __('voyager::post.excerpt') !!}</h3>
-                            <div class="panel-actions">
-                                <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" aria-hidden="true"></a>
+                    <div class="card">
+                        <div class="card-heading">
+                            <h3 class="card-title">{!! __('voyager::post.excerpt') !!}</h3>
+                            <div class="card-actions">
+                                <a class="card-action voyager-angle-down" data-toggle="card-collapse" aria-hidden="true"></a>
                             </div>
                         </div>
-                        <div class="panel-body">
+                        <div class="card-body">
                             @include('voyager::multilingual.input-hidden', [
                                 '_field_name'  => 'excerpt',
                                 '_field_trans' => get_field_translations($dataTypeContent, 'excerpt')
@@ -138,14 +138,14 @@
                         </div>
                     </div>
 
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">{{ __('voyager::post.additional_fields') }}</h3>
-                            <div class="panel-actions">
-                                <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" aria-hidden="true"></a>
+                    <div class="card">
+                        <div class="card-heading">
+                            <h3 class="card-title">{{ __('voyager::post.additional_fields') }}</h3>
+                            <div class="card-actions">
+                                <a class="card-action voyager-angle-down" data-toggle="card-collapse" aria-hidden="true"></a>
                             </div>
                         </div>
-                        <div class="panel-body">
+                        <div class="card-body">
                             @php
                                 $dataTypeRows = $dataType->{(isset($dataTypeContent->id) ? 'editRows' : 'addRows' )};
                                 $exclude = ['title', 'body', 'excerpt', 'slug', 'status', 'category_id', 'author_id', 'featured', 'image', 'meta_description', 'meta_keywords', 'seo_title'];
@@ -183,14 +183,14 @@
                 </div>
                 <div class="col-md-4">
                     <!-- ### DETAILS ### -->
-                    <div class="panel panel panel-bordered panel-warning">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="icon wb-clipboard"></i> {{ __('voyager::post.details') }}</h3>
-                            <div class="panel-actions">
-                                <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" aria-hidden="true"></a>
+                    <div class="card card card-bordered card-warning">
+                        <div class="card-heading">
+                            <h3 class="card-title"><i class="icon wb-clipboard"></i> {{ __('voyager::post.details') }}</h3>
+                            <div class="card-actions">
+                                <a class="card-action voyager-angle-down" data-toggle="card-collapse" aria-hidden="true"></a>
                             </div>
                         </div>
-                        <div class="panel-body">
+                        <div class="card-body">
                             <div class="form-group">
                                 <label for="slug">{{ __('voyager::post.slug') }}</label>
                                 @include('voyager::multilingual.input-hidden', [
@@ -226,14 +226,14 @@
                     </div>
 
                     <!-- ### IMAGE ### -->
-                    <div class="panel panel-bordered panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="icon wb-image"></i> {{ __('voyager::post.image') }}</h3>
-                            <div class="panel-actions">
-                                <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" aria-hidden="true"></a>
+                    <div class="card card-bordered card-primary">
+                        <div class="card-heading">
+                            <h3 class="card-title"><i class="icon wb-image"></i> {{ __('voyager::post.image') }}</h3>
+                            <div class="card-actions">
+                                <a class="card-action voyager-angle-down" data-toggle="card-collapse" aria-hidden="true"></a>
                             </div>
                         </div>
-                        <div class="panel-body">
+                        <div class="card-body">
                             @if(isset($dataTypeContent->image))
                                 <img src="{{ filter_var($dataTypeContent->image, FILTER_VALIDATE_URL) ? $dataTypeContent->image : Voyager::image( $dataTypeContent->image ) }}" style="width:100%" />
                             @endif
@@ -242,14 +242,14 @@
                     </div>
 
                     <!-- ### SEO CONTENT ### -->
-                    <div class="panel panel-bordered panel-info">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="icon wb-search"></i> {{ __('voyager::post.seo_content') }}</h3>
-                            <div class="panel-actions">
-                                <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" aria-hidden="true"></a>
+                    <div class="card card-bordered card-info">
+                        <div class="card-heading">
+                            <h3 class="card-title"><i class="icon wb-search"></i> {{ __('voyager::post.seo_content') }}</h3>
+                            <div class="card-actions">
+                                <a class="card-action voyager-angle-down" data-toggle="card-collapse" aria-hidden="true"></a>
                             </div>
                         </div>
-                        <div class="panel-body">
+                        <div class="card-body">
                             <div class="form-group">
                                 <label for="meta_description">{{ __('voyager::post.meta_description') }}</label>
                                 @include('voyager::multilingual.input-hidden', [

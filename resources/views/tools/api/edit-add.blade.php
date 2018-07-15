@@ -37,19 +37,19 @@
                 <!-- CSRF TOKEN -->
                     {{ csrf_field() }}
 
-                    <div class="panel panel-primary panel-bordered">
+                    <div class="card card-primary card-bordered">
 
-                        <div class="panel-heading">
-                            <h3 class="panel-title panel-icon">
+                        <div class="card-heading">
+                            <h3 class="card-title card-icon">
                                 <i class="fa fa-cloud"></i>
                                 {{ ucfirst($table) }} Api Resource Info
                             </h3>
-                            <div class="panel-actions">
-                                <a class="panel-action voyager-angle-up" data-toggle="panel-collapse" aria-hidden="true"></a>
+                            <div class="card-actions">
+                                <a class="card-action voyager-angle-up" data-toggle="card-collapse" aria-hidden="true"></a>
                             </div>
                         </div>
 
-                        <div class="panel-body">
+                        <div class="card-body">
                             <div class="row clearfix">
                                 <div class="col-md-6 form-group">
                                     <label for="name">{{ __('voyager::database.table_name') }}</label>
@@ -126,8 +126,8 @@
                                     @if(isset($api_type)){{ $api_type->description }}@endif
                                 </textarea>
                             </div>
-                        </div><!-- .panel-body -->
-                    </div><!-- .panel -->
+                        </div><!-- .card-body -->
+                    </div><!-- .card -->
 
                     <button type="submit" class="btn pull-right btn-primary">{{ __('voyager::generic.submit') }}</button>
 

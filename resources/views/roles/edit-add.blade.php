@@ -82,7 +82,7 @@
                                     </div>
                                 @endforeach
                             </ul>
-                        </div><!-- panel-body -->
+                        </div><!-- card-body -->
                         <div class="card-footer">
                             <button type="submit" class="btn btn-lg btn-primary">{{ __('voyager::generic.submit') }}</button>
                         </div>

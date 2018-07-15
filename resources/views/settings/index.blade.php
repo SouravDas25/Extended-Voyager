@@ -4,23 +4,23 @@
 
 @section('css')
     <style>
-        .panel-actions .voyager-trash {
+        .card-actions .voyager-trash {
             cursor: pointer;
         }
 
-        .panel-actions .voyager-trash:hover {
+        .card-actions .voyager-trash:hover {
             color: #e94542;
         }
 
-        .settings .panel-actions {
+        .settings .card-actions {
             right: 0px;
         }
 
-        .panel hr {
+        .card hr {
             margin-bottom: 10px;
         }
 
-        .panel {
+        .card {
             padding-bottom: 15px;
         }
 
@@ -47,7 +47,7 @@
             margin-bottom: 0;
         }
 
-        .panel-title code {
+        .card-title code {
             border-radius: 30px;
             padding: 5px 10px;
             font-size: 11px;
@@ -67,7 +67,7 @@
             margin-top: 20px;
         }
 
-        .new-setting .panel-title {
+        .new-setting .card-title {
             margin: 0 auto;
             display: inline-block;
             color: #999fac;
@@ -80,7 +80,7 @@
             padding-right: 15px;
         }
 
-        .settings .panel-title {
+        .settings .card-title {
             padding-left: 0px;
             padding-right: 0px;
         }
@@ -93,7 +93,7 @@
             margin-left: 2%;
         }
 
-        .new-setting .panel-title i {
+        .new-setting .card-title i {
             position: relative;
             top: 2px;
         }
@@ -257,7 +257,7 @@
             {{ method_field("PUT") }}
             {{ csrf_field() }}
             <input type="hidden" name="setting_tab" class="setting_tab" value="{{ $active }}"/>
-            <div class="panel ">
+            <div class="card ">
 
                 <div class="page-content settings container-fluid">
                     <ul class="nav nav-tabs indigo lighten-1" role="tablist">
@@ -274,12 +274,12 @@
                             <div id="{{ str_slug($group) }}" role="tabpanel"
                                  class="tab-pane fade in  @if($group == $active) show active @endif">
                                 @foreach($group_settings as $setting)
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">
+                                    <div class="card-heading">
+                                        <h3 class="card-title">
                                             {{ $setting->display_name }} @if(config('voyager.show_dev_tips'))<code>setting('{{ $setting->key }}
                                                 ')</code>@endif
                                         </h3>
-                                        <div class="panel-actions">
+                                        <div class="card-actions">
                                             <a href="{{ route('voyager.settings.move_up', $setting->id) }}">
                                                 <i class="sort-icons voyager-sort-asc"></i>
                                             </a>
@@ -293,7 +293,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="panel-body no-padding-left-right row">
+                                    <div class="card-body no-padding-left-right row">
                                         <div class="col-md-10 no-padding-left-right">
                                             @if ($setting->type == "text")
                                                 <input type="text" class="form-control" name="{{ $setting->key }}"
@@ -392,15 +392,15 @@
         <div style="clear:both"></div>
 
         @can('add', Voyager::model('Setting'))
-            <div class="panel" style="margin-top:10px;">
-                <div class="panel-heading new-setting">
+            <div class="card" style="margin-top:10px;">
+                <div class="card-heading new-setting">
                     <div class="divider-new px-5">
-                        <h2 class="h2-responsive panel-title indigo-text mx-4 font-bold wow fadeIn" data-wow-delay="0.2s">
+                        <h2 class="h2-responsive card-title indigo-text mx-4 font-bold wow fadeIn" data-wow-delay="0.2s">
                             <strong><i class="voyager-plus"></i> {{ __('voyager::settings.new') }}</strong>
                         </h2>
                     </div>
                 </div>
-                <div class="panel-body p-5">
+                <div class="card-body p-5">
                     <form action="{{ route('voyager.settings.store') }}" method="POST" class="row">
                         {{ csrf_field() }}
                         <input type="hidden" name="setting_tab" class="setting_tab" value="{{ $active }}"/>
@@ -505,7 +505,7 @@
                 }
             });
 
-            $('.panel-actions .voyager-trash').click(function () {
+            $('.card-actions .voyager-trash').click(function () {
                 var display = $(this).data('display-name') + '/' + $(this).data('display-key');
 
                 $('#delete_setting_title').text(display);

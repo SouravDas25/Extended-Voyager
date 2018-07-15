@@ -3,7 +3,7 @@
 	<div class="modal fade modal-relationships"
 		 tabindex="-1" role="dialog" aria-hidden="true"
 		 id="new_relationship_modal">
-		<div class="modal-dialog modal-notify modal-danger relationship-panel" role="document">
+		<div class="modal-dialog modal-notify modal-danger relationship-card" role="document">
 		    <div class="modal-content">
 		        <div class="modal-header">
 	                <h4 class="modal-title">

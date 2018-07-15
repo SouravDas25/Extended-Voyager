@@ -16,12 +16,12 @@
     <div class="page-content container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="panel panel-bordered">
-                    <div class="panel-heading">
-                        <p class="panel-title" style="color:#777">{{ __('voyager::menu_builder.drag_drop_info') }}</p>
+                <div class="card card-bordered">
+                    <div class="card-heading">
+                        <p class="card-title" style="color:#777">{{ __('voyager::menu_builder.drag_drop_info') }}</p>
                     </div>
 
-                    <div class="panel-body" style="padding:30px;">
+                    <div class="card-body" style="padding:30px;">
                         <div class="dd">
                             {!! menu($menu->name, 'admin', ['isModelTranslatable' => $isModelTranslatable]) !!}
                         </div>

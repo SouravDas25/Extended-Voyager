@@ -1,35 +1,39 @@
-<div class="side-menu sidebar-inverse">
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="side-menu-container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="{{ route('voyager.dashboard') }}">
-                    <div class="logo-icon-container">
-                        <?php $admin_logo_img = Voyager::setting('admin.icon_image', ''); ?>
-                        @if($admin_logo_img == '')
-                            <img src="{{ voyager_asset('images/logo-icon-light.png') }}" alt="Logo Icon">
-                        @else
-                            <img src="{{ Voyager::image($admin_logo_img) }}" alt="Logo Icon">
-                        @endif
-                    </div>
-                    <div class="title">{{Voyager::setting('admin.title', 'VOYAGER')}}</div>
-                </a>
-            </div><!-- .navbar-header -->
-
-            <div class="panel widget center bgimage"
-                 style="background-image:url({{ Voyager::image( Voyager::setting('admin.bg_image'), voyager_asset('images/bg.jpg') ) }}); background-size: cover; background-position: 0px;">
-                <div class="dimmer"></div>
-                <div class="panel-content">
-                    <img src="{{ $user_avatar }}" class="avatar" alt="{{ Auth::user()->name }} avatar">
-                    <h4>{{ ucwords(Auth::user()->name) }}</h4>
-                    <p>{{ Auth::user()->email }}</p>
-
-                    <a href="{{ route('voyager.profile') }}" class="btn btn-primary">{{ __('voyager::generic.profile') }}</a>
-                    <div style="clear:both"></div>
+<div id="slide-out" class="side-nav sn-bg-4 fixed">
+    <ul class="custom-scrollbar">
+        <li class="h1-responsive">
+            <div class="row" href="{{ route('voyager.dashboard') }}">
+                <div class="col-4">
+                    <?php
+                    $admin_logo_img = Voyager::setting('admin.icon_image', '');
+                    $admin_logo_img = $admin_logo_img == '' ? voyager_asset('images/logo-icon-light.png') : Voyager::image($admin_logo_img);?>
+                    <img src="{{ $admin_logo_img }}" alt="Logo Icon" class="img-fluid p-2 ml-2" style="height: 52px">
+                </div>
+                <h4 class="col-8 m-auto text-uppercase font-weight-bold">
+                    {{Voyager::setting('admin.title', 'VOYAGER')}}
+                </h4>
+            </div>
+        </li>
+        <li>
+            <div class="row p-2"
+                 style="background-image:url({{ Voyager::image( Voyager::setting('admin.bg_image'), voyager_asset('images/bg.jpg') ) }});
+                         background-size: cover; background-position: 0px; opacity:0.75">
+                <div class="col-4 m-auto ">
+                    <img src="{{ $user_avatar }}" class="img-fluid rounded-circle p-2 ml-2"
+                         alt="{{ Auth::user()->name }} avatar">
+                </div>
+                <div class="col-8 m-auto">
+                    {{ ucwords(Auth::user()->name) }}<br>
+                    <small>{{ Auth::user()->email }}</small>
                 </div>
             </div>
 
-        </div>
+        </li>
 
-        {!! menu('admin', 'admin_menu') !!}
-    </nav>
+        <li>
+            {!! menu('admin', 'admin_menu') !!}
+        </li>
+
+
+        <div class="sidenav-bg mask-strong"></div>
+    </ul>
 </div>
