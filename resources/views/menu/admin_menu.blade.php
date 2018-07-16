@@ -59,11 +59,11 @@
                 <div class="col-2">
                     <i class="{{ $item->icon_class }}"></i>
                 </div>
-                <div class="col-6 ">
+                <div class="col-8 ">
                     {{ $transItem->title }}
                 </div>
                 @if($hasChildren)
-                    <div class="col-4 pr-2">
+                    <div class="col-2 pr-2">
                         <i class="fa fa-angle-down rotate-icon"></i>
                     </div>
                 @endif
