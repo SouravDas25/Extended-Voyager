@@ -31,11 +31,23 @@
 
 <body class="hold-transition sidebar-mini @yield('body_class')">
 
+<div id="voyager-loader">
+    <?php $admin_loader_img = Voyager::setting('admin.loader', ''); ?>
+    @if($admin_loader_img == '')
+        <img src="{{ voyager_asset('images/logo-icon.png') }}" alt="Voyager Loader">
+    @else
+        <img src="{{ Voyager::image($admin_loader_img) }}" alt="Voyager Loader">
+    @endif
+</div>
+
 @yield('body')
 <script src="{{ voyager_asset('js/final.js') }}"></script>
 <script>
     $(document).ready(function(){
-        $.widget.bridge('uibutton', $.ui.button)
+        $.widget.bridge('uibutton', $.ui.button);
+        $('#voyager-loader').fadeOut('slow', function() {
+            $(this).remove();
+        });
     });
 
 </script>

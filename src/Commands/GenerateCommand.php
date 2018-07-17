@@ -1,0 +1,88 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: SD
+ * Date: 7/16/2018
+ * Time: 2:38 PM
+ */
+
+namespace TCG\Voyager\Commands;
+
+
+use Illuminate\Console\Command;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+use Symfony\Component\Console\Input\InputOption;
+use TCG\Voyager\Facades\Voyager;
+
+class GenerateCommand extends Command
+{
+    protected $signature  = 'voyager:generate {--bread}';
+
+    protected $description = 'Generates beard data seeds created by the user on different tables.';
+
+    protected $filesystem;
+
+    /**
+     * GenerateCommand constructor.
+     * @param Filesystem $filesystem
+     */
+    public function __construct(Filesystem $filesystem)
+    {
+        $this->filesystem = $filesystem;
+
+        parent::__construct();
+    }
+
+    public function fire()
+    {
+        return $this->handle();
+    }
+
+    protected function getOptions()
+    {
+        return [
+            ['bread', null, InputOption::VALUE_NONE, 'Generates all the bread seed needed by the app for db.', null],
+        ];
+    }
+
+    public function handle()
+    {
+        $bread = $this->option('bread');
+        if($bread){
+            $this->generateBread();
+        }
+        else {
+            $this->error('No Task is specified for generation.');
+        }
+    }
+
+    /**
+     *
+     */
+    public function generateBread()
+    {
+        //$this->info('Bread Defined');
+        $models = Voyager::model_names();
+        $beardsObj = [];
+        foreach ($models as $model){
+            $modelClass = Voyager::model($model);
+            $tablename = (new $modelClass())->getTable();
+            if( Schema::hasTable($tablename) ) {
+                $this->info("Found Table $tablename.");
+                $beardsObj[$model] = DB::table($tablename)->get();
+                $this->info("Generated Bread Data For $model Model");
+            }
+        }
+        $path = Voyager::seedDataFolderPath();
+        $this->info($path);
+        if (!$this->filesystem->isDirectory($path)) {
+            $this->filesystem->makeDirectory($path);
+        }
+        $data = json_encode($beardsObj, JSON_PRETTY_PRINT);
+        $path = Voyager::seedDataFilePath();
+        $this->filesystem->put($path,$data);
+        $this->info("All Bread Data Generated.");
+    }
+}

@@ -74,11 +74,29 @@ class Voyager
 
     public $setting_cache = null;
 
+    protected $seedDataFolder = "/seeds/VoyagerSeedingData";
+    protected $seedDataFile = "/data.json";
+
     public function __construct()
     {
         $this->filesystem = app(Filesystem::class);
 
         $this->findVersion();
+    }
+
+    public function seedDataFolderPath()
+    {
+        return database_path($this->seedDataFolder);
+    }
+
+    public function seedDataFilePath()
+    {
+        return $this->seedDataFolderPath() . $this->seedDataFile;
+    }
+
+    public function model_names()
+    {
+        return array_keys($this->models);
     }
 
     public function model($name)

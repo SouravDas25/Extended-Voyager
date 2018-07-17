@@ -56,13 +56,20 @@
 
         <li class=" nav-item {{ implode(" ", $listItemClass) }}">
             <a href="{{ url($href) }}" class="nav-link" target="{{ $item->target }}" >
-                <i class="nav-icon {{ $item->icon_class }} pr-1"></i>
-                <p class="title">
-                    {{ $transItem->title }}
+                <div class="row">
+                    <div class="col-2">
+                        <i class="nav-icon {{ $item->icon_class }} pr-1 "></i>
+                    </div>
+                    <p class="col-8">
+                        {{ $transItem->title }}
+                    </p>
                     @if($hasChildren)
-                    <i class="right fa fa-angle-left"></i>
+                        <div class="col-2">
+                            <i class="right fa fa-angle-left "></i>
+                        </div>
                     @endif
-                </p>
+                </div>
+
             </a>
             @if($hasChildren)
                 @include('voyager::menu.lte', ['items' => $item->children, 'options' => $options, 'innerLoop' => true])

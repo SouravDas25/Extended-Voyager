@@ -61,6 +61,7 @@ trait VoyagerUser
      * Set default User Role.
      *
      * @param string $name The role name to associate.
+     * @return VoyagerUser
      */
     public function setRole($name)
     {

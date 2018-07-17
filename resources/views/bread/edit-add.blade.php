@@ -79,7 +79,7 @@
                                 @endif
                             @endforeach
 
-                        </div><!-- panel-body -->
+                        </div><!-- card-body -->
 
                         <div class="card-footer">
                             <div class="col-md-12">

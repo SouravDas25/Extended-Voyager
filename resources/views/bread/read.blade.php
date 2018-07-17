@@ -42,7 +42,7 @@
                         @endphp
 
                         <div class="card-heading" style="border-bottom:0;">
-                            <h3 class="panel-title">{{ $row->display_name }}</h3>
+                            <h3 class="card-title">{{ $row->display_name }}</h3>
                         </div>
 
                         <div class="card-body" style="padding-top:0; font-weight:bold!important;">
@@ -120,7 +120,7 @@
                                 @include('voyager::multilingual.input-hidden-bread-read')
                                 <p>{{ $dataTypeContent->{$row->field} }}</p>
                             @endif
-                        </div><!-- panel-body -->
+                        </div><!-- card-body -->
                         @if(!$loop->last)
                             <hr style="margin:0;">
                         @endif

@@ -44,4 +44,14 @@ class User extends Authenticatable implements UserContract
     {
         return $this->settings['locale'];
     }
+
+    /**
+     * Get the relationships for the entity.
+     *
+     * @return void
+     */
+    public function getQueueableRelations()
+    {
+        // TODO: Implement getQueueableRelations() method.
+    }
 }

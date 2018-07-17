@@ -145,7 +145,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <div class="dropdown-item text-center disabled">
-                    <img src="{{ $user_avatar }}" class="img-fluid rounded-circle" width="200px">
+                    <img src="{{ $user_avatar }}" class="img-fluid rounded-circle" width="100px">
                     <div class="profile-body ">
                         <h5>
                             {{ ucfirst(Auth::user()->name) }}<br>
