@@ -18,7 +18,7 @@ use TCG\Voyager\Facades\Voyager;
 
 class GenerateCommand extends Command
 {
-    protected $signature  = 'voyager:generate {--bread}';
+    protected $signature  = 'voyager:generate ';
 
     protected $description = 'Generates beard data seeds created by the user on different tables.';
 
@@ -40,22 +40,16 @@ class GenerateCommand extends Command
         return $this->handle();
     }
 
-    protected function getOptions()
+    /*protected function getOptions()
     {
         return [
             ['bread', null, InputOption::VALUE_NONE, 'Generates all the bread seed needed by the app for db.', null],
         ];
-    }
+    }*/
 
     public function handle()
     {
-        $bread = $this->option('bread');
-        if($bread){
-            $this->generateBread();
-        }
-        else {
-            $this->error('No Task is specified for generation.');
-        }
+        $this->generateBread();
     }
 
     /**
@@ -68,9 +62,12 @@ class GenerateCommand extends Command
         $beardsObj = [];
         foreach ($table_names as $name){
             if( Schema::hasTable($name) ) {
-                $this->info("Found Table $name.");
+                //$this->info("Found table $name.");
                 $beardsObj[$name] = DB::table($name)->get();
-                $this->info("Generated Seed Data For $name Model");
+                $this->info("Generated seed data for $name model");
+            }
+            else {
+                $this->info("Table $name not found.");
             }
         }
         $path = Voyager::seedDataFolderPath();
