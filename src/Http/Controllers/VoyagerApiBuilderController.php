@@ -21,7 +21,7 @@ class VoyagerApiBuilderController extends Controller
 {
     public function index()
     {
-        Voyager::canOrFail('browse_api');
+        Voyager::canOrFail('browse_api-builder');
 
         $dataTypes = Voyager::model('ApiType')->select('id', 'name', 'slug')->get()->keyBy('name')->toArray();
 
@@ -42,7 +42,7 @@ class VoyagerApiBuilderController extends Controller
 
     public function create(Request $request, $table)
     {
-        Voyager::canOrFail('browse_api');
+        Voyager::canOrFail('browse_api-builder');
 
         $data = $this->prepopulateBreadInfo($table);
         $data['fieldOptions'] = SchemaManager::describeTable($table);
@@ -74,7 +74,7 @@ class VoyagerApiBuilderController extends Controller
 
     public function store(Request $request)
     {
-        Voyager::canOrFail('browse_api');
+        Voyager::canOrFail('browse_api-builder');
         $vd = $request->validate([
             'name' => 'required|unique:api_types',
             'display_name_singular' => 'required',
@@ -92,7 +92,7 @@ class VoyagerApiBuilderController extends Controller
 
     public function edit($table)
     {
-        Voyager::canOrFail('browse_api');
+        Voyager::canOrFail('browse_api-builder');
         $data = $this->prepopulateBreadInfo($table);
         $data['fieldOptions'] = SchemaManager::describeTable($table);
         $data['is_edit'] = true;
@@ -103,7 +103,7 @@ class VoyagerApiBuilderController extends Controller
 
     public function update(Request $request, $id)
     {
-        Voyager::canOrFail('browse_api');
+        Voyager::canOrFail('browse_api-builder');
         try {
             $api_type = Voyager::model('ApiType')->find($id);
             $vd = $request->validate([
@@ -131,14 +131,14 @@ class VoyagerApiBuilderController extends Controller
 
     public function show($id)
     {
-        Voyager::canOrFail('browse_api');
+        Voyager::canOrFail('browse_api-builder');
         $apiType = Voyager::model('ApiType')->find($id);
         return Voyager::view('voyager::tools.api.browse', compact('apiType'));
     }
 
     public function destroy($id)
     {
-        Voyager::canOrFail('browse_api');
+        Voyager::canOrFail('browse_api-builder');
         $api_type = Voyager::model('ApiType')->find($id);
 
         $res = Voyager::model('ApiType')->destroy($id);

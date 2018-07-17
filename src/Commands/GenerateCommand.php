@@ -64,25 +64,23 @@ class GenerateCommand extends Command
     public function generateBread()
     {
         //$this->info('Bread Defined');
-        $models = Voyager::model_names();
+        $table_names = Voyager::table_names();
         $beardsObj = [];
-        foreach ($models as $model){
-            $modelClass = Voyager::model($model);
-            $tablename = (new $modelClass())->getTable();
-            if( Schema::hasTable($tablename) ) {
-                $this->info("Found Table $tablename.");
-                $beardsObj[$model] = DB::table($tablename)->get();
-                $this->info("Generated Bread Data For $model Model");
+        foreach ($table_names as $name){
+            if( Schema::hasTable($name) ) {
+                $this->info("Found Table $name.");
+                $beardsObj[$name] = DB::table($name)->get();
+                $this->info("Generated Seed Data For $name Model");
             }
         }
         $path = Voyager::seedDataFolderPath();
-        $this->info($path);
+        //$this->info($path);
         if (!$this->filesystem->isDirectory($path)) {
             $this->filesystem->makeDirectory($path);
         }
         $data = json_encode($beardsObj, JSON_PRETTY_PRINT);
         $path = Voyager::seedDataFilePath();
         $this->filesystem->put($path,$data);
-        $this->info("All Bread Data Generated.");
+        $this->info("All Seed Data Generated.");
     }
 }

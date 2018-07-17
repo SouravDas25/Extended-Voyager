@@ -14,22 +14,28 @@ use TCG\Voyager\Facades\Voyager;
 
 class VoyagerUniversalSeeder extends Seeder
 {
+    /**
+     * @throws Exception
+     */
     public function run()
     {
         DB::beginTransaction();
         $data = File::get(Voyager::seedDataFilePath());
         $data = json_decode($data,true);
-        foreach ($data as $model => $rows) {
-            $modelClass = Voyager::model($model);
-            $modelClass::query()->truncate();
-            foreach ($rows as $row){
-                $modelObj = new $modelClass();
-                foreach ($row as $key => $value) {
-                    $modelObj->${$key} = $value;
-                }
-                $modelObj->save();
+        //print_r($data) ;
+        //DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        try {
+            foreach ($data as $table_name => $rows) {
+                //DB::table($table_name)->truncate();
+                DB::table($table_name)->insert($rows);
             }
         }
+        catch (\Exception $exception){
+            DB::rollBack();
+            //DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+            throw $exception;
+        }
+        //DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         DB::commit();
     }
 }

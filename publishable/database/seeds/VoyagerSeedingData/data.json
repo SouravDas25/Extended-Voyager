@@ -1,23 +1,687 @@
 {
-    "ApiKey": [
-        
-    ],
-    "ApiType": [
+    "settings": [
+        {
+            "id": 1,
+            "key": "site.title",
+            "display_name": "Site Title",
+            "value": "Site Title",
+            "details": "",
+            "type": "text",
+            "order": 1,
+            "group": "Site"
+        },
+        {
+            "id": 2,
+            "key": "site.description",
+            "display_name": "Site Description",
+            "value": "Site Description",
+            "details": "",
+            "type": "text",
+            "order": 2,
+            "group": "Site"
+        },
         {
             "id": 3,
-            "name": "users",
-            "slug": "users",
-            "controller": null,
-            "paginate": 1,
-            "model_name": "App\\User",
-            "description": null,
-            "display_name_singular": "User",
-            "display_name_plural": "Users",
-            "created_at": "2018-06-27 15:40:00",
-            "updated_at": "2018-06-27 15:40:00"
+            "key": "site.logo",
+            "display_name": "Site Logo",
+            "value": "",
+            "details": "",
+            "type": "image",
+            "order": 3,
+            "group": "Site"
+        },
+        {
+            "id": 4,
+            "key": "site.google_analytics_tracking_id",
+            "display_name": "Google Analytics Tracking ID",
+            "value": null,
+            "details": "",
+            "type": "text",
+            "order": 4,
+            "group": "Site"
+        },
+        {
+            "id": 5,
+            "key": "admin.bg_image",
+            "display_name": "Admin Background Image",
+            "value": "",
+            "details": "",
+            "type": "image",
+            "order": 5,
+            "group": "Admin"
+        },
+        {
+            "id": 6,
+            "key": "admin.title",
+            "display_name": "Admin Title",
+            "value": "Voyager",
+            "details": "",
+            "type": "text",
+            "order": 1,
+            "group": "Admin"
+        },
+        {
+            "id": 7,
+            "key": "admin.description",
+            "display_name": "Admin Description",
+            "value": "Welcome to Voyager. The Missing Admin for Laravel",
+            "details": "",
+            "type": "text",
+            "order": 2,
+            "group": "Admin"
+        },
+        {
+            "id": 8,
+            "key": "admin.loader",
+            "display_name": "Admin Loader",
+            "value": "",
+            "details": "",
+            "type": "image",
+            "order": 3,
+            "group": "Admin"
+        },
+        {
+            "id": 9,
+            "key": "admin.icon_image",
+            "display_name": "Admin Icon Image",
+            "value": "",
+            "details": "",
+            "type": "image",
+            "order": 4,
+            "group": "Admin"
+        },
+        {
+            "id": 10,
+            "key": "admin.google_analytics_client_id",
+            "display_name": "Google Analytics Client ID (used for admin dashboard)",
+            "value": null,
+            "details": "",
+            "type": "text",
+            "order": 1,
+            "group": "Admin"
         }
     ],
-    "DataRow": [
+    "translations": [],
+    "roles": [
+        {
+            "id": 1,
+            "name": "admin",
+            "display_name": "Administrator",
+            "created_at": "2018-06-13 18:22:16",
+            "updated_at": "2018-06-13 18:22:16"
+        },
+        {
+            "id": 2,
+            "name": "user",
+            "display_name": "Normal User",
+            "created_at": "2018-06-13 18:22:16",
+            "updated_at": "2018-06-13 18:22:16"
+        }
+    ],
+    "users": [
+        {
+            "id": 1,
+            "role_id": 1,
+            "name": "admin",
+            "email": "admin@admin.com",
+            "avatar": "users\/default.png",
+            "password": "$2y$10$LlGYjzybyuh6p1t1AO5eS.pla2Vp0FqMi4GbftxmQRAAX19dw2Js6",
+            "remember_token": "HrIxtjDCKM8AYgBDtYbax3WHcL9d70unNngqgdOpL1qaYSDLOklAXxABXdHz",
+            "settings": null,
+            "created_at": "2018-06-13 18:22:51",
+            "updated_at": "2018-06-13 18:22:52"
+        }
+    ],
+    "permissions": [
+        {
+            "id": 1,
+            "key": "browse_admin",
+            "table_name": null,
+            "created_at": "2018-06-13 18:22:16",
+            "updated_at": "2018-06-13 18:22:16"
+        },
+        {
+            "id": 2,
+            "key": "browse_bread",
+            "table_name": null,
+            "created_at": "2018-06-13 18:22:16",
+            "updated_at": "2018-06-13 18:22:16"
+        },
+        {
+            "id": 3,
+            "key": "browse_database",
+            "table_name": null,
+            "created_at": "2018-06-13 18:22:16",
+            "updated_at": "2018-06-13 18:22:16"
+        },
+        {
+            "id": 4,
+            "key": "browse_media",
+            "table_name": null,
+            "created_at": "2018-06-13 18:22:16",
+            "updated_at": "2018-06-13 18:22:16"
+        },
+        {
+            "id": 5,
+            "key": "browse_compass",
+            "table_name": null,
+            "created_at": "2018-06-13 18:22:17",
+            "updated_at": "2018-06-13 18:22:17"
+        },
+        {
+            "id": 6,
+            "key": "browse_menus",
+            "table_name": "menus",
+            "created_at": "2018-06-13 18:22:17",
+            "updated_at": "2018-06-13 18:22:17"
+        },
+        {
+            "id": 7,
+            "key": "read_menus",
+            "table_name": "menus",
+            "created_at": "2018-06-13 18:22:17",
+            "updated_at": "2018-06-13 18:22:17"
+        },
+        {
+            "id": 8,
+            "key": "edit_menus",
+            "table_name": "menus",
+            "created_at": "2018-06-13 18:22:17",
+            "updated_at": "2018-06-13 18:22:17"
+        },
+        {
+            "id": 9,
+            "key": "add_menus",
+            "table_name": "menus",
+            "created_at": "2018-06-13 18:22:17",
+            "updated_at": "2018-06-13 18:22:17"
+        },
+        {
+            "id": 10,
+            "key": "delete_menus",
+            "table_name": "menus",
+            "created_at": "2018-06-13 18:22:17",
+            "updated_at": "2018-06-13 18:22:17"
+        },
+        {
+            "id": 11,
+            "key": "browse_roles",
+            "table_name": "roles",
+            "created_at": "2018-06-13 18:22:17",
+            "updated_at": "2018-06-13 18:22:17"
+        },
+        {
+            "id": 12,
+            "key": "read_roles",
+            "table_name": "roles",
+            "created_at": "2018-06-13 18:22:17",
+            "updated_at": "2018-06-13 18:22:17"
+        },
+        {
+            "id": 13,
+            "key": "edit_roles",
+            "table_name": "roles",
+            "created_at": "2018-06-13 18:22:17",
+            "updated_at": "2018-06-13 18:22:17"
+        },
+        {
+            "id": 14,
+            "key": "add_roles",
+            "table_name": "roles",
+            "created_at": "2018-06-13 18:22:17",
+            "updated_at": "2018-06-13 18:22:17"
+        },
+        {
+            "id": 15,
+            "key": "delete_roles",
+            "table_name": "roles",
+            "created_at": "2018-06-13 18:22:17",
+            "updated_at": "2018-06-13 18:22:17"
+        },
+        {
+            "id": 16,
+            "key": "browse_users",
+            "table_name": "users",
+            "created_at": "2018-06-13 18:22:17",
+            "updated_at": "2018-06-13 18:22:17"
+        },
+        {
+            "id": 17,
+            "key": "read_users",
+            "table_name": "users",
+            "created_at": "2018-06-13 18:22:17",
+            "updated_at": "2018-06-13 18:22:17"
+        },
+        {
+            "id": 18,
+            "key": "edit_users",
+            "table_name": "users",
+            "created_at": "2018-06-13 18:22:17",
+            "updated_at": "2018-06-13 18:22:17"
+        },
+        {
+            "id": 19,
+            "key": "add_users",
+            "table_name": "users",
+            "created_at": "2018-06-13 18:22:17",
+            "updated_at": "2018-06-13 18:22:17"
+        },
+        {
+            "id": 20,
+            "key": "delete_users",
+            "table_name": "users",
+            "created_at": "2018-06-13 18:22:17",
+            "updated_at": "2018-06-13 18:22:17"
+        },
+        {
+            "id": 21,
+            "key": "browse_settings",
+            "table_name": "settings",
+            "created_at": "2018-06-13 18:22:17",
+            "updated_at": "2018-06-13 18:22:17"
+        },
+        {
+            "id": 22,
+            "key": "read_settings",
+            "table_name": "settings",
+            "created_at": "2018-06-13 18:22:17",
+            "updated_at": "2018-06-13 18:22:17"
+        },
+        {
+            "id": 23,
+            "key": "edit_settings",
+            "table_name": "settings",
+            "created_at": "2018-06-13 18:22:17",
+            "updated_at": "2018-06-13 18:22:17"
+        },
+        {
+            "id": 24,
+            "key": "add_settings",
+            "table_name": "settings",
+            "created_at": "2018-06-13 18:22:17",
+            "updated_at": "2018-06-13 18:22:17"
+        },
+        {
+            "id": 25,
+            "key": "delete_settings",
+            "table_name": "settings",
+            "created_at": "2018-06-13 18:22:17",
+            "updated_at": "2018-06-13 18:22:17"
+        },
+        {
+            "id": 26,
+            "key": "browse_hooks",
+            "table_name": null,
+            "created_at": "2018-06-13 18:22:21",
+            "updated_at": "2018-06-13 18:22:21"
+        },
+        {
+            "id": 27,
+            "key": "browse_api-builder",
+            "table_name": null,
+            "created_at": "2018-06-18 00:00:00",
+            "updated_at": "2018-06-18 00:00:00"
+        }
+    ],
+    "permission_role": [
+        {
+            "permission_id": 1,
+            "role_id": 1
+        },
+        {
+            "permission_id": 1,
+            "role_id": 2
+        },
+        {
+            "permission_id": 2,
+            "role_id": 1
+        },
+        {
+            "permission_id": 3,
+            "role_id": 1
+        },
+        {
+            "permission_id": 4,
+            "role_id": 1
+        },
+        {
+            "permission_id": 5,
+            "role_id": 1
+        },
+        {
+            "permission_id": 6,
+            "role_id": 1
+        },
+        {
+            "permission_id": 7,
+            "role_id": 1
+        },
+        {
+            "permission_id": 8,
+            "role_id": 1
+        },
+        {
+            "permission_id": 9,
+            "role_id": 1
+        },
+        {
+            "permission_id": 10,
+            "role_id": 1
+        },
+        {
+            "permission_id": 11,
+            "role_id": 1
+        },
+        {
+            "permission_id": 12,
+            "role_id": 1
+        },
+        {
+            "permission_id": 13,
+            "role_id": 1
+        },
+        {
+            "permission_id": 14,
+            "role_id": 1
+        },
+        {
+            "permission_id": 15,
+            "role_id": 1
+        },
+        {
+            "permission_id": 16,
+            "role_id": 1
+        },
+        {
+            "permission_id": 17,
+            "role_id": 1
+        },
+        {
+            "permission_id": 18,
+            "role_id": 1
+        },
+        {
+            "permission_id": 19,
+            "role_id": 1
+        },
+        {
+            "permission_id": 20,
+            "role_id": 1
+        },
+        {
+            "permission_id": 21,
+            "role_id": 1
+        },
+        {
+            "permission_id": 22,
+            "role_id": 1
+        },
+        {
+            "permission_id": 23,
+            "role_id": 1
+        },
+        {
+            "permission_id": 24,
+            "role_id": 1
+        },
+        {
+            "permission_id": 25,
+            "role_id": 1
+        },
+        {
+            "permission_id": 26,
+            "role_id": 1
+        },
+        {
+            "permission_id": 27,
+            "role_id": 1
+        }
+    ],
+    "user_roles": [],
+    "menus": [
+        {
+            "id": 1,
+            "name": "admin",
+            "created_at": "2018-06-13 18:22:16",
+            "updated_at": "2018-06-13 18:22:16"
+        }
+    ],
+    "menu_items": [
+        {
+            "id": 1,
+            "menu_id": 1,
+            "title": "Dashboard",
+            "url": "",
+            "target": "_self",
+            "icon_class": "voyager-boat",
+            "color": null,
+            "parent_id": null,
+            "order": 1,
+            "created_at": "2018-06-13 18:22:16",
+            "updated_at": "2018-06-13 18:22:16",
+            "route": "voyager.dashboard",
+            "parameters": null
+        },
+        {
+            "id": 2,
+            "menu_id": 1,
+            "title": "Media",
+            "url": "",
+            "target": "_self",
+            "icon_class": "voyager-images",
+            "color": null,
+            "parent_id": null,
+            "order": 5,
+            "created_at": "2018-06-13 18:22:16",
+            "updated_at": "2018-07-03 09:19:28",
+            "route": "voyager.media.index",
+            "parameters": null
+        },
+        {
+            "id": 3,
+            "menu_id": 1,
+            "title": "Users",
+            "url": "",
+            "target": "_self",
+            "icon_class": "voyager-person",
+            "color": null,
+            "parent_id": null,
+            "order": 2,
+            "created_at": "2018-06-13 18:22:16",
+            "updated_at": "2018-06-14 16:48:43",
+            "route": "voyager.users.index",
+            "parameters": null
+        },
+        {
+            "id": 4,
+            "menu_id": 1,
+            "title": "Roles",
+            "url": "",
+            "target": "_self",
+            "icon_class": "voyager-lock",
+            "color": null,
+            "parent_id": null,
+            "order": 6,
+            "created_at": "2018-06-13 18:22:16",
+            "updated_at": "2018-07-03 09:19:28",
+            "route": "voyager.roles.index",
+            "parameters": null
+        },
+        {
+            "id": 5,
+            "menu_id": 1,
+            "title": "Tools",
+            "url": "",
+            "target": "_self",
+            "icon_class": "voyager-tools",
+            "color": null,
+            "parent_id": null,
+            "order": 7,
+            "created_at": "2018-06-13 18:22:16",
+            "updated_at": "2018-07-03 09:19:28",
+            "route": null,
+            "parameters": null
+        },
+        {
+            "id": 6,
+            "menu_id": 1,
+            "title": "Menu Builder",
+            "url": "",
+            "target": "_self",
+            "icon_class": "voyager-list",
+            "color": null,
+            "parent_id": 5,
+            "order": 1,
+            "created_at": "2018-06-13 18:22:16",
+            "updated_at": "2018-06-14 16:52:27",
+            "route": "voyager.menus.index",
+            "parameters": null
+        },
+        {
+            "id": 7,
+            "menu_id": 1,
+            "title": "Database",
+            "url": "",
+            "target": "_self",
+            "icon_class": "voyager-data",
+            "color": null,
+            "parent_id": 5,
+            "order": 2,
+            "created_at": "2018-06-13 18:22:16",
+            "updated_at": "2018-06-14 16:52:27",
+            "route": "voyager.database.index",
+            "parameters": null
+        },
+        {
+            "id": 8,
+            "menu_id": 1,
+            "title": "Compass",
+            "url": "",
+            "target": "_self",
+            "icon_class": "voyager-compass",
+            "color": null,
+            "parent_id": 5,
+            "order": 5,
+            "created_at": "2018-06-13 18:22:16",
+            "updated_at": "2018-07-02 09:33:03",
+            "route": "voyager.compass.index",
+            "parameters": null
+        },
+        {
+            "id": 9,
+            "menu_id": 1,
+            "title": "BREAD",
+            "url": "",
+            "target": "_self",
+            "icon_class": "voyager-bread",
+            "color": null,
+            "parent_id": 5,
+            "order": 3,
+            "created_at": "2018-06-13 18:22:16",
+            "updated_at": "2018-07-02 09:33:03",
+            "route": "voyager.bread.index",
+            "parameters": null
+        },
+        {
+            "id": 10,
+            "menu_id": 1,
+            "title": "Settings",
+            "url": "",
+            "target": "_self",
+            "icon_class": "voyager-settings",
+            "color": null,
+            "parent_id": null,
+            "order": 8,
+            "created_at": "2018-06-13 18:22:16",
+            "updated_at": "2018-07-03 09:19:28",
+            "route": "voyager.settings.index",
+            "parameters": null
+        },
+        {
+            "id": 11,
+            "menu_id": 1,
+            "title": "Hooks",
+            "url": "",
+            "target": "_self",
+            "icon_class": "voyager-hook",
+            "color": null,
+            "parent_id": 5,
+            "order": 6,
+            "created_at": "2018-06-13 18:22:21",
+            "updated_at": "2018-07-02 09:33:01",
+            "route": "voyager.hooks",
+            "parameters": null
+        },
+        {
+            "id": 13,
+            "menu_id": 1,
+            "title": "Api Builder",
+            "url": "",
+            "target": "_self",
+            "icon_class": "fa fa-cloud",
+            "color": "#000000",
+            "parent_id": 5,
+            "order": 4,
+            "created_at": "2018-06-18 11:08:56",
+            "updated_at": "2018-07-02 09:33:03",
+            "route": "voyager.api.builder.index",
+            "parameters": "null"
+        }
+    ],
+    "data_types": [
+        {
+            "id": 1,
+            "name": "users",
+            "slug": "users",
+            "display_name_singular": "User",
+            "display_name_plural": "Users",
+            "icon": "voyager-person",
+            "model_name": "TCG\\Voyager\\Models\\User",
+            "policy_name": "TCG\\Voyager\\Policies\\UserPolicy",
+            "controller": "",
+            "description": "",
+            "generate_permissions": 1,
+            "server_side": 0,
+            "details": null,
+            "created_at": "2018-06-13 18:22:15",
+            "updated_at": "2018-06-13 18:22:15"
+        },
+        {
+            "id": 2,
+            "name": "menus",
+            "slug": "menus",
+            "display_name_singular": "Menu",
+            "display_name_plural": "Menus",
+            "icon": "voyager-list",
+            "model_name": "TCG\\Voyager\\Models\\Menu",
+            "policy_name": null,
+            "controller": "",
+            "description": "",
+            "generate_permissions": 1,
+            "server_side": 0,
+            "details": null,
+            "created_at": "2018-06-13 18:22:15",
+            "updated_at": "2018-06-13 18:22:15"
+        },
+        {
+            "id": 3,
+            "name": "roles",
+            "slug": "roles",
+            "display_name_singular": "Role",
+            "display_name_plural": "Roles",
+            "icon": "voyager-lock",
+            "model_name": "TCG\\Voyager\\Models\\Role",
+            "policy_name": null,
+            "controller": "",
+            "description": "",
+            "generate_permissions": 1,
+            "server_side": 0,
+            "details": null,
+            "created_at": "2018-06-13 18:22:15",
+            "updated_at": "2018-06-13 18:22:15"
+        }
+    ],
+    "data_rows": [
         {
             "id": 1,
             "data_type_id": 1,
@@ -349,571 +1013,20 @@
             "order": 9
         }
     ],
-    "DataType": [
+    "api_types": [
         {
-            "id": 1,
+            "id": 3,
             "name": "users",
             "slug": "users",
+            "controller": null,
+            "paginate": 1,
+            "model_name": "App\\User",
+            "description": null,
             "display_name_singular": "User",
             "display_name_plural": "Users",
-            "icon": "voyager-person",
-            "model_name": "TCG\\Voyager\\Models\\User",
-            "policy_name": "TCG\\Voyager\\Policies\\UserPolicy",
-            "controller": "",
-            "description": "",
-            "generate_permissions": 1,
-            "server_side": 0,
-            "details": null,
-            "created_at": "2018-06-13 18:22:15",
-            "updated_at": "2018-06-13 18:22:15"
-        },
-        {
-            "id": 2,
-            "name": "menus",
-            "slug": "menus",
-            "display_name_singular": "Menu",
-            "display_name_plural": "Menus",
-            "icon": "voyager-list",
-            "model_name": "TCG\\Voyager\\Models\\Menu",
-            "policy_name": null,
-            "controller": "",
-            "description": "",
-            "generate_permissions": 1,
-            "server_side": 0,
-            "details": null,
-            "created_at": "2018-06-13 18:22:15",
-            "updated_at": "2018-06-13 18:22:15"
-        },
-        {
-            "id": 3,
-            "name": "roles",
-            "slug": "roles",
-            "display_name_singular": "Role",
-            "display_name_plural": "Roles",
-            "icon": "voyager-lock",
-            "model_name": "TCG\\Voyager\\Models\\Role",
-            "policy_name": null,
-            "controller": "",
-            "description": "",
-            "generate_permissions": 1,
-            "server_side": 0,
-            "details": null,
-            "created_at": "2018-06-13 18:22:15",
-            "updated_at": "2018-06-13 18:22:15"
+            "created_at": "2018-06-27 15:40:00",
+            "updated_at": "2018-06-27 15:40:00"
         }
     ],
-    "Menu": [
-        {
-            "id": 1,
-            "name": "admin",
-            "created_at": "2018-06-13 18:22:16",
-            "updated_at": "2018-06-13 18:22:16"
-        }
-    ],
-    "MenuItem": [
-        {
-            "id": 1,
-            "menu_id": 1,
-            "title": "Dashboard",
-            "url": "",
-            "target": "_self",
-            "icon_class": "voyager-boat",
-            "color": null,
-            "parent_id": null,
-            "order": 1,
-            "created_at": "2018-06-13 18:22:16",
-            "updated_at": "2018-06-13 18:22:16",
-            "route": "voyager.dashboard",
-            "parameters": null
-        },
-        {
-            "id": 2,
-            "menu_id": 1,
-            "title": "Media",
-            "url": "",
-            "target": "_self",
-            "icon_class": "voyager-images",
-            "color": null,
-            "parent_id": null,
-            "order": 5,
-            "created_at": "2018-06-13 18:22:16",
-            "updated_at": "2018-07-03 09:19:28",
-            "route": "voyager.media.index",
-            "parameters": null
-        },
-        {
-            "id": 3,
-            "menu_id": 1,
-            "title": "Users",
-            "url": "",
-            "target": "_self",
-            "icon_class": "voyager-person",
-            "color": null,
-            "parent_id": null,
-            "order": 2,
-            "created_at": "2018-06-13 18:22:16",
-            "updated_at": "2018-06-14 16:48:43",
-            "route": "voyager.users.index",
-            "parameters": null
-        },
-        {
-            "id": 4,
-            "menu_id": 1,
-            "title": "Roles",
-            "url": "",
-            "target": "_self",
-            "icon_class": "voyager-lock",
-            "color": null,
-            "parent_id": null,
-            "order": 6,
-            "created_at": "2018-06-13 18:22:16",
-            "updated_at": "2018-07-03 09:19:28",
-            "route": "voyager.roles.index",
-            "parameters": null
-        },
-        {
-            "id": 5,
-            "menu_id": 1,
-            "title": "Tools",
-            "url": "",
-            "target": "_self",
-            "icon_class": "voyager-tools",
-            "color": null,
-            "parent_id": null,
-            "order": 7,
-            "created_at": "2018-06-13 18:22:16",
-            "updated_at": "2018-07-03 09:19:28",
-            "route": null,
-            "parameters": null
-        },
-        {
-            "id": 6,
-            "menu_id": 1,
-            "title": "Menu Builder",
-            "url": "",
-            "target": "_self",
-            "icon_class": "voyager-list",
-            "color": null,
-            "parent_id": 5,
-            "order": 1,
-            "created_at": "2018-06-13 18:22:16",
-            "updated_at": "2018-06-14 16:52:27",
-            "route": "voyager.menus.index",
-            "parameters": null
-        },
-        {
-            "id": 7,
-            "menu_id": 1,
-            "title": "Database",
-            "url": "",
-            "target": "_self",
-            "icon_class": "voyager-data",
-            "color": null,
-            "parent_id": 5,
-            "order": 2,
-            "created_at": "2018-06-13 18:22:16",
-            "updated_at": "2018-06-14 16:52:27",
-            "route": "voyager.database.index",
-            "parameters": null
-        },
-        {
-            "id": 8,
-            "menu_id": 1,
-            "title": "Compass",
-            "url": "",
-            "target": "_self",
-            "icon_class": "voyager-compass",
-            "color": null,
-            "parent_id": 5,
-            "order": 5,
-            "created_at": "2018-06-13 18:22:16",
-            "updated_at": "2018-07-02 09:33:03",
-            "route": "voyager.compass.index",
-            "parameters": null
-        },
-        {
-            "id": 9,
-            "menu_id": 1,
-            "title": "BREAD",
-            "url": "",
-            "target": "_self",
-            "icon_class": "voyager-bread",
-            "color": null,
-            "parent_id": 5,
-            "order": 3,
-            "created_at": "2018-06-13 18:22:16",
-            "updated_at": "2018-07-02 09:33:03",
-            "route": "voyager.bread.index",
-            "parameters": null
-        },
-        {
-            "id": 10,
-            "menu_id": 1,
-            "title": "Settings",
-            "url": "",
-            "target": "_self",
-            "icon_class": "voyager-settings",
-            "color": null,
-            "parent_id": null,
-            "order": 8,
-            "created_at": "2018-06-13 18:22:16",
-            "updated_at": "2018-07-03 09:19:28",
-            "route": "voyager.settings.index",
-            "parameters": null
-        },
-        {
-            "id": 11,
-            "menu_id": 1,
-            "title": "Hooks",
-            "url": "",
-            "target": "_self",
-            "icon_class": "voyager-hook",
-            "color": null,
-            "parent_id": 5,
-            "order": 6,
-            "created_at": "2018-06-13 18:22:21",
-            "updated_at": "2018-07-02 09:33:01",
-            "route": "voyager.hooks",
-            "parameters": null
-        },
-        {
-            "id": 12,
-            "menu_id": 1,
-            "title": "Api Builder",
-            "url": "",
-            "target": "_self",
-            "icon_class": "fa fa-cloud",
-            "color": "#000000",
-            "parent_id": 5,
-            "order": 4,
-            "created_at": "2018-06-18 11:08:56",
-            "updated_at": "2018-07-02 09:33:03",
-            "route": "voyager.api.builder.index",
-            "parameters": "null"
-        }
-    ],
-    "Permission": [
-        {
-            "id": 1,
-            "key": "browse_admin",
-            "table_name": null,
-            "created_at": "2018-06-13 18:22:16",
-            "updated_at": "2018-06-13 18:22:16"
-        },
-        {
-            "id": 2,
-            "key": "browse_bread",
-            "table_name": null,
-            "created_at": "2018-06-13 18:22:16",
-            "updated_at": "2018-06-13 18:22:16"
-        },
-        {
-            "id": 3,
-            "key": "browse_database",
-            "table_name": null,
-            "created_at": "2018-06-13 18:22:16",
-            "updated_at": "2018-06-13 18:22:16"
-        },
-        {
-            "id": 4,
-            "key": "browse_media",
-            "table_name": null,
-            "created_at": "2018-06-13 18:22:16",
-            "updated_at": "2018-06-13 18:22:16"
-        },
-        {
-            "id": 5,
-            "key": "browse_compass",
-            "table_name": null,
-            "created_at": "2018-06-13 18:22:17",
-            "updated_at": "2018-06-13 18:22:17"
-        },
-        {
-            "id": 6,
-            "key": "browse_menus",
-            "table_name": "menus",
-            "created_at": "2018-06-13 18:22:17",
-            "updated_at": "2018-06-13 18:22:17"
-        },
-        {
-            "id": 7,
-            "key": "read_menus",
-            "table_name": "menus",
-            "created_at": "2018-06-13 18:22:17",
-            "updated_at": "2018-06-13 18:22:17"
-        },
-        {
-            "id": 8,
-            "key": "edit_menus",
-            "table_name": "menus",
-            "created_at": "2018-06-13 18:22:17",
-            "updated_at": "2018-06-13 18:22:17"
-        },
-        {
-            "id": 9,
-            "key": "add_menus",
-            "table_name": "menus",
-            "created_at": "2018-06-13 18:22:17",
-            "updated_at": "2018-06-13 18:22:17"
-        },
-        {
-            "id": 10,
-            "key": "delete_menus",
-            "table_name": "menus",
-            "created_at": "2018-06-13 18:22:17",
-            "updated_at": "2018-06-13 18:22:17"
-        },
-        {
-            "id": 11,
-            "key": "browse_roles",
-            "table_name": "roles",
-            "created_at": "2018-06-13 18:22:17",
-            "updated_at": "2018-06-13 18:22:17"
-        },
-        {
-            "id": 12,
-            "key": "read_roles",
-            "table_name": "roles",
-            "created_at": "2018-06-13 18:22:17",
-            "updated_at": "2018-06-13 18:22:17"
-        },
-        {
-            "id": 13,
-            "key": "edit_roles",
-            "table_name": "roles",
-            "created_at": "2018-06-13 18:22:17",
-            "updated_at": "2018-06-13 18:22:17"
-        },
-        {
-            "id": 14,
-            "key": "add_roles",
-            "table_name": "roles",
-            "created_at": "2018-06-13 18:22:17",
-            "updated_at": "2018-06-13 18:22:17"
-        },
-        {
-            "id": 15,
-            "key": "delete_roles",
-            "table_name": "roles",
-            "created_at": "2018-06-13 18:22:17",
-            "updated_at": "2018-06-13 18:22:17"
-        },
-        {
-            "id": 16,
-            "key": "browse_users",
-            "table_name": "users",
-            "created_at": "2018-06-13 18:22:17",
-            "updated_at": "2018-06-13 18:22:17"
-        },
-        {
-            "id": 17,
-            "key": "read_users",
-            "table_name": "users",
-            "created_at": "2018-06-13 18:22:17",
-            "updated_at": "2018-06-13 18:22:17"
-        },
-        {
-            "id": 18,
-            "key": "edit_users",
-            "table_name": "users",
-            "created_at": "2018-06-13 18:22:17",
-            "updated_at": "2018-06-13 18:22:17"
-        },
-        {
-            "id": 19,
-            "key": "add_users",
-            "table_name": "users",
-            "created_at": "2018-06-13 18:22:17",
-            "updated_at": "2018-06-13 18:22:17"
-        },
-        {
-            "id": 20,
-            "key": "delete_users",
-            "table_name": "users",
-            "created_at": "2018-06-13 18:22:17",
-            "updated_at": "2018-06-13 18:22:17"
-        },
-        {
-            "id": 21,
-            "key": "browse_settings",
-            "table_name": "settings",
-            "created_at": "2018-06-13 18:22:17",
-            "updated_at": "2018-06-13 18:22:17"
-        },
-        {
-            "id": 22,
-            "key": "read_settings",
-            "table_name": "settings",
-            "created_at": "2018-06-13 18:22:17",
-            "updated_at": "2018-06-13 18:22:17"
-        },
-        {
-            "id": 23,
-            "key": "edit_settings",
-            "table_name": "settings",
-            "created_at": "2018-06-13 18:22:17",
-            "updated_at": "2018-06-13 18:22:17"
-        },
-        {
-            "id": 24,
-            "key": "add_settings",
-            "table_name": "settings",
-            "created_at": "2018-06-13 18:22:17",
-            "updated_at": "2018-06-13 18:22:17"
-        },
-        {
-            "id": 25,
-            "key": "delete_settings",
-            "table_name": "settings",
-            "created_at": "2018-06-13 18:22:17",
-            "updated_at": "2018-06-13 18:22:17"
-        },
-        {
-            "id": 26,
-            "key": "browse_hooks",
-            "table_name": null,
-            "created_at": "2018-06-13 18:22:21",
-            "updated_at": "2018-06-13 18:22:21"
-        },
-        {
-            "id": 27,
-            "key": "browse_api-builder",
-            "table_name": null,
-            "created_at": "2018-06-18 00:00:00",
-            "updated_at": "2018-06-18 00:00:00"
-        }
-    ],
-    "Role": [
-        {
-            "id": 1,
-            "name": "admin",
-            "display_name": "Administrator",
-            "created_at": "2018-06-13 18:22:16",
-            "updated_at": "2018-06-13 18:22:16"
-        },
-        {
-            "id": 2,
-            "name": "user",
-            "display_name": "Normal User",
-            "created_at": "2018-06-13 18:22:16",
-            "updated_at": "2018-06-13 18:22:16"
-        }
-    ],
-    "Setting": [
-        {
-            "id": 1,
-            "key": "site.title",
-            "display_name": "Site Title",
-            "value": "Site Title",
-            "details": "",
-            "type": "text",
-            "order": 1,
-            "group": "Site"
-        },
-        {
-            "id": 2,
-            "key": "site.description",
-            "display_name": "Site Description",
-            "value": "Site Description",
-            "details": "",
-            "type": "text",
-            "order": 2,
-            "group": "Site"
-        },
-        {
-            "id": 3,
-            "key": "site.logo",
-            "display_name": "Site Logo",
-            "value": "",
-            "details": "",
-            "type": "image",
-            "order": 3,
-            "group": "Site"
-        },
-        {
-            "id": 4,
-            "key": "site.google_analytics_tracking_id",
-            "display_name": "Google Analytics Tracking ID",
-            "value": null,
-            "details": "",
-            "type": "text",
-            "order": 4,
-            "group": "Site"
-        },
-        {
-            "id": 5,
-            "key": "admin.bg_image",
-            "display_name": "Admin Background Image",
-            "value": "",
-            "details": "",
-            "type": "image",
-            "order": 5,
-            "group": "Admin"
-        },
-        {
-            "id": 6,
-            "key": "admin.title",
-            "display_name": "Admin Title",
-            "value": "Voyager",
-            "details": "",
-            "type": "text",
-            "order": 1,
-            "group": "Admin"
-        },
-        {
-            "id": 7,
-            "key": "admin.description",
-            "display_name": "Admin Description",
-            "value": "Welcome to Voyager. The Missing Admin for Laravel",
-            "details": "",
-            "type": "text",
-            "order": 2,
-            "group": "Admin"
-        },
-        {
-            "id": 8,
-            "key": "admin.loader",
-            "display_name": "Admin Loader",
-            "value": "",
-            "details": "",
-            "type": "image",
-            "order": 3,
-            "group": "Admin"
-        },
-        {
-            "id": 9,
-            "key": "admin.icon_image",
-            "display_name": "Admin Icon Image",
-            "value": "",
-            "details": "",
-            "type": "image",
-            "order": 4,
-            "group": "Admin"
-        },
-        {
-            "id": 10,
-            "key": "admin.google_analytics_client_id",
-            "display_name": "Google Analytics Client ID (used for admin dashboard)",
-            "value": null,
-            "details": "",
-            "type": "text",
-            "order": 1,
-            "group": "Admin"
-        }
-    ],
-    "User": [
-        {
-            "id": 1,
-            "role_id": 1,
-            "name": "admin",
-            "email": "admin@admin.com",
-            "avatar": "users\/default.png",
-            "password": "$2y$10$LlGYjzybyuh6p1t1AO5eS.pla2Vp0FqMi4GbftxmQRAAX19dw2Js6",
-            "remember_token": "HrIxtjDCKM8AYgBDtYbax3WHcL9d70unNngqgdOpL1qaYSDLOklAXxABXdHz",
-            "settings": null,
-            "created_at": "2018-06-13 18:22:51",
-            "updated_at": "2018-06-13 18:22:52"
-        }
-    ],
-    "Translation": []
+    "api_keys": []
 }

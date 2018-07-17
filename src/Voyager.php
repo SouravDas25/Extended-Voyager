@@ -56,20 +56,20 @@ class Voyager
     ];
 
     protected $models = [
-        'ApiKey'     => ApiKey::class,
         'ApiType'     => ApiType::class,
-        'Category'    => Category::class,
-        'DataRow'     => DataRow::class,
+        'ApiKey'     => ApiKey::class,
         'DataType'    => DataType::class,
-        'Menu'        => Menu::class,
+        'DataRow'     => DataRow::class,
         'MenuItem'    => MenuItem::class,
+        'Menu'        => Menu::class,
         'Page'        => Page::class,
         'Permission'  => Permission::class,
         'Post'        => Post::class,
+        'User'        => User::class,
         'Role'        => Role::class,
         'Setting'     => Setting::class,
-        'User'        => User::class,
         'Translation' => Translation::class,
+        'Category'    => Category::class,
     ];
 
     public $setting_cache = null;
@@ -94,9 +94,23 @@ class Voyager
         return $this->seedDataFolderPath() . $this->seedDataFile;
     }
 
-    public function model_names()
+    public function table_names()
     {
-        return array_keys($this->models);
+        return [
+            'settings',
+            'translations',
+            'roles',
+            'users',
+            'permissions',
+            'permission_role',
+            'user_roles',
+            'menus',
+            'menu_items',
+            'data_types',
+            'data_rows',
+            'api_types',
+            'api_keys',
+        ];
     }
 
     public function model($name)
